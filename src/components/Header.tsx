@@ -1,15 +1,17 @@
+import { Link } from "react-router-dom";
+
 const Header = () => {
   return (
     <header className="bg-white shadow">
       <div className="container mx-auto py-4 px-8">
         <nav className="flex items-center justify-between">
           <div>
-            <h1 className="text-xl font-bold">Your Logo</h1>
+            <Link className="text-blue-500" to={`/`}>Home</Link>
           </div>
           <div>
             <ul className="flex space-x-4">
               <li>
-                <a href="#" className="text-blue-500">Koszyk</a>
+                <Link className="text-blue-500" to={`/cart`}>Koszyk</Link>
               </li>
             </ul>
           </div>
