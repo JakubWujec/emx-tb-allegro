@@ -1,6 +1,8 @@
+import TermoblockForm from "../components/TermoblockForm";
+
 const Home = () => {
   return (<div>
-    Home
+    <TermoblockForm></TermoblockForm>
   </div>)
 }
 
