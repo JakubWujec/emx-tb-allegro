@@ -51,7 +51,7 @@ export const createTermoblockItemSchema = z.object({
         if (data.holeType === "okrągły na rurę bez uchwytu") {
           return data.diameter && data.diameter > 50;
         }
-        console.log("AAA");
+
         return true;
       },
       {
