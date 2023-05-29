@@ -4,6 +4,7 @@ import {
   createTermoblockItemSchema,
 } from "../schema/termoblockItem.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { InputField } from "./InputField";
 
 const TermoblockForm = () => {
   const {
@@ -26,11 +27,10 @@ const TermoblockForm = () => {
         <label htmlFor="width" className="block text-gray-700 font-medium mb-2">
           Szerokość
         </label>
-        <input
-          className="w-10 h-10 self-center border-solid border-black border-2"
+        <InputField
           type="number"
-          {...register("width", { valueAsNumber: true })}
-        />
+          registration={register("width", { valueAsNumber: true })}
+        ></InputField>
         {errors.width && (
           <p className="text-red-500 mt-2">
             Width is required ${errors.width?.type} ${errors.width?.message}
@@ -44,11 +44,10 @@ const TermoblockForm = () => {
         >
           Wysokość
         </label>
-        <input
-          className="w-10 h-10 self-center border-solid border-black border-2"
+        <InputField
           type="number"
-          {...register("height", { valueAsNumber: true })}
-        />
+          registration={register("height", { valueAsNumber: true })}
+        ></InputField>
         {errors.height && (
           <p className="text-red-500 mt-2">
             Height is required ${errors.height?.type} ${errors.height?.message}
@@ -59,11 +58,10 @@ const TermoblockForm = () => {
         <label htmlFor="felc" className="block text-gray-700 font-medium mb-2">
           Felc
         </label>
-        <input
-          className="w-10 h-10 self-center border-solid border-black border-2"
+        <InputField
           type="number"
-          {...register("height", { valueAsNumber: true })}
-        />
+          registration={register("felc", { valueAsNumber: true })}
+        ></InputField>
         {errors.felc && (
           <p className="text-red-500 mt-2">
             Felc is required ${errors.height?.type} ${errors.height?.message}
