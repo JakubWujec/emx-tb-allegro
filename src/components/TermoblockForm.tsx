@@ -6,6 +6,8 @@ import {
   colors,
   hinges,
   plHinges,
+  holeTypes,
+  stringPositions,
 } from "../schema/termoblockItem.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField } from "./InputField";
@@ -23,8 +25,10 @@ const TermoblockForm = () => {
   });
 
   function onSubmit(values: CreateTermoblockItemInput) {
-    console.log(values, "XXX", errors);
+    console.log("VALUES:", values, "ERRORS: ", errors);
   }
+
+  const firstHoleType = watch("firstHole.holeType");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -78,6 +82,42 @@ const TermoblockForm = () => {
           registration={register("hinges")}
         ></SelectField>
       </div>
+      <div className="mb-4">
+        <SelectField
+          options={holeTypes.map((holeType) => {
+            return {
+              value: holeType,
+              label: holeType,
+            };
+          })}
+          label="Rodzaj pierwszego otworu"
+          error={errors.hinges}
+          registration={register("firstHole.holeType")}
+        ></SelectField>
+        <SelectField
+          options={stringPositions.map((stringPosition) => {
+            return {
+              value: stringPosition,
+              label: stringPosition,
+            };
+          })}
+          label="Położenie pierwszego otworu (patrząc z zewnątrz)"
+          error={errors.hinges}
+          registration={register("firstHole.stringPosition")}
+        ></SelectField>
+
+        {firstHoleType === "okrągły na rurę bez uchwytu" && (
+          <InputField
+            label="Średnica (zewnętrzna) pierwszego otworu (mm)"
+            error={errors.firstHole?.diameter}
+            type="number"
+            registration={register("firstHole.diameter", {
+              valueAsNumber: true,
+            })}
+          ></InputField>
+        )}
+      </div>
+
       <button
         type="submit"
         className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
