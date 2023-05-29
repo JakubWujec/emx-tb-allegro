@@ -2,9 +2,12 @@ import { useForm } from "react-hook-form";
 import {
   CreateTermoblockItemInput,
   createTermoblockItemSchema,
+  plColors,
+  colors,
 } from "../schema/termoblockItem.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField } from "./InputField";
+import { SelectField } from "./SelectField";
 
 const TermoblockForm = () => {
   const {
@@ -16,6 +19,8 @@ const TermoblockForm = () => {
     resolver:
       createTermoblockItemSchema && zodResolver(createTermoblockItemSchema),
   });
+
+  console.log("colors", colors);
 
   function onSubmit(values: CreateTermoblockItemInput) {
     console.log(values, errors);
@@ -46,6 +51,19 @@ const TermoblockForm = () => {
           type="number"
           registration={register("felc", { valueAsNumber: true })}
         ></InputField>
+      </div>
+      <div className="mb-4">
+        <SelectField
+          options={colors.map((color) => {
+            return {
+              value: color,
+              label: plColors[color],
+            };
+          })}
+          label="Kolor"
+          error={errors.color}
+          registration={register("color")}
+        ></SelectField>
       </div>
       <button
         type="submit"
