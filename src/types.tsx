@@ -3,9 +3,8 @@ import { TermoblockItemColor } from "./enums";
 interface TermoblockItem {
   width: number;
   height: number;
-  color: TermoblockItemColor
+  color: TermoblockItemColor;
+  felc: number;
 }
 
-export type {
-  TermoblockItem
-}
+export type { TermoblockItem };
