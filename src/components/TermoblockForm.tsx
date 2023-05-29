@@ -22,10 +22,8 @@ const TermoblockForm = () => {
       createTermoblockItemSchema && zodResolver(createTermoblockItemSchema),
   });
 
-  console.log("colors", colors);
-
   function onSubmit(values: CreateTermoblockItemInput) {
-    console.log(values, errors);
+    console.log(values, "XXX", errors);
   }
 
   return (
@@ -76,7 +74,7 @@ const TermoblockForm = () => {
             };
           })}
           label="Zawiasy"
-          error={errors.color}
+          error={errors.hinges}
           registration={register("hinges")}
         ></SelectField>
       </div>

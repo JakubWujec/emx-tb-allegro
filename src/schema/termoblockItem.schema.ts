@@ -14,7 +14,7 @@ export const plHinges = {
   left: "Po lewej",
   right: "Po prawej",
 };
-export const HingeEnum = z.enum(colors);
+export const HingeEnum = z.enum(hinges);
 
 export const createTermoblockItemSchema = z.object({
   width: z.number().positive(),
