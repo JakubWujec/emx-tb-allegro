@@ -7,13 +7,21 @@ export const plColors = {
   anthracit: "Antracyt",
 };
 export const ColorEnum = z.enum(colors);
-export type TermoblockItemColorEnum = z.infer<typeof ColorEnum>;
+
+export const hinges = ["none", "left", "right"] as const;
+export const plHinges = {
+  none: "Brak",
+  left: "Po lewej",
+  right: "Po prawej",
+};
+export const HingeEnum = z.enum(colors);
 
 export const createTermoblockItemSchema = z.object({
   width: z.number().positive(),
   height: z.number().positive(),
   felc: z.number().positive(),
   color: ColorEnum,
+  hinges: HingeEnum,
 });
 
 export type CreateTermoblockItemInput = z.TypeOf<

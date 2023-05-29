@@ -4,6 +4,8 @@ import {
   createTermoblockItemSchema,
   plColors,
   colors,
+  hinges,
+  plHinges,
 } from "../schema/termoblockItem.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField } from "./InputField";
@@ -63,6 +65,19 @@ const TermoblockForm = () => {
           label="Kolor"
           error={errors.color}
           registration={register("color")}
+        ></SelectField>
+      </div>
+      <div className="mb-4">
+        <SelectField
+          options={hinges.map((hinge) => {
+            return {
+              value: hinge,
+              label: plHinges[hinge],
+            };
+          })}
+          label="Zawiasy"
+          error={errors.color}
+          registration={register("hinges")}
         ></SelectField>
       </div>
       <button
