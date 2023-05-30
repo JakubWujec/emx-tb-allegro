@@ -1,7 +1,9 @@
 import { CreateTermoblockItemInput } from "../schema/termoblockItem.schema";
 //TODO obsługa trzeciego otworu
 
-function calculatePrice(termoblockItem: CreateTermoblockItemInput) {
+export default function calculatePrice(
+  termoblockItem: CreateTermoblockItemInput
+) {
   let result = 0;
 
   const areaInSquareMillimeters = termoblockItem.width * termoblockItem.height;
