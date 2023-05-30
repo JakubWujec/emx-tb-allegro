@@ -5,7 +5,6 @@ import Header from './components/Header'
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 
 function App() {
-
   return (
     <div className="bg-gray-100 min-h-screen">
       <BrowserRouter>
