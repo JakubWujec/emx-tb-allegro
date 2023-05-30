@@ -57,7 +57,7 @@ export const createTermoblockItemSchema = z.object({
         message: "Średnica otworu powinna być większa niż 50",
       }
     ),
-  hasSecondHole: z.coerce.boolean(),
+  hasSecondHole: z.boolean(),
   secondHole: z
     .object({
       stringPosition: z.enum(stringPositions),
