@@ -33,8 +33,6 @@ const TermoblockForm = () => {
   const secondHoleType = watch("secondHole.holeType");
   const hasPowerCordHole = watch("hasPowerCordHole");
 
-  console.log("HASSECONDHOLE", hasSecondHole, typeof hasSecondHole);
-
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-4">
