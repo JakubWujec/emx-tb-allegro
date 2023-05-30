@@ -29,6 +29,8 @@ const TermoblockForm = () => {
   }
 
   const firstHoleType = watch("firstHole.holeType");
+  const hasSecondHole = watch("hasSecondHole");
+  const secondHoleType = watch("secondHole.holeType");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -117,6 +119,58 @@ const TermoblockForm = () => {
           ></InputField>
         )}
       </div>
+
+      <div className="mb-4">
+        <SelectField
+          options={[0, 1].map((val) => {
+            return {
+              value: val,
+              label: val ? "Tak" : "Nie",
+            };
+          })}
+          label="Drugi otwór?"
+          error={errors.hasSecondHole}
+          registration={register("hasSecondHole")}
+        ></SelectField>
+      </div>
+
+      {hasSecondHole && (
+        <div className="mb-4">
+          <SelectField
+            options={holeTypes.map((holeType) => {
+              return {
+                value: holeType,
+                label: holeType,
+              };
+            })}
+            label="Rodzaj drugiego otworu"
+            error={errors.hinges}
+            registration={register("secondHole.holeType")}
+          ></SelectField>
+          <SelectField
+            options={stringPositions.map((stringPosition) => {
+              return {
+                value: stringPosition,
+                label: stringPosition,
+              };
+            })}
+            label="Położenie drugiego otworu (patrząc z zewnątrz)"
+            error={errors.hinges}
+            registration={register("secondHole.stringPosition")}
+          ></SelectField>
+
+          {secondHoleType === "okrągły na rurę bez uchwytu" && (
+            <InputField
+              label="Średnica (zewnętrzna) drugiego otworu (mm)"
+              error={errors.secondHole?.diameter}
+              type="number"
+              registration={register("secondHole.diameter", {
+                valueAsNumber: true,
+              })}
+            ></InputField>
+          )}
+        </div>
+      )}
 
       <button
         type="submit"

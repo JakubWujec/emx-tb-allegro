@@ -29,9 +29,9 @@ export const stringPositions = [
 ] as const;
 
 export const holeTypes = [
+  "dla Warmtec Controlbox",
   "okrągły na rurę bez uchwytu",
   "własna końcówka wysłana do zmierzenia",
-  "dla Warmtec Controlbox",
 ] as const;
 
 export const createTermoblockItemSchema = z.object({
@@ -51,7 +51,24 @@ export const createTermoblockItemSchema = z.object({
         if (data.holeType === "okrągły na rurę bez uchwytu") {
           return data.diameter && data.diameter > 50;
         }
-
+        return true;
+      },
+      {
+        message: "Średnica otworu powinna być większa niż 50",
+      }
+    ),
+  hasSecondHole: z.coerce.boolean(),
+  secondHole: z
+    .object({
+      stringPosition: z.enum(stringPositions),
+      holeType: z.enum(holeTypes),
+      diameter: z.number().optional(),
+    })
+    .refine(
+      (data) => {
+        if (data.holeType === "okrągły na rurę bez uchwytu") {
+          return data.diameter && data.diameter > 50;
+        }
         return true;
       },
       {
