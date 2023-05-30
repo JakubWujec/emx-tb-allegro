@@ -31,6 +31,7 @@ const TermoblockForm = () => {
   const firstHoleType = watch("firstHole.holeType");
   const hasSecondHole = watch("hasSecondHole");
   const secondHoleType = watch("secondHole.holeType");
+  const hasPowerCordHole = watch("hasPowerCordHole");
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -169,6 +170,35 @@ const TermoblockForm = () => {
               })}
             ></InputField>
           )}
+        </div>
+      )}
+
+      <div className="mb-4">
+        <SelectField
+          options={[0, 1].map((val) => {
+            return {
+              value: val,
+              label: val ? "Tak" : "Nie",
+            };
+          })}
+          label="Otwór na przewód zasilający?"
+          error={errors.hasPowerCordHole}
+          registration={register("hasPowerCordHole")}
+        ></SelectField>
+      </div>
+      {hasPowerCordHole && (
+        <div className="mb-4">
+          <SelectField
+            options={stringPositions.map((stringPosition) => {
+              return {
+                value: stringPosition,
+                label: stringPosition,
+              };
+            })}
+            label="Pozycja otworu na przewód zasilający (patrząc z zewnątrz)"
+            error={errors.hinges}
+            registration={register("powerCordHole.stringPosition")}
+          ></SelectField>
         </div>
       )}
 
