@@ -34,19 +34,20 @@ export const holeTypes = [
   "własna końcówka wysłana do zmierzenia",
 ] as const;
 
-export const createTermoblockItemSchema = z.object({
-  width: z.number().positive(),
-  height: z.number().positive(),
-  felc: z.number().positive(),
-  color: ColorEnum,
-  hinges: HingeEnum,
-  firstHole: z
-    .object({
-      stringPosition: z.enum(stringPositions),
-      holeType: z.enum(holeTypes),
-      diameter: z.number().optional(),
-    })
-    .refine(
+const HoleZodObject = z.object({
+  stringPosition: z.enum(stringPositions),
+  holeType: z.enum(holeTypes),
+  diameter: z.number().optional(),
+});
+
+export const createTermoblockItemSchema = z
+  .object({
+    width: z.number().positive(),
+    height: z.number().positive(),
+    felc: z.number().positive(),
+    color: ColorEnum,
+    hinges: HingeEnum,
+    firstHole: HoleZodObject.refine(
       (data) => {
         if (data.holeType === "okrągły na rurę bez uchwytu") {
           return data.diameter && data.diameter > 50;
@@ -55,34 +56,32 @@ export const createTermoblockItemSchema = z.object({
       },
       {
         message: "Średnica otworu powinna być większa niż 50",
+        path: ["diameter"],
       }
     ),
-  hasSecondHole: z.boolean(),
-  secondHole: z
-    .object({
-      stringPosition: z.enum(stringPositions),
-      holeType: z.enum(holeTypes),
-      diameter: z.number().optional(),
-    })
-    .refine(
-      (data) => {
-        if (data.holeType === "okrągły na rurę bez uchwytu") {
-          return data.diameter && data.diameter > 50;
+    hasSecondHole: z.boolean(),
+    secondHole: HoleZodObject.optional(),
+    hasPowerCordHole: z.coerce.boolean(),
+    powerCordHole: z
+      .object({
+        stringPosition: z.enum(stringPositions),
+      })
+      .optional(),
+  })
+  .refine(
+    (data) => {
+      if (data.hasSecondHole && data.secondHole) {
+        if (data.secondHole.holeType === "okrągły na rurę bez uchwytu") {
+          return data.secondHole.diameter && data.secondHole.diameter > 50;
         }
-        return true;
-      },
-      {
-        message: "Średnica otworu powinna być większa niż 50",
       }
-    )
-    .optional(),
-  hasPowerCordHole: z.coerce.boolean(),
-  powerCordHole: z
-    .object({
-      stringPosition: z.enum(stringPositions),
-    })
-    .optional(),
-});
+      return true;
+    },
+    {
+      message: "Średnica drugiego otworu powinna być większa niż 50",
+      path: ["secondHole", "diameter"],
+    }
+  );
 
 export type CreateTermoblockItemInput = z.TypeOf<
   typeof createTermoblockItemSchema
