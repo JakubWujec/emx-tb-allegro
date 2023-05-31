@@ -1,7 +1,6 @@
-import React from "react";
-import { TermoblockItemColor } from "../enums";
-import useShoppingCart from "../hooks/useShoppingCart";
 import ProductList from "../components/ProductList";
+import useShoppingCart from "../hooks/useShoppingCart";
+import { Product } from "../types";
 
 const Cart = () => {
   //const { cartItems, removeItem, addItem } = useContext(ShoppingCartContext);
@@ -11,33 +10,43 @@ const Cart = () => {
     <>
       <div>Koszyk</div>
       <ProductList></ProductList>
-      <button
-        onClick={() =>
-          addItem({
-            id: 1,
-            name: "Termoblock",
-            price: 12,
-            quantity: 1,
-            details: {
-              width: 111,
-              height: 222,
-              color: "white",
-              felc: 12,
-              hinges: "none",
-              firstHole: {
-                stringPosition: "na dole na środku",
-                holeType: "dla Warmtec Controlbox",
-              },
-              hasSecondHole: false,
-              hasPowerCordHole: false,
-            },
-          })
-        }
-      >
-        Dodaj testowo
-      </button>
+      <AddTestItemButton addItem={addItem}></AddTestItemButton>
       <div>Suma: {getSum(null)}</div>
     </>
+  );
+};
+
+const AddTestItemButton = ({
+  addItem,
+}: {
+  addItem: (item: Product) => void;
+}) => {
+  return (
+    <button
+      onClick={() =>
+        addItem({
+          id: 1,
+          name: "Termoblock",
+          price: 12,
+          quantity: 1,
+          details: {
+            width: 111,
+            height: 222,
+            color: "white",
+            felc: 12,
+            hinges: "none",
+            firstHole: {
+              stringPosition: "na dole na środku",
+              holeType: "dla Warmtec Controlbox",
+            },
+            hasSecondHole: false,
+            hasPowerCordHole: false,
+          },
+        })
+      }
+    >
+      Dodaj testowo
+    </button>
   );
 };
 
