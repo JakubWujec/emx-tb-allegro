@@ -1,11 +1,4 @@
-import { TermoblockItemColor } from "./enums";
-
-interface TermoblockItem {
-  width: number;
-  height: number;
-  color: TermoblockItemColor;
-  felc: number;
-}
+import { CreateTermoblockItemInput as TermoblockItem } from "./schema/termoblockItem.schema";
 
 interface Product {
   id: number;

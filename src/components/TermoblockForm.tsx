@@ -12,8 +12,12 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
+import useShoppingCart from "../hooks/useShoppingCart";
 
 const TermoblockForm = () => {
+  const [getItems, addItem, removeItem, getSum, changeQuantity] =
+    useShoppingCart();
+
   const {
     register,
     handleSubmit,
@@ -25,7 +29,13 @@ const TermoblockForm = () => {
   });
 
   function onSubmit(values: CreateTermoblockItemInput) {
-    console.log("VALUES:", values, "ERRORS: ", errors);
+    addItem({
+      id: 1,
+      name: "TB",
+      price: 35.0,
+      quantity: 1,
+      details: values,
+    });
   }
 
   const firstHoleType = watch("firstHole.holeType");

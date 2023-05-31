@@ -21,8 +21,15 @@ const Cart = () => {
             details: {
               width: 111,
               height: 222,
-              color: TermoblockItemColor.WHITE,
+              color: "white",
               felc: 12,
+              hinges: "none",
+              firstHole: {
+                stringPosition: "na dole na środku",
+                holeType: "dla Warmtec Controlbox",
+              },
+              hasSecondHole: false,
+              hasPowerCordHole: false,
             },
           })
         }
