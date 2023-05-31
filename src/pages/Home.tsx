@@ -1,9 +1,13 @@
+import MakeOrderButton from "../components/MakeOrderButton";
 import TermoblockForm from "../components/TermoblockForm";
 
 const Home = () => {
-  return (<div>
-    <TermoblockForm></TermoblockForm>
-  </div>)
-}
+  return (
+    <div>
+      <MakeOrderButton></MakeOrderButton>
+      <TermoblockForm></TermoblockForm>
+    </div>
+  );
+};
 
 export default Home;
