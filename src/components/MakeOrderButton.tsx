@@ -1,5 +1,5 @@
 import { Product } from "../types";
-import sendOrder from "../utils/sendOrder";
+import sendOrder from "../api/sendOrder";
 
 type MakeOrderbuttonProps = {
   products: Product[];

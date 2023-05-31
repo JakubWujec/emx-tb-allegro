@@ -1,4 +1,4 @@
-import { Product } from "../components/MakeOrderButton";
+import { Product } from "../types";
 import BASE_API_URL from "../url";
 
 async function sendOrder(products: Product[]) {
