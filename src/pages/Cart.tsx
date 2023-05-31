@@ -1,3 +1,4 @@
+import MakeOrderButton from "../components/MakeOrderButton";
 import ProductList from "../components/ProductList";
 import useShoppingCart from "../hooks/useShoppingCart";
 import { Product } from "../types";
@@ -6,11 +7,15 @@ const Cart = () => {
   //const { cartItems, removeItem, addItem } = useContext(ShoppingCartContext);
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
+  const products = getItems();
+
   return (
     <>
       <div>Koszyk</div>
       <ProductList></ProductList>
       <AddTestItemButton addItem={addItem}></AddTestItemButton>
+      <br></br>
+      <MakeOrderButton products={products}></MakeOrderButton>
       <div>Suma: {getSum(null)}</div>
     </>
   );

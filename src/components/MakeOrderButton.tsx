@@ -1,34 +1,21 @@
+import { Product } from "../types";
 import sendOrder from "../utils/sendOrder";
 
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  details: any; // TermoblockItem | Formatka | itd..
-}
+type MakeOrderbuttonProps = {
+  products: Product[];
+};
 
-const dumbProducts: Product[] = [
-  {
-    id: 1,
-    name: "TB",
-    price: 35.0,
-    quantity: 1,
-    details: {
-      name: "TB",
-      width: 500,
-      height: 600,
-    },
-  },
-];
-
-const MakeOrderButton = () => {
+const MakeOrderButton = (props: MakeOrderbuttonProps) => {
   const handleButtonClick = async () => {
-    const response = await sendOrder(dumbProducts);
+    const response = await sendOrder(props.products);
     console.log(response);
   };
 
-  return <button onClick={handleButtonClick}>TestOrder</button>;
+  return (
+    <button onClick={handleButtonClick} disabled={!props.products.length}>
+      Zamów
+    </button>
+  );
 };
 
 export default MakeOrderButton;
