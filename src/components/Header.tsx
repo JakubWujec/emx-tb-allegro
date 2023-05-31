@@ -2,7 +2,6 @@ import { Link } from "react-router-dom";
 import useShoppingCart from "../hooks/useShoppingCart";
 import { CartButton, HomeButton } from "../components";
 import countAllItems from "../utils/countAllItems";
-import MakeOrderButton from "./MakeOrderButton";
 
 const Header = () => {
   const [getItems] = useShoppingCart();
