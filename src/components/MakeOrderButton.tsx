@@ -28,7 +28,7 @@ const MakeOrderButton = () => {
     console.log(response);
   };
 
-  return <button onClick={handleButtonClick}>Send</button>;
+  return <button onClick={handleButtonClick}>TestOrder</button>;
 };
 
 export default MakeOrderButton;

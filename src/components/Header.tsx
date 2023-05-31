@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import MakeOrderButton from "./MakeOrderButton";
 
 const Header = () => {
   return (
@@ -6,12 +7,19 @@ const Header = () => {
       <div className="container mx-auto py-4 px-8">
         <nav className="flex items-center justify-between">
           <div>
-            <Link className="text-blue-500" to={`/`}>Home</Link>
+            <Link className="text-blue-500" to={`/`}>
+              Home
+            </Link>
+          </div>
+          <div>
+            <MakeOrderButton></MakeOrderButton>
           </div>
           <div>
             <ul className="flex space-x-4">
               <li>
-                <Link className="text-blue-500" to={`/cart`}>Koszyk</Link>
+                <Link className="text-blue-500" to={`/cart`}>
+                  Koszyk
+                </Link>
               </li>
             </ul>
           </div>
