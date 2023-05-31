@@ -1,14 +1,18 @@
 import { useContext } from "react";
-import { TermoblockItem } from "../types";
+import { Product } from "../types";
 import { ShoppingCartContext } from "../context/ShoppingCartContext";
 
 interface ShoppingCartHook {
   (): [
-    () => TermoblockItem[],
-    (item: TermoblockItem) => void,
-    (item: TermoblockItem) => void,
-    (item: TermoblockItem | null) => number,
-    (item: TermoblockItem, quantity: number) => void
+    () => Product[],
+    (item: Product) => void,
+    (item: Product) => void,
+    (item: Product | null) => number,
+    (
+      item: Product,
+      quantity: number,
+      mode: "add" | "subtract" | "change"
+    ) => void
   ];
 }
 
@@ -19,25 +23,37 @@ const useShoppingCart: ShoppingCartHook = () => {
     return cartItems;
   };
 
-  const getSum = (item: TermoblockItem | null) => {
+  const getSum = (item: Product | null) => {
     if (item) return item.quantity * item.price;
-    return cartItems.reduce((sum, item) => sum + item.price, 0);
+    return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   };
 
-  const addItem = (item: TermoblockItem) => {
+  const addItem = (item: Product) => {
     setCartItems([...cartItems, item]);
   };
 
-  const changeQuantity = (item: TermoblockItem, quantity: number) => {
+  const changeQuantity = (
+    item: Product,
+    quantity: number,
+    mode: "add" | "subtract" | "change"
+  ) => {
     const index = cartItems.findIndex((cartItem) => cartItem.id === item.id);
     let newBasketItems = [...cartItems];
 
-    newBasketItems[index].quantity += quantity;
+    if (isNaN(quantity)) {
+      quantity = 1;
+    }
+
+    if (mode === "add") newBasketItems[index].quantity += quantity;
+    if (mode === "subtract") newBasketItems[index].quantity -= quantity;
+    if (mode === "change") newBasketItems[index].quantity = quantity;
+
+    if (newBasketItems[index].quantity <= 0) newBasketItems[index].quantity = 1;
 
     setCartItems(newBasketItems);
   };
 
-  const removeItem = (item: TermoblockItem) => {
+  const removeItem = (item: Product) => {
     const index = cartItems.findIndex((cartItem) => cartItem.id === item.id);
     const newBasketItems = [...cartItems];
     newBasketItems.splice(index, 1);

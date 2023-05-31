@@ -1,5 +1,4 @@
 import React from "react";
-// import { ShoppingCartContext } from "../context/ShoppingCartContext";
 import { TermoblockItemColor } from "../enums";
 import useShoppingCart from "../hooks/useShoppingCart";
 
@@ -26,34 +25,38 @@ const Cart = () => {
             return (
               <tr className="border" key={index}>
                 <Cell>
-                  <span>{cartItem.id}</span>
+                  <span>{cartItem.name}</span>
                 </Cell>
                 <Cell>
-                  <span>{cartItem.id}</span>
+                  <span>{cartItem.name}</span>
                 </Cell>
-                <Cell>{cartItem.price}</Cell>
+                <Cell>{cartItem.price} zł</Cell>
                 <Cell>
                   <button
-                    className="bg-gray-200 text-gray-700 font-bold py-1 px-2 rounded-l"
-                    onClick={() => changeQuantity(cartItem, -1)}
+                    className="bg-gray-100 text-gray-700 font-bold py-1 px-2 rounded-l"
+                    onClick={() => changeQuantity(cartItem, 1, "subtract")}
                   >
                     -
                   </button>
                   <input
-                    className="form-input mx-2 w-16 text-center"
+                    className="bg-orange-50 form-input w-16 text-center py-1 px-2 focus:outline-none"
                     value={cartItem.quantity}
                     onChange={(e) =>
-                      changeQuantity(cartItem, parseInt(e.target.value))
+                      changeQuantity(
+                        cartItem,
+                        parseInt(e.target.value),
+                        "change"
+                      )
                     }
                   />
                   <button
-                    className="bg-gray-200 text-gray-700 font-bold py-1 px-2 rounded-r"
-                    onClick={() => changeQuantity(cartItem, 1)}
+                    className="bg-gray-100 text-gray-700 font-bold py-1 px-2 rounded-r"
+                    onClick={() => changeQuantity(cartItem, 1, "add")}
                   >
                     +
                   </button>
                 </Cell>
-                <Cell>{getSum(cartItem)}</Cell>
+                <Cell>{getSum(cartItem)} zł</Cell>
                 <Cell>
                   <button
                     className="hover:text-red-500 hover:scale-110 transition-all"
@@ -70,18 +73,22 @@ const Cart = () => {
       <button
         onClick={() =>
           addItem({
-            id: 4,
-            price: 23,
-            quantity: 2,
-            width: 111,
-            height: 222,
-            color: TermoblockItemColor.WHITE,
-            felc: 12,
+            id: 1,
+            name: "Termoblock",
+            price: 12,
+            quantity: 1,
+            details: {
+              width: 111,
+              height: 222,
+              color: TermoblockItemColor.WHITE,
+              felc: 12,
+            },
           })
         }
       >
         Dodaj testowo
       </button>
+      <div>Suma: {getSum(null)}</div>
     </>
   );
 };

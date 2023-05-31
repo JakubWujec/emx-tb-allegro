@@ -1,10 +1,10 @@
 import React, { useState, useEffect, PropsWithChildren } from "react";
 import { createContext } from "react";
-import { TermoblockItem } from "../types";
+import { Product } from "../types";
 
 interface CartContextType {
-  cartItems: TermoblockItem[];
-  setCartItems: React.Dispatch<React.SetStateAction<TermoblockItem[]>>;
+  cartItems: Product[];
+  setCartItems: React.Dispatch<React.SetStateAction<Product[]>>;
 }
 
 const ShoppingCartContext = createContext<CartContextType>({
@@ -20,7 +20,7 @@ function getInitialState() {
 const ShoppingCartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }: PropsWithChildren) => {
-  const [cartItems, setCartItems] = useState<TermoblockItem[]>(getInitialState);
+  const [cartItems, setCartItems] = useState<Product[]>(getInitialState);
 
   useEffect(() => {
     const cartFromLocalStorage = localStorage.getItem("shoppingCart");
