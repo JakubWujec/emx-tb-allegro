@@ -11,12 +11,10 @@ const Cart = () => {
 
   return (
     <>
-      <div>Koszyk</div>
       <ProductList></ProductList>
       <AddTestItemButton addItem={addItem}></AddTestItemButton>
       <br></br>
       <MakeOrderButton products={products}></MakeOrderButton>
-      <div>Suma: {getSum()}</div>
     </>
   );
 };
