@@ -66,5 +66,3 @@ export const createTermoblockItemSchema = termoblockItemZodObject.refine(
 export type CreateTermoblockItemInput = z.TypeOf<
   typeof createTermoblockItemSchema
 >;
-
-export type TermoblockHole = z.TypeOf<typeof HoleZodObject>;
