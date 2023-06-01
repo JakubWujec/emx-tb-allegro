@@ -7,7 +7,7 @@ interface ShoppingCartHook {
     () => Product[],
     (item: Product) => void,
     (item: Product) => void,
-    (item: Product | null) => number,
+    (item?: Product) => number,
     (
       item: Product,
       quantity: number,
@@ -23,7 +23,7 @@ const useShoppingCart: ShoppingCartHook = () => {
     return cartItems;
   };
 
-  const getSum = (item: Product | null) => {
+  const getSum = (item?: Product) => {
     if (item) return item.quantity * item.price;
     return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   };

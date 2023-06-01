@@ -4,63 +4,75 @@ const ProductList = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
   return (
-    <table className="table-auto w-full max-w-5xl my-0 mx-auto bg-white border border-collapse ">
-      <thead>
-        <tr className="border">
-          <HeaderCell>Produkt</HeaderCell>
-          <HeaderCell>Nazwa</HeaderCell>
-          <HeaderCell>Cena jednostkowa</HeaderCell>
-          <HeaderCell>Ilość</HeaderCell>
-          <HeaderCell>Cena</HeaderCell>
-          <HeaderCell>Usuń</HeaderCell>
-        </tr>
-      </thead>
-      <tbody>
-        {getItems().map((cartItem, index) => {
-          return (
-            <tr className="border" key={index}>
-              <Cell>
-                <span>{cartItem.name}</span>
-              </Cell>
-              <Cell>
-                <span>{cartItem.name}</span>
-              </Cell>
-              <Cell>{cartItem.price} zł</Cell>
-              <Cell>
-                <button
-                  className="bg-gray-100 text-gray-700 font-bold py-1 px-2 rounded-l"
-                  onClick={() => changeQuantity(cartItem, 1, "subtract")}
-                >
-                  -
-                </button>
-                <input
-                  className="bg-orange-50 form-input w-16 text-center py-1 px-2 focus:outline-none"
-                  value={cartItem.quantity}
-                  onChange={(e) =>
-                    changeQuantity(cartItem, parseInt(e.target.value), "change")
-                  }
-                />
-                <button
-                  className="bg-gray-100 text-gray-700 font-bold py-1 px-2 rounded-r"
-                  onClick={() => changeQuantity(cartItem, 1, "add")}
-                >
-                  +
-                </button>
-              </Cell>
-              <Cell>{getSum(cartItem)} zł</Cell>
-              <Cell>
-                <button
-                  className="hover:text-red-500 hover:scale-110 transition-all"
-                  onClick={() => removeItem(cartItem)}
-                >
-                  <TrashIcon />
-                </button>
-              </Cell>
+    <>
+      <div className="scroll-auto overflow-auto">
+        <table className="table-auto w-full max-w-5xl m-auto mt-20 bg-white divide-y divide-gray-200 rounded-lg">
+          <thead>
+            <tr className="bg-orange-300 text-neutral-700">
+              <HeaderCell className="rounded-tl-lg">Produkt</HeaderCell>
+              <HeaderCell>Nazwa</HeaderCell>
+              <HeaderCell className="w-[15ch]">Cena jednostkowa</HeaderCell>
+              <HeaderCell>Ilość</HeaderCell>
+              <HeaderCell>Cena</HeaderCell>
+              <HeaderCell className="px-5 rounded-tr-lg"></HeaderCell>
             </tr>
-          );
-        })}
-      </tbody>
-    </table>
+          </thead>
+          <tbody className="divide-y divide-gray-200">
+            {getItems().map((cartItem, index) => {
+              return (
+                <tr className="" key={index}>
+                  <Cell>
+                    <span>{cartItem.name}</span>
+                  </Cell>
+                  <Cell>
+                    <span>{cartItem.name}</span>
+                  </Cell>
+                  <Cell>{cartItem.price} zł</Cell>
+                  <Cell>
+                    <button
+                      className="bg-gray-100 text-gray-700 font-bold py-1 px-2 rounded-l"
+                      onClick={() => changeQuantity(cartItem, 1, "subtract")}
+                    >
+                      -
+                    </button>
+                    <input
+                      className="bg-orange-50 form-input w-16 text-center py-1 px-2 focus:outline-none"
+                      value={cartItem.quantity}
+                      onChange={(e) =>
+                        changeQuantity(
+                          cartItem,
+                          parseInt(e.target.value),
+                          "change"
+                        )
+                      }
+                    />
+                    <button
+                      className="bg-gray-100 text-gray-700 font-bold py-1 px-2 rounded-r"
+                      onClick={() => changeQuantity(cartItem, 1, "add")}
+                    >
+                      +
+                    </button>
+                  </Cell>
+                  <Cell>{getSum(cartItem)} zł</Cell>
+                  <Cell>
+                    <button
+                      className="hover:text-red-500 hover:scale-110 transition-all"
+                      onClick={() => removeItem(cartItem)}
+                    >
+                      <TrashIcon />
+                    </button>
+                  </Cell>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </div>
+      <div className="flex justify-between w-full md:w-1/2 ml-auto bg-white py-5 px-5 mt-5 rounded-md shadow">
+        <span>Do zapłaty:</span>
+        <span className="font-bold">{getSum()} zł</span>
+      </div>
+    </>
   );
 };
 
@@ -68,7 +80,7 @@ const Cell: React.FC<{
   children?: React.ReactNode | null;
   className?: string;
 }> = ({ children, className }) => (
-  <td className={"border py-8" + (className || "")}>
+  <td className={" py-8" + (className || "")}>
     <div className="flex items-center justify-center">{children}</div>
   </td>
 );
@@ -77,7 +89,7 @@ const HeaderCell: React.FC<{
   children?: React.ReactNode | null;
   className?: string;
 }> = ({ children, className }) => (
-  <th className={"border py-5 " + (className || "")}>{children}</th>
+  <th className={" py-5 " + (className || "")}>{children}</th>
 );
 
 const TrashIcon = () => (

@@ -8,9 +8,28 @@ import { ColorEnum } from "./color.schema";
 import { HingeEnum } from "./hinge.schema";
 
 export const termoblockItemZodObject = z.object({
-  width: z.number().min(250).max(1200),
-  height: z.number().min(250).max(2500),
-  felc: z.number().min(5).max(50).optional(),
+  width: z
+    .number({
+      required_error: "Szerokość jest wymagana",
+      invalid_type_error: "Szerokość musi być liczbą",
+    })
+    .min(250, "Szerokość musi wynosić przynajmniej 250mm")
+    .max(1200, "Szerokość nie może wynosić więcej niż 1200mm"),
+  height: z
+    .number({
+      required_error: "Wysokość jest wymagana",
+      invalid_type_error: "Wysokość musi być liczbą",
+    })
+    .min(250, "Wysokość musi wynosić przynajmniej 250mm")
+    .max(2500, "Wysokość nie może wynosić więcej niż 2500mm"),
+  felc: z
+    .number({
+      required_error: "Rozmiar felcu jest wymagany",
+      invalid_type_error: "Rozmiar felcu musi być liczbą",
+    })
+    .min(5, "Felc musi mieć przynajmniej 5mm")
+    .max(50, "Felc nie może mieć więcej niż 50mm")
+    .optional(),
   color: ColorEnum,
   hinges: HingeEnum,
   firstHole: HoleZodObject.refine(
