@@ -1,6 +1,9 @@
 import React, {useEffect, useState} from 'react'
 import useShoppingCart from '../hooks/useShoppingCart'
-import { CreateTermoblockItemInput, plHinges, plColors } from '../schema/termoblockItem.schema'
+import { CreateTermoblockItemInput } from '../schema/termoblockItem.schema'
+import { plColors } from '../schema/color.schema'
+import { plHinges } from '../schema/hinge.schema'
+
 type PriceFooterProps = {
   termoblock: CreateTermoblockItemInput,
   isValid: boolean
