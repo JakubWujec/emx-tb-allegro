@@ -16,7 +16,7 @@ const Cart = () => {
       <AddTestItemButton addItem={addItem}></AddTestItemButton>
       <br></br>
       <MakeOrderButton products={products}></MakeOrderButton>
-      <div>Suma: {getSum(null)}</div>
+      <div>Suma: {getSum()}</div>
     </>
   );
 };
