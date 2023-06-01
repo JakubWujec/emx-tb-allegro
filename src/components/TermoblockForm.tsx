@@ -6,13 +6,12 @@ import {
   colors,
   hinges,
   plHinges,
-  holeTypes,
-  stringPositions,
 } from "../schema/termoblockItem.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
 import useShoppingCart from "../hooks/useShoppingCart";
+import { holeTypes, stringPositions } from "../schema/termoblockHole.schema";
 
 const TermoblockForm = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =

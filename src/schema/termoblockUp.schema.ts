@@ -1,5 +1,5 @@
 import z from "zod";
-import { HoleZodObject, stringPositions } from "./termoblockHole.schema";
+import { HoleZodObject } from "./termoblockHole.schema";
 
 export const colors = ["white", "brown", "anthracit"] as const;
 export const plColors = {
@@ -20,12 +20,9 @@ export const HingeEnum = z.enum(hinges);
 const diameterValidation = (diameter: number | undefined) =>
   diameter && diameter >= 50 && diameter <= 250;
 
-export const termoblockItemZodObject = z.object({
-  width: z.number().min(250).max(1200),
-  height: z.number().min(250).max(2500),
-  felc: z.number().min(5).max(50).optional(),
-  color: ColorEnum,
-  hinges: HingeEnum,
+export const termoblockUpItemZodObject = z.object({
+  width: z.number().min(250).max(1100),
+  height: z.number().min(250).max(1600),
   firstHole: HoleZodObject.refine(
     (data) => {
       if (data.holeType === "okrągły na rurę bez uchwytu") {
@@ -40,15 +37,9 @@ export const termoblockItemZodObject = z.object({
   ),
   hasSecondHole: z.boolean(),
   secondHole: HoleZodObject.optional(),
-  hasPowerCordHole: z.boolean(),
-  powerCordHole: z
-    .object({
-      stringPosition: z.enum(stringPositions),
-    })
-    .optional(),
 });
 
-export const createTermoblockItemSchema = termoblockItemZodObject.refine(
+export const createTermoblockItemSchema = termoblockUpItemZodObject.refine(
   (data) => {
     if (data.hasSecondHole && data.secondHole) {
       if (data.secondHole.holeType === "okrągły na rurę bez uchwytu") {
@@ -63,7 +54,7 @@ export const createTermoblockItemSchema = termoblockItemZodObject.refine(
   }
 );
 
-export type CreateTermoblockItemInput = z.TypeOf<
+export type CreateTermoblockUpItemInput = z.TypeOf<
   typeof createTermoblockItemSchema
 >;
 
