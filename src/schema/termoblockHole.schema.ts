@@ -24,8 +24,6 @@ export const HoleZodObject = z.object({
   diameter: z.number().optional(),
 });
 
-export type TermoblockHole = z.TypeOf<typeof HoleZodObject>;
-
 const diameterValidation = (diameter: number | undefined) =>
   diameter && diameter >= 50 && diameter <= 250;
 
@@ -36,3 +34,5 @@ export const termoblockHoleValidation = (termoblockHole: TermoblockHole) => {
 
   return true;
 };
+
+export type TermoblockHole = z.TypeOf<typeof HoleZodObject>;
