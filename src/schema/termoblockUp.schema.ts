@@ -1,22 +1,6 @@
 import z from "zod";
 import { HoleZodObject } from "./termoblockHole.schema";
 
-export const colors = ["white", "brown", "anthracit"] as const;
-export const plColors = {
-  white: "Biały",
-  brown: "Brązowy",
-  anthracit: "Antracyt",
-};
-export const ColorEnum = z.enum(colors);
-
-export const hinges = ["none", "left", "right"] as const;
-export const plHinges = {
-  none: "Brak",
-  left: "Po lewej",
-  right: "Po prawej",
-};
-export const HingeEnum = z.enum(hinges);
-
 const diameterValidation = (diameter: number | undefined) =>
   diameter && diameter >= 50 && diameter <= 250;
 
