@@ -6,6 +6,7 @@ import {
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
+import PriceFooter from "./PriceFooter";
 import useShoppingCart from "../hooks/useShoppingCart";
 import { holeTypes, stringPositions } from "../schema/termoblockHole.schema";
 import { colors, plColors } from "../schema/color.schema";
@@ -39,8 +40,10 @@ const TermoblockForm = () => {
   const hasSecondHole = watch("hasSecondHole");
   const secondHoleType = watch("secondHole.holeType");
   const hasPowerCordHole = watch("hasPowerCordHole");
+  const termoblock = watch();
 
   return (
+    <>
     <form onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-4">
         <InputField
@@ -224,6 +227,8 @@ const TermoblockForm = () => {
         Zapisz
       </button>
     </form>
+    <PriceFooter isValid={true} termoblock={termoblock}/>
+    </>
   );
 };
 
