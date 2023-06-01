@@ -2,18 +2,15 @@ import { useForm } from "react-hook-form";
 import {
   CreateTermoblockItemInput,
   createTermoblockItemSchema,
-  plColors,
-  colors,
-  hinges,
-  plHinges,
-  holeTypes,
-  stringPositions,
 } from "../schema/termoblockItem.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
 import PriceFooter from "./PriceFooter";
 import useShoppingCart from "../hooks/useShoppingCart";
+import { holeTypes, stringPositions } from "../schema/termoblockHole.schema";
+import { colors, plColors } from "../schema/color.schema";
+import { hinges, plHinges } from "../schema/hinge.schema";
 
 const TermoblockForm = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
