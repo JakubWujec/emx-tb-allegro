@@ -1,7 +1,6 @@
 import MakeOrderButton from "../components/MakeOrderButton";
 import ProductList from "../components/ProductList";
 import useShoppingCart from "../hooks/useShoppingCart";
-import { Product } from "../types";
 
 const Cart = () => {
   //const { cartItems, removeItem, addItem } = useContext(ShoppingCartContext);
@@ -9,47 +8,15 @@ const Cart = () => {
     useShoppingCart();
   const products = getItems();
 
-  return (
+  return products.length ? (
     <>
-      <ProductList></ProductList>
-      <AddTestItemButton addItem={addItem}></AddTestItemButton>
-      <br></br>
-      <MakeOrderButton products={products}></MakeOrderButton>
+      <ProductList />
+      <MakeOrderButton products={products} />
     </>
-  );
-};
-
-const AddTestItemButton = ({
-  addItem,
-}: {
-  addItem: (item: Product) => void;
-}) => {
-  return (
-    <button
-      onClick={() =>
-        addItem({
-          id: 1,
-          name: "Termoblock",
-          price: 12,
-          quantity: 1,
-          details: {
-            width: 111,
-            height: 222,
-            color: "white",
-            felc: 12,
-            hinges: "none",
-            firstHole: {
-              stringPosition: "na dole na środku",
-              holeType: "dla Warmtec Controlbox",
-            },
-            hasSecondHole: false,
-            hasPowerCordHole: false,
-          },
-        })
-      }
-    >
-      Dodaj testowo
-    </button>
+  ) : (
+    <h1 className="text-center font-semibold text-2xl mt-56">
+      Brak towarów w koszyku
+    </h1>
   );
 };
 
