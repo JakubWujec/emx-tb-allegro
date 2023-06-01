@@ -1,10 +1,11 @@
 import z from "zod";
-import { HoleZodObject, stringPositions } from "./termoblockHole.schema";
+import {
+  HoleZodObject,
+  stringPositions,
+  termoblockHoleValidation,
+} from "./termoblockHole.schema";
 import { ColorEnum } from "./color.schema";
 import { HingeEnum } from "./hinge.schema";
-
-const diameterValidation = (diameter: number | undefined) =>
-  diameter && diameter >= 50 && diameter <= 250;
 
 export const termoblockItemZodObject = z.object({
   width: z.number().min(250).max(1200),
@@ -14,10 +15,7 @@ export const termoblockItemZodObject = z.object({
   hinges: HingeEnum,
   firstHole: HoleZodObject.refine(
     (data) => {
-      if (data.holeType === "okrągły na rurę bez uchwytu") {
-        return diameterValidation(data.diameter);
-      }
-      return true;
+      return termoblockHoleValidation(data);
     },
     {
       message: "Średnica otworu powinna być conajmniej 50 oraz conajwyżej 250",
@@ -37,9 +35,7 @@ export const termoblockItemZodObject = z.object({
 export const createTermoblockItemSchema = termoblockItemZodObject.refine(
   (data) => {
     if (data.hasSecondHole && data.secondHole) {
-      if (data.secondHole.holeType === "okrągły na rurę bez uchwytu") {
-        return diameterValidation(data.secondHole.diameter);
-      }
+      return termoblockHoleValidation(data.secondHole);
     }
     return true;
   },

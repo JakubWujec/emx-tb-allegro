@@ -25,3 +25,14 @@ export const HoleZodObject = z.object({
 });
 
 export type TermoblockHole = z.TypeOf<typeof HoleZodObject>;
+
+const diameterValidation = (diameter: number | undefined) =>
+  diameter && diameter >= 50 && diameter <= 250;
+
+export const termoblockHoleValidation = (termoblockHole: TermoblockHole) => {
+  if (termoblockHole.holeType === "okrągły na rurę bez uchwytu") {
+    return diameterValidation(termoblockHole.diameter);
+  }
+
+  return true;
+};
