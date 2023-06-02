@@ -9,7 +9,7 @@ const Header = () => {
   const quantity = countAllItems(itemsInCart);
 
   return (
-    <header className="bg-white shadow">
+    <header className="bg-white shadow fixed w-full z-50">
       <div className="container mx-auto py-4 px-8">
         <nav className="flex items-center justify-between">
           <div>
