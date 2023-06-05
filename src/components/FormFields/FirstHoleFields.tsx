@@ -1,8 +1,8 @@
-import { FieldValues, useFormContext } from "react-hook-form";
+import { useFormContext } from "react-hook-form";
+import { holeTypes, stringPositions } from "../../schema/termoblockHole.schema";
+import { FirstHoleType } from "../../types";
 import { InputField } from "../InputField";
 import { SelectField } from "../SelectField";
-import { holeTypes, stringPositions } from "../../schema/termoblockHole.schema";
-import { FirstHoleType, TermoblockItem } from "../../types";
 
 const FirstHoleFields = () => {
   const {

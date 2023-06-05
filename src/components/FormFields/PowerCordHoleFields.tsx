@@ -1,7 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import { stringPositions } from "../../schema/termoblockHole.schema";
 import { SelectField } from "../SelectField";
-import { TermoblockItem } from "../../types";
 
 const PowerCordHoleFields = () => {
   const {
