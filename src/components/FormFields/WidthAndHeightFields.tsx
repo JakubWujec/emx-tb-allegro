@@ -5,7 +5,7 @@ const WidthAndHeightFields = () => {
   const {
     register,
     formState: { errors },
-  } = useFormContext();
+  } = useFormContext<Required<{ width: number; height: number }>>();
 
   return (
     <>

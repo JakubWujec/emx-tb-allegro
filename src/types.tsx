@@ -8,4 +8,6 @@ interface Product {
   details: TermoblockItem;
 }
 
-export type { TermoblockItem, Product, TermoblockHole };
+type FirstHoleType = Pick<TermoblockItem, "firstHole">;
+
+export type { TermoblockItem, Product, TermoblockHole, FirstHoleType };

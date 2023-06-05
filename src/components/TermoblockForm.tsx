@@ -1,19 +1,18 @@
+import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
+import useShoppingCart from "../hooks/useShoppingCart";
+import { colors, plColors } from "../schema/color.schema";
+import { hinges, plHinges } from "../schema/hinge.schema";
+import { holeTypes, stringPositions } from "../schema/termoblockHole.schema";
 import {
   CreateTermoblockItemInput,
   createTermoblockItemSchema,
 } from "../schema/termoblockItem.schema";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { InputField } from "./InputField";
-import { SelectField } from "./SelectField";
-import PriceFooter from "./PriceFooter";
-import useShoppingCart from "../hooks/useShoppingCart";
-import { holeTypes, stringPositions } from "../schema/termoblockHole.schema";
-import { colors, plColors } from "../schema/color.schema";
-import { hinges, plHinges } from "../schema/hinge.schema";
+import FirstHoleFields from "./FormFields/FirstHoleFields";
 import PowerCordHoleFields from "./FormFields/PowerCordHoleFields";
 import WidthAndHeightFields from "./FormFields/WidthAndHeightFields";
-import FirstHoleFields from "./FormFields/FirstHoleFields";
+import { InputField } from "./InputField";
+import { SelectField } from "./SelectField";
 
 const TermoblockForm = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -31,6 +30,7 @@ const TermoblockForm = () => {
   } = formMethods;
 
   function onSubmit(values: CreateTermoblockItemInput) {
+    console.log(values);
     addItem({
       id: 1,
       name: "TB",
@@ -40,11 +40,8 @@ const TermoblockForm = () => {
     });
   }
 
-  const firstHoleType = watch("firstHole.holeType");
   const hasSecondHole = watch("hasSecondHole");
   const secondHoleType = watch("secondHole.holeType");
-  const hasPowerCordHole = watch("hasPowerCordHole");
-  const termoblock = watch();
 
   return (
     <FormProvider {...formMethods}>

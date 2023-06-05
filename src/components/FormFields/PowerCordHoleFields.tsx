@@ -1,6 +1,7 @@
 import { useFormContext } from "react-hook-form";
 import { stringPositions } from "../../schema/termoblockHole.schema";
 import { SelectField } from "../SelectField";
+import { TermoblockItem } from "../../types";
 
 const PowerCordHoleFields = () => {
   const {
@@ -8,7 +9,12 @@ const PowerCordHoleFields = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useFormContext();
+  } = useFormContext<
+    Required<{
+      hasPowerCordHole: boolean;
+      powerCordHole: { stringPosition: string };
+    }>
+  >();
 
   const hasPowerCordHole = watch("hasPowerCordHole");
 
@@ -21,7 +27,7 @@ const PowerCordHoleFields = () => {
             label: val,
           };
         })}
-        error={errors}
+        error={errors.hasPowerCordHole}
         label="Otwór na przewód zasilający?"
         registration={register("hasPowerCordHole", {
           setValueAs(value) {

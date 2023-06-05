@@ -6,7 +6,7 @@ type FieldWrapperProps = {
   label?: string;
   className?: string;
   children: React.ReactNode;
-  error?: FieldError | undefined | Merge<FieldError, FieldErrorsImpl<any>>;
+  error?: FieldError | undefined;
   description?: string;
 };
 

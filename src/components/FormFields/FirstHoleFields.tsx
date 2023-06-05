@@ -1,14 +1,15 @@
-import { useFormContext } from "react-hook-form";
+import { FieldValues, useFormContext } from "react-hook-form";
 import { InputField } from "../InputField";
 import { SelectField } from "../SelectField";
 import { holeTypes, stringPositions } from "../../schema/termoblockHole.schema";
+import { FirstHoleType, TermoblockItem } from "../../types";
 
 const FirstHoleFields = () => {
   const {
     register,
     formState: { errors },
     watch,
-  } = useFormContext();
+  } = useFormContext<Required<FirstHoleType>>();
   const firstHoleType = watch("firstHole.holeType");
 
   return (
@@ -21,7 +22,7 @@ const FirstHoleFields = () => {
           };
         })}
         label="Rodzaj pierwszego otworu"
-        error={errors.hinges}
+        error={errors.firstHole?.holeType}
         registration={register("firstHole.holeType")}
       ></SelectField>
       <SelectField
@@ -32,7 +33,7 @@ const FirstHoleFields = () => {
           };
         })}
         label="Położenie pierwszego otworu (patrząc z zewnątrz)"
-        error={errors.hinges}
+        error={errors.firstHole?.stringPosition}
         registration={register("firstHole.stringPosition")}
       ></SelectField>
 
