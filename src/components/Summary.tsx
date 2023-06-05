@@ -1,31 +1,24 @@
-import React, { useEffect, useState } from "react";
-//schema
 import { plColors } from "../schema/color.schema";
 import { plHinges } from "../schema/hinge.schema";
-//hooks
 import useShoppingCart from "../hooks/useShoppingCart";
-//components
-import FieldDetail from "./FieldDetail";
 import {
-  CreateTermoblockUpItemInput,
-  CreateTermoblockProItemInput,
   CreateTermoblockGoItemInput,
+  CreateTermoblockProItemInput,
+  CreateTermoblockUpItemInput,
 } from "../types";
+import FieldDetail from "./FieldDetail";
 
 type SummaryProps = {
   termoblock:
-    | CreateTermoblockUpItemInput
-    | CreateTermoblockProItemInput
-    | CreateTermoblockGoItemInput;
+  | CreateTermoblockUpItemInput
+  | CreateTermoblockProItemInput
+  | CreateTermoblockGoItemInput;
   isValid: boolean;
 };
 
-function Summary(props: SummaryProps) {
+function Summary({ termoblock, isValid }: SummaryProps) {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
-
-  const [termoblock, setTermoblock] = useState(props.termoblock);
-  const isValid = props.isValid;
 
   const checkNan = (value: number) => {
     if (isNaN(value)) {
@@ -33,10 +26,6 @@ function Summary(props: SummaryProps) {
     }
     return value;
   };
-
-  useEffect(() => {
-    setTermoblock(props.termoblock);
-  }, [props.termoblock]);
 
   return (
     <section className="container mx-auto min-h-[40vh] mt-12">
@@ -68,9 +57,8 @@ function Summary(props: SummaryProps) {
           )}
           <FieldDetail
             label="Kolor"
-            description={`${
-              termoblock.color ? plColors[termoblock.color] : "-"
-            }`}
+            description={`${termoblock.color ? plColors[termoblock.color] : "-"
+              }`}
             line={true}
             descriptionHoleType={false}
             descriptionPosition={false}
@@ -78,9 +66,8 @@ function Summary(props: SummaryProps) {
           />
           <FieldDetail
             label="Zawias"
-            description={`${
-              termoblock.hinges ? plHinges[termoblock.hinges] : "-"
-            }`}
+            description={`${termoblock.hinges ? plHinges[termoblock.hinges] : "-"
+              }`}
             line={true}
             descriptionHoleType={false}
             descriptionPosition={false}
@@ -149,19 +136,7 @@ function Summary(props: SummaryProps) {
                     name: "Termoblock",
                     price: 55,
                     quantity: 1,
-                    details: {
-                      width: termoblock.width,
-                      height: termoblock.height,
-                      color: termoblock.color,
-                      felc: termoblock.felc,
-                      hinges: termoblock.hinges,
-                      firstHole: {
-                        stringPosition: termoblock.firstHole.stringPosition,
-                        holeType: termoblock.firstHole.holeType,
-                      },
-                      hasSecondHole: false,
-                      hasPowerCordHole: false,
-                    },
+                    details: termoblock
                   })
                 }
               >
