@@ -1,16 +1,8 @@
-import {
-  FieldErrors,
-  FormProvider,
-  SubmitHandler,
-  UseFormHandleSubmit,
-  UseFormRegister,
-  UseFormReturn,
-  UseFormWatch,
-} from "react-hook-form";
-import { CreateTermoblockUpItemInput } from "../schema/termoblockUp.schema";
-import FirstHoleFields from "./formFields/FirstHoleFields";
-import SecondHoleFields from "./formFields/SecondHoleFields";
-import WidthAndHeightFields from "./formFields/WidthAndHeightFields";
+import { FormProvider, UseFormReturn } from "react-hook-form";
+import { CreateTermoblockUpItemInput } from "../../schema/termoblockUp.schema";
+import FirstHoleFields from "../formFields/FirstHoleFields";
+import SecondHoleFields from "../formFields/SecondHoleFields";
+import WidthAndHeightFields from "../formFields/WidthAndHeightFields";
 
 interface TermoblockUpFormProps {
   formMethods: UseFormReturn<CreateTermoblockUpItemInput>;

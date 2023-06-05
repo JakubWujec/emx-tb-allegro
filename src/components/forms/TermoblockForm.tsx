@@ -8,10 +8,10 @@ import {
 import ColorFields from "../formFields/ColorFields";
 import FelcField from "../formFields/FelcField";
 import FirstHoleFields from "../formFields/FirstHoleFields";
-import HingesFields from "../formFields/HingeFields";
 import PowerCordHoleFields from "../formFields/PowerCordHoleFields";
 import SecondHoleFields from "../formFields/SecondHoleFields";
 import WidthAndHeightFields from "../formFields/WidthAndHeightFields";
+import HingeField from "../formFields/HingeField";
 
 const TermoblockForm = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -45,7 +45,7 @@ const TermoblockForm = () => {
         <WidthAndHeightFields></WidthAndHeightFields>
         <FelcField />
         <ColorFields></ColorFields>
-        <HingesFields></HingesFields>
+        <HingeField></HingeField>
         <FirstHoleFields></FirstHoleFields>
         <SecondHoleFields></SecondHoleFields>
         <PowerCordHoleFields />

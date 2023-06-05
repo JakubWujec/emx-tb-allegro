@@ -1,11 +1,11 @@
 import { FormProvider, UseFormReturn } from "react-hook-form";
-import { CreateTermoblockGoItemInput } from "../schema/termoblockGo.schema";
-import ColorFields from "./formFields/ColorFields";
-import FirstHoleFields from "./formFields/FirstHoleFields";
-import HingesFields from "./formFields/HingeFields";
-import SecondHoleFields from "./formFields/SecondHoleFields";
-import WidthAndHeightFields from "./formFields/WidthAndHeightFields";
-import PowerCordHoleFields from "./formFields/PowerCordHoleFields";
+import { CreateTermoblockGoItemInput } from "../../schema/termoblockGo.schema";
+import ColorFields from "../formFields/ColorFields";
+import FirstHoleFields from "../formFields/FirstHoleFields";
+import PowerCordHoleFields from "../formFields/PowerCordHoleFields";
+import SecondHoleFields from "../formFields/SecondHoleFields";
+import WidthAndHeightFields from "../formFields/WidthAndHeightFields";
+import HingeField from "../formFields/HingeField";
 
 interface TermoblockGoFormProps {
   formMethods: UseFormReturn<CreateTermoblockGoItemInput>;
@@ -18,7 +18,7 @@ const TermoblockGoForm = ({ formMethods, onSubmit }: TermoblockGoFormProps) => {
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <WidthAndHeightFields></WidthAndHeightFields>
         <ColorFields></ColorFields>
-        <HingesFields></HingesFields>
+        <HingeField></HingeField>
         <FirstHoleFields />
         <SecondHoleFields></SecondHoleFields>
         <PowerCordHoleFields />
