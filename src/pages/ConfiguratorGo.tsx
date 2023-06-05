@@ -17,7 +17,10 @@ const ConfiguratorGo = () => {
       createTermoblockGoItemSchema && zodResolver(createTermoblockGoItemSchema),
   });
 
+  console.log(formMethods.formState.errors);
+
   function onSubmit(values: CreateTermoblockGoItemInput) {
+    console.log(values, formMethods.formState.errors);
     addItem({
       id: 1,
       name: "Termoblock Go",

@@ -3,6 +3,7 @@ import { CreateTermoblockUpItemInput as CreateTermoblockProItemInput } from "../
 import FirstHoleFields from "../formFields/FirstHoleFields";
 import SecondHoleFields from "../formFields/SecondHoleFields";
 import WidthAndHeightFields from "../formFields/WidthAndHeightFields";
+import SubmitButton from "../formFields/SubmitButton";
 
 interface TermoblockProFormProps {
   formMethods: UseFormReturn<CreateTermoblockProItemInput>;
@@ -20,12 +21,7 @@ const TermoblockProForm = ({
         <FirstHoleFields></FirstHoleFields>
         <SecondHoleFields></SecondHoleFields>
 
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Zapisz
-        </button>
+        <SubmitButton />
       </form>
     </FormProvider>
   );

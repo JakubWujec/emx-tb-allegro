@@ -8,7 +8,6 @@ import { ColorEnum } from "./color.schema";
 import { HingeEnum } from "./hinge.schema";
 
 export const termoblockGoItemZodObject = z.object({
-  termoblockType: z.literal("GO"),
   width: z.number().min(250).max(1100),
   height: z.number().min(250).max(1600),
   color: ColorEnum,

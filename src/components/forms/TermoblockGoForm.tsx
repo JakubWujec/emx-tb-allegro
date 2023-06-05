@@ -6,6 +6,7 @@ import PowerCordHoleFields from "../formFields/PowerCordHoleFields";
 import SecondHoleFields from "../formFields/SecondHoleFields";
 import WidthAndHeightFields from "../formFields/WidthAndHeightFields";
 import HingeField from "../formFields/HingeField";
+import SubmitButton from "../formFields/SubmitButton";
 
 interface TermoblockGoFormProps {
   formMethods: UseFormReturn<CreateTermoblockGoItemInput>;
@@ -22,13 +23,7 @@ const TermoblockGoForm = ({ formMethods, onSubmit }: TermoblockGoFormProps) => {
         <FirstHoleFields />
         <SecondHoleFields></SecondHoleFields>
         <PowerCordHoleFields />
-
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Zapisz
-        </button>
+        <SubmitButton></SubmitButton>
       </form>
     </FormProvider>
   );

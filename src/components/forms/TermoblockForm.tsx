@@ -12,6 +12,7 @@ import PowerCordHoleFields from "../formFields/PowerCordHoleFields";
 import SecondHoleFields from "../formFields/SecondHoleFields";
 import WidthAndHeightFields from "../formFields/WidthAndHeightFields";
 import HingeField from "../formFields/HingeField";
+import SubmitButton from "../formFields/SubmitButton";
 
 const TermoblockForm = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -21,12 +22,6 @@ const TermoblockForm = () => {
     resolver:
       createTermoblockItemSchema && zodResolver(createTermoblockItemSchema),
   });
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = formMethods;
 
   function onSubmit(values: CreateTermoblockItemInput) {
     console.log(values);
@@ -49,12 +44,7 @@ const TermoblockForm = () => {
         <FirstHoleFields></FirstHoleFields>
         <SecondHoleFields></SecondHoleFields>
         <PowerCordHoleFields />
-        <button
-          type="submit"
-          className="bg-blue-500 text-white px-4 py-2 rounded-md hover:bg-blue-600"
-        >
-          Zapisz
-        </button>
+        <SubmitButton></SubmitButton>
       </form>
     </FormProvider>
   );

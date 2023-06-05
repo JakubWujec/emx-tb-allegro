@@ -6,7 +6,6 @@ import {
 import { ColorEnum } from "./color.schema";
 
 export const termoblockProItemZodObject = z.object({
-  termoblockType: z.literal("PRO"),
   width: z.number().min(250).max(1100),
   height: z.number().min(250).max(1600),
   color: ColorEnum,

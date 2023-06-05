@@ -5,7 +5,6 @@ import {
 } from "./termoblockHole.schema";
 
 export const termoblockUpItemZodObject = z.object({
-  termoblockType: z.literal("UP"),
   width: z.number().min(250).max(1100),
   height: z.number().min(250).max(1600),
   firstHole: HoleZodObject.refine(
