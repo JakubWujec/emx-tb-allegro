@@ -6,6 +6,7 @@ import SubmitButton from "../formFields/SubmitButton";
 import FelcField from "../formFields/FelcField";
 import ThirdHoleFields from "../formFields/ThirdHoleFields";
 import { CreateTermoblockProItemInput } from "../../schema/termoblockPro.schema";
+import ColorsFields from "../formFields/ColorFields";
 
 interface TermoblockProFormProps {
   formMethods: UseFormReturn<CreateTermoblockProItemInput>;
@@ -19,6 +20,7 @@ const TermoblockProForm = ({
   return (
     <FormProvider {...formMethods}>
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
+        <ColorsFields></ColorsFields>
         <WidthAndHeightFields />
         <FelcField></FelcField>
         <FirstHoleFields></FirstHoleFields>
