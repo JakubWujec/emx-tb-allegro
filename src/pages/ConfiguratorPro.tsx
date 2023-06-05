@@ -10,12 +10,14 @@ import TermoblockProForm from "../components/forms/TermoblockProForm";
 import { useEffect, useRef, useState } from "react";
 import PriceFooter from "../components/PriceFooter";
 import Summary from "../components/Summary";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 const ConfiguratorPro = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
-  const [isSummaryVisible, setIsSummaryVisible] = useState<boolean>(true);
   const summaryRef = useRef<HTMLDivElement>(null);
+  const entry = useIntersectionObserver(summaryRef, {})
+  const isSummaryVisible = !entry?.isIntersecting
 
   const formMethods = useForm<CreateTermoblockProItemInput>({
     resolver:
@@ -34,31 +36,6 @@ const ConfiguratorPro = () => {
       details: values,
     });
   }
-
-  useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5, // Określa, kiedy komponent Summary jest uważany za widoczny
-    };
-
-    const callback: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        setIsSummaryVisible(!entry.isIntersecting);
-      });
-    };
-
-    const observer = new IntersectionObserver(callback, options);
-    if (summaryRef.current) {
-      observer.observe(summaryRef.current);
-    }
-
-    return () => {
-      if (summaryRef.current) {
-        observer.unobserve(summaryRef.current);
-      }
-    };
-  }, []);
 
   return (
     <div className="relative">
