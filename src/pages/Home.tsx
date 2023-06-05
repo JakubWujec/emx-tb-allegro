@@ -1,9 +1,9 @@
-import TermoblockForm from "../components/forms/TermoblockForm";
+import ConfiguratorPro from "./ConfiguratorPro";
 
 const Home = () => {
   return (
     <div className="relative">
-      <TermoblockForm />
+      <ConfiguratorPro />
     </div>
   );
 };

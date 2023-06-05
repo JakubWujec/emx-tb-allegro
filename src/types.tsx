@@ -26,4 +26,7 @@ export type {
   FirstHoleType,
   SecondHoleType,
   ThirdHoleType,
+  CreateTermoblockUpItemInput,
+  CreateTermoblockProItemInput,
+  CreateTermoblockGoItemInput,
 };

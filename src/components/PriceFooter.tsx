@@ -4,9 +4,17 @@ import { CreateTermoblockItemInput } from "../schema/termoblockItem.schema";
 import { plColors } from "../schema/color.schema";
 import { plHinges } from "../schema/hinge.schema";
 import FieldDetail from "./FieldDetail";
+import {
+  CreateTermoblockGoItemInput,
+  CreateTermoblockProItemInput,
+  CreateTermoblockUpItemInput,
+} from "../types";
 
 type PriceFooterProps = {
-  termoblock: CreateTermoblockItemInput;
+  termoblock:
+    | CreateTermoblockUpItemInput
+    | CreateTermoblockProItemInput
+    | CreateTermoblockGoItemInput;
   isValid: boolean;
   visible: boolean;
 };

@@ -7,17 +7,22 @@ import {
   createTermoblockGoItemSchema,
 } from "../schema/termoblockGo.schema";
 import TermoblockGoForm from "../components/forms/TermoblockGoForm";
+import { useEffect, useRef, useState } from "react";
+import PriceFooter from "../components/PriceFooter";
+import Summary from "../components/Summary";
 
 const ConfiguratorGo = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
+  const [isSummaryVisible, setIsSummaryVisible] = useState<boolean>(true);
+  const summaryRef = useRef<HTMLDivElement>(null);
 
   const formMethods = useForm<CreateTermoblockGoItemInput>({
     resolver:
       createTermoblockGoItemSchema && zodResolver(createTermoblockGoItemSchema),
   });
 
-  console.log(formMethods.formState.errors);
+  const termoblock = formMethods.watch();
 
   function onSubmit(values: CreateTermoblockGoItemInput) {
     console.log(values, formMethods.formState.errors);
@@ -30,9 +35,43 @@ const ConfiguratorGo = () => {
     });
   }
 
+  useEffect(() => {
+    const options = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.5, // Określa, kiedy komponent Summary jest uważany za widoczny
+    };
+
+    const callback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        setIsSummaryVisible(!entry.isIntersecting);
+      });
+    };
+
+    const observer = new IntersectionObserver(callback, options);
+    if (summaryRef.current) {
+      observer.observe(summaryRef.current);
+    }
+
+    return () => {
+      if (summaryRef.current) {
+        observer.unobserve(summaryRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="relative">
       <TermoblockGoForm formMethods={formMethods} onSubmit={onSubmit} />
+      <PriceFooter
+        isValid={true}
+        termoblock={termoblock}
+        visible={isSummaryVisible}
+      />
+
+      <div ref={summaryRef}>
+        <Summary isValid={true} termoblock={termoblock} />
+      </div>
     </div>
   );
 };

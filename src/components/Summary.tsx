@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from "react";
 //schema
-import { CreateTermoblockItemInput } from "../schema/termoblockItem.schema";
 import { plColors } from "../schema/color.schema";
 import { plHinges } from "../schema/hinge.schema";
 //hooks
 import useShoppingCart from "../hooks/useShoppingCart";
 //components
 import FieldDetail from "./FieldDetail";
+import {
+  CreateTermoblockUpItemInput,
+  CreateTermoblockProItemInput,
+  CreateTermoblockGoItemInput,
+} from "../types";
 
 type SummaryProps = {
-  termoblock: CreateTermoblockItemInput;
+  termoblock:
+    | CreateTermoblockUpItemInput
+    | CreateTermoblockProItemInput
+    | CreateTermoblockGoItemInput;
   isValid: boolean;
 };
 
