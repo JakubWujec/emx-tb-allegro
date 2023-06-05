@@ -14,6 +14,8 @@ import WidthAndHeightFields from "./FormFields/WidthAndHeightFields";
 import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
 import SecondHoleFields from "./FormFields/SecondHoleFields";
+import ColorFields from "./FormFields/ColorFields";
+import HingesFields from "./FormFields/HingesFields";
 
 const TermoblockForm = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -53,36 +55,10 @@ const TermoblockForm = () => {
             registration={register("felc", { valueAsNumber: true })}
           ></InputField>
         </div>
-        <div className="mb-4">
-          <SelectField
-            options={colors.map((color) => {
-              return {
-                value: color,
-                label: plColors[color],
-              };
-            })}
-            label="Kolor"
-            error={errors.color}
-            registration={register("color")}
-          ></SelectField>
-        </div>
-        <div className="mb-4">
-          <SelectField
-            options={hinges.map((hinge) => {
-              return {
-                value: hinge,
-                label: plHinges[hinge],
-              };
-            })}
-            label="Zawiasy"
-            error={errors.hinges}
-            registration={register("hinges")}
-          ></SelectField>
-        </div>
+        <ColorFields></ColorFields>
+        <HingesFields></HingesFields>
         <FirstHoleFields></FirstHoleFields>
-
         <SecondHoleFields></SecondHoleFields>
-
         <PowerCordHoleFields />
         <button
           type="submit"

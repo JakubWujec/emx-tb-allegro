@@ -5,16 +5,14 @@ import {
   UseFormRegister,
   UseFormWatch,
 } from "react-hook-form";
-import { holeTypes, stringPositions } from "../schema/termoblockHole.schema";
-import { InputField } from "./InputField";
-import { SelectField } from "./SelectField";
 import { CreateTermoblockGoItemInput } from "../schema/termoblockGo.schema";
-import { hinges, plHinges } from "../schema/hinge.schema";
-import { colors, plColors } from "../schema/color.schema";
-import WidthAndHeightFields from "./FormFields/WidthAndHeightFields";
-import PowerCordHoleFields from "./FormFields/PowerCordHoleFields";
 import FirstHoleFields from "./FormFields/FirstHoleFields";
+import PowerCordHoleFields from "./FormFields/PowerCordHoleFields";
 import SecondHoleFields from "./FormFields/SecondHoleFields";
+import WidthAndHeightFields from "./FormFields/WidthAndHeightFields";
+import { SelectField } from "./SelectField";
+import ColorFields from "./FormFields/ColorFields";
+import HingesFields from "./FormFields/HingesFields";
 
 interface TermoblockGoFormProps {
   register: UseFormRegister<CreateTermoblockGoItemInput>;
@@ -31,41 +29,12 @@ const TermoblockGoForm = ({
   onSubmit,
   watch,
 }: TermoblockGoFormProps) => {
-  const firstHoleType = watch("firstHole.holeType");
-  const hasSecondHole = watch("hasSecondHole");
-  const secondHoleType = watch("secondHole.holeType");
-  const hasPowerCordHole = watch("hasPowerCordHole");
-
   return (
     <>
       <form onSubmit={handleSubmit(onSubmit)}>
         <WidthAndHeightFields></WidthAndHeightFields>
-        <div className="mb-4">
-          <SelectField
-            options={colors.map((color) => {
-              return {
-                value: color,
-                label: plColors[color],
-              };
-            })}
-            label="Kolor"
-            error={errors.color}
-            registration={register("color")}
-          ></SelectField>
-        </div>
-        <div className="mb-4">
-          <SelectField
-            options={hinges.map((hinge) => {
-              return {
-                value: hinge,
-                label: plHinges[hinge],
-              };
-            })}
-            label="Zawiasy"
-            error={errors.hinges}
-            registration={register("hinges")}
-          ></SelectField>
-        </div>
+        <ColorFields></ColorFields>
+        <HingesFields></HingesFields>
         <FirstHoleFields />
         <SecondHoleFields></SecondHoleFields>
         <PowerCordHoleFields />
