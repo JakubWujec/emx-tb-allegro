@@ -67,27 +67,7 @@ const TermoblockGoForm = ({
           ></SelectField>
         </div>
         <FirstHoleFields />
-
-        <div className="mb-4">
-          <SelectField
-            options={["Nie", "Tak"].map((val) => {
-              return {
-                value: val,
-                label: val,
-              };
-            })}
-            label="Drugi otwór?"
-            error={errors.hasSecondHole}
-            registration={register("hasSecondHole", {
-              setValueAs(value) {
-                return value === "Tak";
-              },
-            })}
-          ></SelectField>
-        </div>
-
-        {hasSecondHole && <SecondHoleFields></SecondHoleFields>}
-
+        <SecondHoleFields></SecondHoleFields>
         <PowerCordHoleFields />
 
         <button
