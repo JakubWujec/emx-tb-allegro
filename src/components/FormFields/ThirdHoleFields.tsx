@@ -1,17 +1,17 @@
 import { useFormContext } from "react-hook-form";
 import { holeTypes, stringPositions } from "../../schema/termoblockHole.schema";
-import { SecondHoleType } from "../../types";
+import { ThirdHoleType } from "../../types";
 import { InputField } from "../InputField";
 import { SelectField } from "../SelectField";
 
-const SecondHoleFields = () => {
+const ThirdHoleFields = () => {
   const {
     register,
     formState: { errors },
     watch,
-  } = useFormContext<Required<SecondHoleType & { hasSecondHole: boolean }>>();
-  const secondHoleType = watch("secondHole.holeType");
-  const hasSecondHole = watch("hasSecondHole");
+  } = useFormContext<Required<ThirdHoleType & { hasThirdHole: boolean }>>();
+  const thirdHoleType = watch("thirdHole.holeType");
+  const hasThirdHole = watch("hasThirdHole");
 
   return (
     <div className="mb-4">
@@ -22,15 +22,15 @@ const SecondHoleFields = () => {
             label: val,
           };
         })}
-        label="Drugi otwór?"
-        error={errors.hasSecondHole}
-        registration={register("hasSecondHole", {
+        label="Trzeci otwór?"
+        error={errors.hasThirdHole}
+        registration={register("hasThirdHole", {
           setValueAs(value) {
             return value === "Tak";
           },
         })}
       ></SelectField>
-      {hasSecondHole && (
+      {hasThirdHole && (
         <>
           <SelectField
             options={holeTypes.map((holeType) => {
@@ -39,9 +39,9 @@ const SecondHoleFields = () => {
                 label: holeType,
               };
             })}
-            label="Rodzaj drugiego otworu"
-            error={errors.secondHole?.holeType}
-            registration={register("secondHole.holeType")}
+            label="Rodzaj trzeciego otworu"
+            error={errors.thirdHole?.holeType}
+            registration={register("thirdHole.holeType")}
           ></SelectField>
           <SelectField
             options={stringPositions.map((stringPosition) => {
@@ -50,17 +50,17 @@ const SecondHoleFields = () => {
                 label: stringPosition,
               };
             })}
-            label="Położenie drugiego otworu (patrząc z zewnątrz)"
-            error={errors.secondHole?.stringPosition}
-            registration={register("secondHole.stringPosition")}
+            label="Położenie trzeciego otworu (patrząc z zewnątrz)"
+            error={errors.thirdHole?.stringPosition}
+            registration={register("thirdHole.stringPosition")}
           ></SelectField>
 
-          {secondHoleType === "okrągły na rurę bez uchwytu" && (
+          {thirdHoleType === "okrągły na rurę bez uchwytu" && (
             <InputField
-              label="Średnica (zewnętrzna) drugiego otworu (mm)"
-              error={errors.secondHole?.diameter}
+              label="Średnica (zewnętrzna) trzeciego otworu (mm)"
+              error={errors.thirdHole?.diameter}
               type="number"
-              registration={register("secondHole.diameter", {
+              registration={register("thirdHole.diameter", {
                 valueAsNumber: true,
               })}
             ></InputField>
@@ -71,4 +71,4 @@ const SecondHoleFields = () => {
   );
 };
 
-export default SecondHoleFields;
+export default ThirdHoleFields;

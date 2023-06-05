@@ -4,6 +4,8 @@ import FirstHoleFields from "../formFields/FirstHoleFields";
 import SecondHoleFields from "../formFields/SecondHoleFields";
 import WidthAndHeightFields from "../formFields/WidthAndHeightFields";
 import SubmitButton from "../formFields/SubmitButton";
+import FelcField from "../formFields/FelcField";
+import ThirdHoleFields from "../formFields/ThirdHoleFields";
 
 interface TermoblockProFormProps {
   formMethods: UseFormReturn<CreateTermoblockProItemInput>;
@@ -18,9 +20,10 @@ const TermoblockProForm = ({
     <FormProvider {...formMethods}>
       <form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <WidthAndHeightFields />
+        <FelcField></FelcField>
         <FirstHoleFields></FirstHoleFields>
         <SecondHoleFields></SecondHoleFields>
-
+        <ThirdHoleFields></ThirdHoleFields>
         <SubmitButton />
       </form>
     </FormProvider>

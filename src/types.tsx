@@ -17,6 +17,7 @@ interface Product {
 
 type FirstHoleType = Pick<TermoblockItem, "firstHole">;
 type SecondHoleType = Pick<TermoblockItem, "secondHole">;
+type ThirdHoleType = Pick<CreateTermoblockProItemInput, "thirdHole">;
 
 export type {
   TermoblockItem,
@@ -24,4 +25,5 @@ export type {
   TermoblockHole,
   FirstHoleType,
   SecondHoleType,
+  ThirdHoleType,
 };

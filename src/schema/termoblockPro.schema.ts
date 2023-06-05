@@ -21,6 +21,8 @@ export const termoblockProItemZodObject = z.object({
   ),
   hasSecondHole: z.boolean(),
   secondHole: HoleZodObject.optional(),
+  hasThirdHole: z.boolean(),
+  thirdHole: HoleZodObject.optional(),
 });
 
 export const createTermoblockProItemSchema = termoblockProItemZodObject.refine(
