@@ -2,6 +2,7 @@ import "./App.css";
 import Cart from "./pages/Cart";
 import Home from "./pages/Home";
 import Header from "./components/Header";
+import OrderSummary from "./pages/OrderSummary";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import NotFound from "./components/NotFound";
@@ -22,6 +23,7 @@ function App() {
               <Route path="/up" element={<ConfiguratorUp />} />
               <Route path="/go" element={<ConfiguratorGo />} />
               <Route path="/pro" element={<ConfiguratorPro />} />
+              <Route path="/summary" element={<OrderSummary />} />
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </main>
