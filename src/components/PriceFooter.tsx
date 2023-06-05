@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import useShoppingCart from "../hooks/useShoppingCart";
-import { CreateTermoblockItemInput } from "../schema/termoblockItem.schema";
 import { plColors } from "../schema/color.schema";
 import { plHinges } from "../schema/hinge.schema";
 import FieldDetail from "./FieldDetail";
@@ -11,9 +10,10 @@ import {
 } from "../types";
 
 type PriceFooterProps = {
-  termoblock: CreateTermoblockUpItemInput &
-    CreateTermoblockProItemInput &
-    CreateTermoblockGoItemInput;
+  termoblock:
+    | CreateTermoblockUpItemInput
+    | CreateTermoblockProItemInput
+    | CreateTermoblockGoItemInput;
   isValid: boolean;
   visible: boolean;
 };
