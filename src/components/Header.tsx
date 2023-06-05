@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 import useShoppingCart from "../hooks/useShoppingCart";
-import { CartButton, HomeButton } from "../components";
 import countAllItems from "../utils/countAllItems";
+import HomeIcon from "./icons/HomeIcon";
+import CartButton from "./CartButton";
 
 const Header = () => {
   const [getItems] = useShoppingCart();
@@ -14,7 +15,7 @@ const Header = () => {
         <nav className="flex items-center justify-between">
           <div>
             <Link className="text-black-500" to={`/`}>
-              <HomeButton />
+              <HomeIcon />
             </Link>
           </div>
           <div>
