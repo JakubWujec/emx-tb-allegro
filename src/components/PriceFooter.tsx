@@ -11,9 +11,9 @@ import {
 
 type PriceFooterProps = {
   termoblock:
-    | CreateTermoblockUpItemInput
-    | CreateTermoblockProItemInput
-    | CreateTermoblockGoItemInput;
+  | CreateTermoblockUpItemInput
+  | CreateTermoblockProItemInput
+  | CreateTermoblockGoItemInput;
   isValid: boolean;
   visible: boolean;
 };
@@ -26,8 +26,6 @@ function PriceFooter(props: PriceFooterProps) {
   const [clicked, setClicked] = useState<boolean>(false);
   const isValid = props.isValid;
   const visible = props.visible;
-
-  console.log(visible);
 
   const checkNan = (value: number) => {
     if (isNaN(value)) {
@@ -68,7 +66,7 @@ function PriceFooter(props: PriceFooterProps) {
               />
 
               {termoblock.felc === undefined ||
-              isNaN(termoblock.felc) ? null : (
+                isNaN(termoblock.felc) ? null : (
                 <FieldDetail
                   label="Felc"
                   description={`${termoblock.felc}mm`}
@@ -81,9 +79,8 @@ function PriceFooter(props: PriceFooterProps) {
 
               <FieldDetail
                 label="Kolor"
-                description={`${
-                  termoblock.color ? plColors[termoblock.color] : "-"
-                }`}
+                description={`${termoblock.color ? plColors[termoblock.color] : "-"
+                  }`}
                 line={true}
                 descriptionHoleType={false}
                 descriptionPosition={false}
@@ -91,9 +88,8 @@ function PriceFooter(props: PriceFooterProps) {
               />
               <FieldDetail
                 label="Zawias"
-                description={`${
-                  termoblock.hinges ? plHinges[termoblock.hinges] : "-"
-                }`}
+                description={`${termoblock.hinges ? plHinges[termoblock.hinges] : "-"
+                  }`}
                 line={true}
                 descriptionHoleType={false}
                 descriptionPosition={false}
