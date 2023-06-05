@@ -11,10 +11,9 @@ import {
 } from "../types";
 
 type PriceFooterProps = {
-  termoblock:
-    | CreateTermoblockUpItemInput
-    | CreateTermoblockProItemInput
-    | CreateTermoblockGoItemInput;
+  termoblock: CreateTermoblockUpItemInput &
+    CreateTermoblockProItemInput &
+    CreateTermoblockGoItemInput;
   isValid: boolean;
   visible: boolean;
 };

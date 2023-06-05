@@ -13,10 +13,9 @@ import {
 } from "../types";
 
 type SummaryProps = {
-  termoblock:
-    | CreateTermoblockUpItemInput
-    | CreateTermoblockProItemInput
-    | CreateTermoblockGoItemInput;
+  termoblock: CreateTermoblockUpItemInput &
+    CreateTermoblockProItemInput &
+    CreateTermoblockGoItemInput;
   isValid: boolean;
 };
 
