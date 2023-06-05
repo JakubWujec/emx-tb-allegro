@@ -1,23 +1,23 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import PriceFooter from "../components/PriceFooter";
+import Summary from "../components/Summary";
+import TermoblockProForm from "../components/forms/TermoblockProForm";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import useShoppingCart from "../hooks/useShoppingCart";
 import {
   CreateTermoblockProItemInput,
   createTermoblockProItemSchema,
 } from "../schema/termoblockPro.schema";
-import TermoblockProForm from "../components/forms/TermoblockProForm";
-import { useEffect, useRef, useState } from "react";
-import PriceFooter from "../components/PriceFooter";
-import Summary from "../components/Summary";
-import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 const ConfiguratorPro = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
   const summaryRef = useRef<HTMLDivElement>(null);
   const entry = useIntersectionObserver(summaryRef, {})
-  const isSummaryVisible = !entry?.isIntersecting
+  const visible = !entry?.isIntersecting
 
   const formMethods = useForm<CreateTermoblockProItemInput>({
     resolver:
@@ -26,6 +26,7 @@ const ConfiguratorPro = () => {
   });
 
   const termoblock = formMethods.watch();
+  const termoblockIsValid = (formMethods.formState.isDirty && Object.keys(formMethods.formState.errors).length === 0)
 
   function onSubmit(values: CreateTermoblockProItemInput) {
     addItem({
@@ -41,13 +42,13 @@ const ConfiguratorPro = () => {
     <div className="relative">
       <TermoblockProForm formMethods={formMethods} onSubmit={onSubmit} />
       <PriceFooter
-        isValid={true}
+        isValid={termoblockIsValid}
         termoblock={termoblock}
-        visible={isSummaryVisible}
+        visible={visible}
       />
 
       <div ref={summaryRef}>
-        <Summary isValid={true} termoblock={termoblock} />
+        <Summary isValid={termoblockIsValid} termoblock={termoblock} />
       </div>
     </div>
   );
