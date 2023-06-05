@@ -1,12 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm } from "react-hook-form";
-import TermoblockGoForm from "../components/TermoblockGoForm";
 import useShoppingCart from "../hooks/useShoppingCart";
 import {
   CreateTermoblockGoItemInput,
   createTermoblockGoItemSchema,
 } from "../schema/termoblockGo.schema";
+import TermoblockGoForm from "../components/forms/TermoblockGoForm";
 
 const ConfiguratorGo = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -30,7 +30,6 @@ const ConfiguratorGo = () => {
   return (
     <div className="relative">
       <TermoblockGoForm formMethods={formMethods} onSubmit={onSubmit} />
-      {/* <PriceFooter termoblock=></PriceFooter> */}
     </div>
   );
 };

@@ -1,8 +1,8 @@
 import { FormProvider, UseFormReturn } from "react-hook-form";
 import { CreateTermoblockUpItemInput as CreateTermoblockProItemInput } from "../schema/termoblockUp.schema";
-import FirstHoleFields from "./FormFields/FirstHoleFields";
-import SecondHoleFields from "./FormFields/SecondHoleFields";
-import WidthAndHeightFields from "./FormFields/WidthAndHeightFields";
+import FirstHoleFields from "./formFields/FirstHoleFields";
+import SecondHoleFields from "./formFields/SecondHoleFields";
+import WidthAndHeightFields from "./formFields/WidthAndHeightFields";
 
 interface TermoblockProFormProps {
   formMethods: UseFormReturn<CreateTermoblockProItemInput>;

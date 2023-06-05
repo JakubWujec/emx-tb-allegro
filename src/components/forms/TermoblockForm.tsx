@@ -1,17 +1,17 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
-import useShoppingCart from "../hooks/useShoppingCart";
+import useShoppingCart from "../../hooks/useShoppingCart";
 import {
   CreateTermoblockItemInput,
   createTermoblockItemSchema,
-} from "../schema/termoblockItem.schema";
-import ColorFields from "./FormFields/ColorFields";
-import FelcField from "./FormFields/FelcField";
-import FirstHoleFields from "./FormFields/FirstHoleFields";
-import HingesFields from "./FormFields/HingeFields";
-import PowerCordHoleFields from "./FormFields/PowerCordHoleFields";
-import SecondHoleFields from "./FormFields/SecondHoleFields";
-import WidthAndHeightFields from "./FormFields/WidthAndHeightFields";
+} from "../../schema/termoblockItem.schema";
+import ColorFields from "../formFields/ColorFields";
+import FelcField from "../formFields/FelcField";
+import FirstHoleFields from "../formFields/FirstHoleFields";
+import HingesFields from "../formFields/HingeFields";
+import PowerCordHoleFields from "../formFields/PowerCordHoleFields";
+import SecondHoleFields from "../formFields/SecondHoleFields";
+import WidthAndHeightFields from "../formFields/WidthAndHeightFields";
 
 const TermoblockForm = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =

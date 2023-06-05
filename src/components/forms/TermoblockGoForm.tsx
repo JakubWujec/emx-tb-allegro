@@ -1,11 +1,11 @@
 import { FormProvider, UseFormReturn } from "react-hook-form";
 import { CreateTermoblockGoItemInput } from "../schema/termoblockGo.schema";
-import ColorFields from "./FormFields/ColorFields";
-import FirstHoleFields from "./FormFields/FirstHoleFields";
-import HingesFields from "./FormFields/HingeFields";
-import SecondHoleFields from "./FormFields/SecondHoleFields";
-import WidthAndHeightFields from "./FormFields/WidthAndHeightFields";
-import PowerCordHoleFields from "./FormFields/PowerCordHoleFields";
+import ColorFields from "./formFields/ColorFields";
+import FirstHoleFields from "./formFields/FirstHoleFields";
+import HingesFields from "./formFields/HingeFields";
+import SecondHoleFields from "./formFields/SecondHoleFields";
+import WidthAndHeightFields from "./formFields/WidthAndHeightFields";
+import PowerCordHoleFields from "./formFields/PowerCordHoleFields";
 
 interface TermoblockGoFormProps {
   formMethods: UseFormReturn<CreateTermoblockGoItemInput>;

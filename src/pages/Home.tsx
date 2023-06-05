@@ -1,10 +1,11 @@
-import TermoblockForm from "../components/TermoblockForm";
+import TermoblockForm from "../components/forms/TermoblockForm";
 
 const Home = () => {
   return (
-  <div className="relative">
-    <TermoblockForm />
-  </div>)
-}
+    <div className="relative">
+      <TermoblockForm />
+    </div>
+  );
+};
 
 export default Home;

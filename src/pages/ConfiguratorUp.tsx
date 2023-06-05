@@ -1,12 +1,12 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useForm } from "react-hook-form";
-import TermoblockUpForm from "../components/TermoblockUpForm";
 import useShoppingCart from "../hooks/useShoppingCart";
 import {
   CreateTermoblockUpItemInput,
   createTermoblockUpItemSchema,
 } from "../schema/termoblockUp.schema";
+import TermoblockUpForm from "../components/forms/TermoblockUpForm";
 
 const ConfiguratorUp = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
