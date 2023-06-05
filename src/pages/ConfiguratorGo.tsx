@@ -12,12 +12,7 @@ const ConfiguratorGo = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<CreateTermoblockGoItemInput>({
+  const formMethods = useForm<CreateTermoblockGoItemInput>({
     resolver:
       createTermoblockGoItemSchema && zodResolver(createTermoblockGoItemSchema),
   });
@@ -34,13 +29,7 @@ const ConfiguratorGo = () => {
 
   return (
     <div className="relative">
-      <TermoblockGoForm
-        register={register}
-        handleSubmit={handleSubmit}
-        errors={errors}
-        onSubmit={onSubmit}
-        watch={watch}
-      />
+      <TermoblockGoForm formMethods={formMethods} onSubmit={onSubmit} />
       {/* <PriceFooter termoblock=></PriceFooter> */}
     </div>
   );

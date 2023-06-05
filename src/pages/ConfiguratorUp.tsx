@@ -12,12 +12,7 @@ const ConfiguratorUp = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
 
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<CreateTermoblockUpItemInput>({
+  const formMethods = useForm<CreateTermoblockUpItemInput>({
     resolver:
       createTermoblockUpItemSchema && zodResolver(createTermoblockUpItemSchema),
   });
@@ -34,13 +29,7 @@ const ConfiguratorUp = () => {
 
   return (
     <div className="relative">
-      <TermoblockUpForm
-        register={register}
-        handleSubmit={handleSubmit}
-        errors={errors}
-        onSubmit={onSubmit}
-        watch={watch}
-      />
+      <TermoblockUpForm formMethods={formMethods} onSubmit={onSubmit} />
     </div>
   );
 };

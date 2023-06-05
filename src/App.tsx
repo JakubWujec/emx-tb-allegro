@@ -4,6 +4,8 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import ConfiguratorUp from "./pages/ConfiguratorUp";
+import ConfiguratorGo from "./pages/ConfiguratorGo";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/up" element={<ConfiguratorUp />} />
+              <Route path="/go" element={<ConfiguratorGo />} />
             </Routes>
           </main>
         </ShoppingCartProvider>

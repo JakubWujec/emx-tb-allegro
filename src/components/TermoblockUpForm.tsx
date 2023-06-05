@@ -1,8 +1,10 @@
 import {
   FieldErrors,
+  FormProvider,
   SubmitHandler,
   UseFormHandleSubmit,
   UseFormRegister,
+  UseFormReturn,
   UseFormWatch,
 } from "react-hook-form";
 import { CreateTermoblockUpItemInput } from "../schema/termoblockUp.schema";
@@ -11,23 +13,14 @@ import SecondHoleFields from "./FormFields/SecondHoleFields";
 import WidthAndHeightFields from "./FormFields/WidthAndHeightFields";
 
 interface TermoblockUpFormProps {
-  register: UseFormRegister<CreateTermoblockUpItemInput>;
-  handleSubmit: UseFormHandleSubmit<CreateTermoblockUpItemInput>;
-  errors: FieldErrors<CreateTermoblockUpItemInput>;
-  onSubmit: SubmitHandler<CreateTermoblockUpItemInput>;
-  watch: UseFormWatch<CreateTermoblockUpItemInput>;
+  formMethods: UseFormReturn<CreateTermoblockUpItemInput>;
+  onSubmit: (values: CreateTermoblockUpItemInput) => void;
 }
 
-const TermoblockUpForm = ({
-  register,
-  handleSubmit,
-  errors,
-  onSubmit,
-  watch,
-}: TermoblockUpFormProps) => {
+const TermoblockUpForm = ({ formMethods, onSubmit }: TermoblockUpFormProps) => {
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <FormProvider {...formMethods}>
+      <form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <WidthAndHeightFields></WidthAndHeightFields>
         <FirstHoleFields></FirstHoleFields>
         <SecondHoleFields></SecondHoleFields>
@@ -39,7 +32,7 @@ const TermoblockUpForm = ({
           Zapisz
         </button>
       </form>
-    </>
+    </FormProvider>
   );
 };
 

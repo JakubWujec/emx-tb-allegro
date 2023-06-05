@@ -1,36 +1,21 @@
-import {
-  FieldErrors,
-  SubmitHandler,
-  UseFormHandleSubmit,
-  UseFormRegister,
-  UseFormWatch,
-} from "react-hook-form";
+import { FormProvider, UseFormReturn } from "react-hook-form";
 import { CreateTermoblockGoItemInput } from "../schema/termoblockGo.schema";
 import ColorFields from "./FormFields/ColorFields";
 import FirstHoleFields from "./FormFields/FirstHoleFields";
 import HingesFields from "./FormFields/HingeFields";
-import PowerCordHoleFields from "./FormFields/PowerCordHoleFields";
 import SecondHoleFields from "./FormFields/SecondHoleFields";
 import WidthAndHeightFields from "./FormFields/WidthAndHeightFields";
+import PowerCordHoleFields from "./FormFields/PowerCordHoleFields";
 
 interface TermoblockGoFormProps {
-  register: UseFormRegister<CreateTermoblockGoItemInput>;
-  handleSubmit: UseFormHandleSubmit<CreateTermoblockGoItemInput>;
-  errors: FieldErrors<CreateTermoblockGoItemInput>;
-  onSubmit: SubmitHandler<CreateTermoblockGoItemInput>;
-  watch: UseFormWatch<CreateTermoblockGoItemInput>;
+  formMethods: UseFormReturn<CreateTermoblockGoItemInput>;
+  onSubmit: (values: CreateTermoblockGoItemInput) => void;
 }
 
-const TermoblockGoForm = ({
-  register,
-  handleSubmit,
-  errors,
-  onSubmit,
-  watch,
-}: TermoblockGoFormProps) => {
+const TermoblockGoForm = ({ formMethods, onSubmit }: TermoblockGoFormProps) => {
   return (
-    <>
-      <form onSubmit={handleSubmit(onSubmit)}>
+    <FormProvider {...formMethods}>
+      <form onSubmit={formMethods.handleSubmit(onSubmit)}>
         <WidthAndHeightFields></WidthAndHeightFields>
         <ColorFields></ColorFields>
         <HingesFields></HingesFields>
@@ -45,7 +30,7 @@ const TermoblockGoForm = ({
           Zapisz
         </button>
       </form>
-    </>
+    </FormProvider>
   );
 };
 
