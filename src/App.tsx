@@ -5,6 +5,9 @@ import Header from "./components/Header";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import NotFound from "./components/NotFound";
+import ConfiguratorUp from "./pages/ConfiguratorUp";
+import ConfiguratorGo from "./pages/ConfiguratorGo";
+import ConfiguratorPro from "./pages/ConfiguratorPro";
 
 function App() {
   return (
@@ -16,6 +19,9 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/cart" element={<Cart />} />
+              <Route path="/up" element={<ConfiguratorUp />} />
+              <Route path="/go" element={<ConfiguratorGo />} />
+              <Route path="/pro" element={<ConfiguratorPro />} />
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </main>
