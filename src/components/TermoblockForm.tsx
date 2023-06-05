@@ -8,7 +8,7 @@ import {
 import ColorFields from "./FormFields/ColorFields";
 import FelcField from "./FormFields/FelcField";
 import FirstHoleFields from "./FormFields/FirstHoleFields";
-import HingesFields from "./FormFields/HingesFields";
+import HingesFields from "./FormFields/HingeFields";
 import PowerCordHoleFields from "./FormFields/PowerCordHoleFields";
 import SecondHoleFields from "./FormFields/SecondHoleFields";
 import WidthAndHeightFields from "./FormFields/WidthAndHeightFields";
