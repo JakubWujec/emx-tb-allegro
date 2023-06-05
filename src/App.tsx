@@ -6,6 +6,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { ShoppingCartProvider } from "./context/ShoppingCartContext";
 import ConfiguratorUp from "./pages/ConfiguratorUp";
 import ConfiguratorGo from "./pages/ConfiguratorGo";
+import ConfiguratorPro from "./pages/ConfiguratorPro";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
               <Route path="/cart" element={<Cart />} />
               <Route path="/up" element={<ConfiguratorUp />} />
               <Route path="/go" element={<ConfiguratorGo />} />
+              <Route path="/pro" element={<ConfiguratorPro />} />
             </Routes>
           </main>
         </ShoppingCartProvider>
