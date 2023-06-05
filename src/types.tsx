@@ -15,9 +15,9 @@ interface Product {
     | CreateTermoblockGoItemInput;
 }
 
-type FirstHoleType = Pick<TermoblockItem, "firstHole">;
-type SecondHoleType = Pick<TermoblockItem, "secondHole">;
-type ThirdHoleType = Pick<CreateTermoblockProItemInput, "thirdHole">;
+type FirstHoleType = Record<"firstHole", TermoblockHole>;
+type SecondHoleType = Record<"secondHole", TermoblockHole>;
+type ThirdHoleType = Record<"thirdHole", TermoblockHole>;
 
 export type {
   TermoblockItem,
