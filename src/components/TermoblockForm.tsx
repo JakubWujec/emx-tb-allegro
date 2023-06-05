@@ -13,6 +13,7 @@ import PowerCordHoleFields from "./FormFields/PowerCordHoleFields";
 import WidthAndHeightFields from "./FormFields/WidthAndHeightFields";
 import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
+import SecondHoleFields from "./FormFields/SecondHoleFields";
 
 const TermoblockForm = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -101,43 +102,7 @@ const TermoblockForm = () => {
           ></SelectField>
         </div>
 
-        {hasSecondHole && (
-          <div className="mb-4">
-            <SelectField
-              options={holeTypes.map((holeType) => {
-                return {
-                  value: holeType,
-                  label: holeType,
-                };
-              })}
-              label="Rodzaj drugiego otworu"
-              error={errors.hinges}
-              registration={register("secondHole.holeType")}
-            ></SelectField>
-            <SelectField
-              options={stringPositions.map((stringPosition) => {
-                return {
-                  value: stringPosition,
-                  label: stringPosition,
-                };
-              })}
-              label="Położenie drugiego otworu (patrząc z zewnątrz)"
-              error={errors.hinges}
-              registration={register("secondHole.stringPosition")}
-            ></SelectField>
-
-            {secondHoleType === "okrągły na rurę bez uchwytu" && (
-              <InputField
-                label="Średnica (zewnętrzna) drugiego otworu (mm)"
-                error={errors.secondHole?.diameter}
-                type="number"
-                registration={register("secondHole.diameter", {
-                  valueAsNumber: true,
-                })}
-              ></InputField>
-            )}
-          </div>
-        )}
+        {hasSecondHole && <SecondHoleFields></SecondHoleFields>}
 
         <PowerCordHoleFields />
         <button

@@ -9,5 +9,12 @@ interface Product {
 }
 
 type FirstHoleType = Pick<TermoblockItem, "firstHole">;
+type SecondHoleType = Pick<TermoblockItem, "secondHole">;
 
-export type { TermoblockItem, Product, TermoblockHole, FirstHoleType };
+export type {
+  TermoblockItem,
+  Product,
+  TermoblockHole,
+  FirstHoleType,
+  SecondHoleType,
+};

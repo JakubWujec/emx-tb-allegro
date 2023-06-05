@@ -7,7 +7,6 @@ import {
   CreateTermoblockGoItemInput,
   createTermoblockGoItemSchema,
 } from "../schema/termoblockGo.schema";
-import { CreateTermoblockGoItemInput } from "../schema/termoblockUp.schema";
 
 const ConfiguratorGo = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =

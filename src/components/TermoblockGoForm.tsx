@@ -14,6 +14,7 @@ import { colors, plColors } from "../schema/color.schema";
 import WidthAndHeightFields from "./FormFields/WidthAndHeightFields";
 import PowerCordHoleFields from "./FormFields/PowerCordHoleFields";
 import FirstHoleFields from "./FormFields/FirstHoleFields";
+import SecondHoleFields from "./FormFields/SecondHoleFields";
 
 interface TermoblockGoFormProps {
   register: UseFormRegister<CreateTermoblockGoItemInput>;
@@ -85,43 +86,7 @@ const TermoblockGoForm = ({
           ></SelectField>
         </div>
 
-        {hasSecondHole && (
-          <div className="mb-4">
-            <SelectField
-              options={holeTypes.map((holeType) => {
-                return {
-                  value: holeType,
-                  label: holeType,
-                };
-              })}
-              label="Rodzaj drugiego otworu"
-              error={errors.secondHole?.holeType}
-              registration={register("secondHole.holeType")}
-            ></SelectField>
-            <SelectField
-              options={stringPositions.map((stringPosition) => {
-                return {
-                  value: stringPosition,
-                  label: stringPosition,
-                };
-              })}
-              label="Położenie drugiego otworu (patrząc z zewnątrz)"
-              error={errors.secondHole?.stringPosition}
-              registration={register("secondHole.stringPosition")}
-            ></SelectField>
-
-            {secondHoleType === "okrągły na rurę bez uchwytu" && (
-              <InputField
-                label="Średnica (zewnętrzna) drugiego otworu (mm)"
-                error={errors.secondHole?.diameter}
-                type="number"
-                registration={register("secondHole.diameter", {
-                  valueAsNumber: true,
-                })}
-              ></InputField>
-            )}
-          </div>
-        )}
+        {hasSecondHole && <SecondHoleFields></SecondHoleFields>}
 
         <PowerCordHoleFields />
 
