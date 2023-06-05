@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useShoppingCart from "../hooks/useShoppingCart";
 import { plColors } from "../schema/color.schema";
 import { plHinges } from "../schema/hinge.schema";
-import FieldDetail from "./FieldDetail";
 import {
   CreateTermoblockGoItemInput,
   CreateTermoblockProItemInput,
   CreateTermoblockUpItemInput,
 } from "../types";
+import FieldDetail from "./FieldDetail";
 
 type PriceFooterProps = {
   termoblock:
@@ -18,14 +18,10 @@ type PriceFooterProps = {
   visible: boolean;
 };
 
-function PriceFooter(props: PriceFooterProps) {
+function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
-
-  const [termoblock, setTermoblock] = useState(props.termoblock);
   const [clicked, setClicked] = useState<boolean>(false);
-  const isValid = props.isValid;
-  const visible = props.visible;
 
   const checkNan = (value: number) => {
     if (isNaN(value)) {
@@ -43,10 +39,6 @@ function PriceFooter(props: PriceFooterProps) {
       setClicked(false);
     }
   }, [clicked]);
-
-  useEffect(() => {
-    setTermoblock(props.termoblock);
-  }, [props.termoblock]);
 
   return (
     <>
