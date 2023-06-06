@@ -15,7 +15,7 @@ function App() {
       <BrowserRouter>
         <ShoppingCartProvider>
           <Header />
-          <main className="container mx-auto py-8 px-8">
+          <main className="container mx-auto pt-20 pd-8 px-8">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/cart" element={<Cart />} />
