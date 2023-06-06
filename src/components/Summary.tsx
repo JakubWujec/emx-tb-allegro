@@ -7,18 +7,21 @@ import {
   CreateTermoblockUpItemInput,
 } from "../types";
 import FieldDetail from "./FieldDetail";
+import calculatePrice from "../utils/calculatePrice";
 
 type SummaryProps = {
   termoblock:
-  | CreateTermoblockUpItemInput
-  | CreateTermoblockProItemInput
-  | CreateTermoblockGoItemInput;
+    | CreateTermoblockUpItemInput
+    | CreateTermoblockProItemInput
+    | CreateTermoblockGoItemInput;
   isValid: boolean;
 };
 
 function Summary({ termoblock, isValid }: SummaryProps) {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
+
+  const price = calculatePrice(termoblock);
 
   const checkNan = (value: number) => {
     if (isNaN(value)) {
@@ -57,8 +60,9 @@ function Summary({ termoblock, isValid }: SummaryProps) {
           )}
           <FieldDetail
             label="Kolor"
-            description={`${termoblock.color ? plColors[termoblock.color] : "-"
-              }`}
+            description={`${
+              termoblock.color ? plColors[termoblock.color] : "-"
+            }`}
             line={true}
             descriptionHoleType={false}
             descriptionPosition={false}
@@ -66,8 +70,9 @@ function Summary({ termoblock, isValid }: SummaryProps) {
           />
           <FieldDetail
             label="Zawias"
-            description={`${termoblock.hinges ? plHinges[termoblock.hinges] : "-"
-              }`}
+            description={`${
+              termoblock.hinges ? plHinges[termoblock.hinges] : "-"
+            }`}
             line={true}
             descriptionHoleType={false}
             descriptionPosition={false}
@@ -125,7 +130,7 @@ function Summary({ termoblock, isValid }: SummaryProps) {
             <div className="flex items-center justify-center w-full mt-6">
               <p className="text-2xl">
                 <span className="text-4xl font-bold text-mainOrange">
-                  55,00
+                  {price}
                 </span>{" "}
                 ZŁ
               </p>
@@ -134,9 +139,9 @@ function Summary({ termoblock, isValid }: SummaryProps) {
                   addItem({
                     id: 1,
                     name: "Termoblock",
-                    price: 55,
+                    price: price,
                     quantity: 1,
-                    details: termoblock
+                    details: termoblock,
                   })
                 }
               >

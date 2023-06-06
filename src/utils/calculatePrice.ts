@@ -19,8 +19,9 @@ function priceForUnfamiliarHoles(termoblockItem: TermoblockItem) {
   let result = 0;
   let unfamiliarHolePrice = 50;
   if (
-    termoblockItem.firstHole.holeType ===
-    "własna końcówka wysłana do zmierzenia"
+    termoblockItem.firstHole &&
+    termoblockItem?.firstHole?.holeType ===
+      "własna końcówka wysłana do zmierzenia"
   )
     result += unfamiliarHolePrice;
   if (

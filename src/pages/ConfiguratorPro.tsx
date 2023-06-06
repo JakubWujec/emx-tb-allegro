@@ -11,13 +11,14 @@ import {
   CreateTermoblockProItemInput,
   createTermoblockProItemSchema,
 } from "../schema/termoblockPro.schema";
+import calculatePrice from "../utils/calculatePrice";
 
 const ConfiguratorPro = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
   const summaryRef = useRef<HTMLDivElement>(null);
-  const entry = useIntersectionObserver(summaryRef, {})
-  const visible = !entry?.isIntersecting
+  const entry = useIntersectionObserver(summaryRef, {});
+  const visible = !entry?.isIntersecting;
 
   const formMethods = useForm<CreateTermoblockProItemInput>({
     resolver:
@@ -26,13 +27,15 @@ const ConfiguratorPro = () => {
   });
 
   const termoblock = formMethods.watch();
-  const termoblockIsValid = (formMethods.formState.isDirty && Object.keys(formMethods.formState.errors).length === 0)
-
+  const termoblockIsValid =
+    formMethods.formState.isDirty &&
+    Object.keys(formMethods.formState.errors).length === 0;
+  const price = calculatePrice(termoblock);
   function onSubmit(values: CreateTermoblockProItemInput) {
     addItem({
-      id: 3,
+      id: 2,
       name: "Termoblock Pro",
-      price: 36,
+      price: price,
       quantity: 1,
       details: values,
     });

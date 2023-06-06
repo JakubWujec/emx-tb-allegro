@@ -11,6 +11,7 @@ import { useRef } from "react";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import PriceFooter from "../components/PriceFooter";
 import Summary from "../components/Summary";
+import calculatePrice from "../utils/calculatePrice";
 
 const ConfiguratorUp = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -29,12 +30,13 @@ const ConfiguratorUp = () => {
   const termoblockIsValid =
     formMethods.formState.isDirty &&
     Object.keys(formMethods.formState.errors).length === 0;
+  const price = calculatePrice(termoblock);
 
   function onSubmit(values: CreateTermoblockUpItemInput) {
     addItem({
       id: 3,
       name: "Termoblock Up",
-      price: 36,
+      price: price,
       quantity: 1,
       details: values,
     });
