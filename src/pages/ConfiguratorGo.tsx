@@ -10,12 +10,14 @@ import TermoblockGoForm from "../components/forms/TermoblockGoForm";
 import { useEffect, useRef, useState } from "react";
 import PriceFooter from "../components/PriceFooter";
 import Summary from "../components/Summary";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 const ConfiguratorGo = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
-  const [isSummaryVisible, setIsSummaryVisible] = useState<boolean>(true);
   const summaryRef = useRef<HTMLDivElement>(null);
+  const entry = useIntersectionObserver(summaryRef, {});
+  const visible = !entry?.isIntersecting;
 
   const formMethods = useForm<CreateTermoblockGoItemInput>({
     resolver:
@@ -23,6 +25,9 @@ const ConfiguratorGo = () => {
   });
 
   const termoblock = formMethods.watch();
+  const termoblockIsValid =
+    formMethods.formState.isDirty &&
+    Object.keys(formMethods.formState.errors).length === 0;
 
   function onSubmit(values: CreateTermoblockGoItemInput) {
     console.log(values, formMethods.formState.errors);
@@ -35,42 +40,17 @@ const ConfiguratorGo = () => {
     });
   }
 
-  useEffect(() => {
-    const options = {
-      root: null,
-      rootMargin: "0px",
-      threshold: 0.5, // Określa, kiedy komponent Summary jest uważany za widoczny
-    };
-
-    const callback: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        setIsSummaryVisible(!entry.isIntersecting);
-      });
-    };
-
-    const observer = new IntersectionObserver(callback, options);
-    if (summaryRef.current) {
-      observer.observe(summaryRef.current);
-    }
-
-    return () => {
-      if (summaryRef.current) {
-        observer.unobserve(summaryRef.current);
-      }
-    };
-  }, []);
-
   return (
     <div className="relative">
       <TermoblockGoForm formMethods={formMethods} onSubmit={onSubmit} />
       <PriceFooter
-        isValid={true}
+        isValid={termoblockIsValid}
         termoblock={termoblock}
-        visible={isSummaryVisible}
+        visible={visible}
       />
 
       <div ref={summaryRef}>
-        <Summary isValid={true} termoblock={termoblock} />
+        <Summary isValid={termoblockIsValid} termoblock={termoblock} />
       </div>
     </div>
   );
