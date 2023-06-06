@@ -1,4 +1,3 @@
-import { CreateTermoblockItemInput as TermoblockItem } from "./schema/termoblockItem.schema";
 import { TermoblockHole } from "./schema/termoblockHole.schema";
 import { CreateTermoblockUpItemInput } from "./schema/termoblockUp.schema";
 import { CreateTermoblockProItemInput } from "./schema/termoblockPro.schema";
@@ -8,12 +7,13 @@ interface Product {
   name: string;
   price: number;
   quantity: number;
-  details:
-    | TermoblockItem
-    | CreateTermoblockUpItemInput
-    | CreateTermoblockProItemInput
-    | CreateTermoblockGoItemInput;
+  details: TermoblockItem;
 }
+
+type TermoblockItem =
+  | CreateTermoblockUpItemInput
+  | CreateTermoblockProItemInput
+  | CreateTermoblockGoItemInput;
 
 type FirstHoleType = Record<"firstHole", TermoblockHole>;
 type SecondHoleType = Record<"secondHole", TermoblockHole>;

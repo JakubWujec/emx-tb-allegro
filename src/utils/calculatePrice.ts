@@ -1,9 +1,8 @@
-import { CreateTermoblockItemInput } from "../schema/termoblockItem.schema";
 //TODO obsługa trzeciego otworu
 
-export default function calculatePrice(
-  termoblockItem: CreateTermoblockItemInput
-) {
+import { TermoblockItem } from "../types";
+
+export default function calculatePrice(termoblockItem: TermoblockItem) {
   let result = 0;
 
   const areaInSquareMillimeters = termoblockItem.width * termoblockItem.height;
@@ -16,7 +15,7 @@ export default function calculatePrice(
   return result;
 }
 
-function priceForUnfamiliarHoles(termoblockItem: CreateTermoblockItemInput) {
+function priceForUnfamiliarHoles(termoblockItem: TermoblockItem) {
   let result = 0;
   let unfamiliarHolePrice = 50;
   if (
@@ -34,7 +33,7 @@ function priceForUnfamiliarHoles(termoblockItem: CreateTermoblockItemInput) {
   return result;
 }
 
-function priceForExtraHoles(termoblockItem: CreateTermoblockItemInput) {
+function priceForExtraHoles(termoblockItem: TermoblockItem) {
   let result = 0;
 
   if (termoblockItem.hasSecondHole) result += 50;
