@@ -3,6 +3,8 @@ import { holeTypes, stringPositions } from "../../schema/termoblockHole.schema";
 import { SecondHoleType } from "../../types";
 import { InputField } from "../InputField";
 import { SelectField } from "../SelectField";
+import useFetch from "../../hooks/useFetch";
+import BASE_API_URL from "../../url";
 
 const SecondHoleFields = () => {
   const {
@@ -10,8 +12,21 @@ const SecondHoleFields = () => {
     formState: { errors },
     watch,
   } = useFormContext<Required<SecondHoleType & { hasSecondHole: boolean }>>();
+
+  const { data: holeTypes, error } = useFetch<
+    {
+      id: number;
+      name: string;
+      termoblockHoleTypeId: number;
+    }[]
+  >(`${BASE_API_URL}/tbAllegro/termoblockHoleProducts`);
+
   const secondHoleType = watch("secondHole.holeType");
   const hasSecondHole = watch("hasSecondHole");
+
+  if (!holeTypes) {
+    return null;
+  }
 
   return (
     <div className="mb-4">
@@ -35,8 +50,8 @@ const SecondHoleFields = () => {
           <SelectField
             options={holeTypes.map((holeType) => {
               return {
-                value: holeType,
-                label: holeType,
+                value: holeType.name,
+                label: holeType.name,
               };
             })}
             label="Rodzaj drugiego otworu"

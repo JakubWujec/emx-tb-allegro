@@ -3,6 +3,8 @@ import { holeTypes, stringPositions } from "../../schema/termoblockHole.schema";
 import { FirstHoleType } from "../../types";
 import { InputField } from "../InputField";
 import { SelectField } from "../SelectField";
+import useFetch from "../../hooks/useFetch";
+import BASE_API_URL from "../../url";
 
 const FirstHoleFields = () => {
   const {
@@ -10,15 +12,27 @@ const FirstHoleFields = () => {
     formState: { errors },
     watch,
   } = useFormContext<Required<FirstHoleType>>();
+  const { data: holeTypes, error } = useFetch<
+    {
+      id: number;
+      name: string;
+      termoblockHoleTypeId: number;
+    }[]
+  >(`${BASE_API_URL}/tbAllegro/termoblockHoleProducts`);
+
   const firstHoleType = watch("firstHole.holeType");
+
+  if (!holeTypes) {
+    return null;
+  }
 
   return (
     <div className="mb-4">
       <SelectField
         options={holeTypes.map((holeType) => {
           return {
-            value: holeType,
-            label: holeType,
+            value: holeType.name,
+            label: holeType.name,
           };
         })}
         label="Rodzaj pierwszego otworu"

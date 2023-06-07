@@ -3,6 +3,8 @@ import { holeTypes, stringPositions } from "../../schema/termoblockHole.schema";
 import { ThirdHoleType } from "../../types";
 import { InputField } from "../InputField";
 import { SelectField } from "../SelectField";
+import useFetch from "../../hooks/useFetch";
+import BASE_API_URL from "../../url";
 
 const ThirdHoleFields = () => {
   const {
@@ -12,6 +14,18 @@ const ThirdHoleFields = () => {
   } = useFormContext<Required<ThirdHoleType & { hasThirdHole: boolean }>>();
   const thirdHoleType = watch("thirdHole.holeType");
   const hasThirdHole = watch("hasThirdHole");
+
+  const { data: holeTypes, error } = useFetch<
+    {
+      id: number;
+      name: string;
+      termoblockHoleTypeId: number;
+    }[]
+  >(`${BASE_API_URL}/tbAllegro/termoblockHoleProducts`);
+
+  if (!holeTypes) {
+    return null;
+  }
 
   return (
     <div className="mb-4">
@@ -35,8 +49,8 @@ const ThirdHoleFields = () => {
           <SelectField
             options={holeTypes.map((holeType) => {
               return {
-                value: holeType,
-                label: holeType,
+                value: holeType.name,
+                label: holeType.name,
               };
             })}
             label="Rodzaj trzeciego otworu"
