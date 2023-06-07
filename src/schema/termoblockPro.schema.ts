@@ -6,13 +6,14 @@ import {
 import { ColorEnum } from "./color.schema";
 import HeightSchema from "./height.schema";
 import WidthSchema from "./width.schema";
+import FelcSchema from "./felc.schema";
 
 export const termoblockProItemZodObject = z
   .object({
     width: WidthSchema(250, 1400),
     height: HeightSchema(250, 2200),
     color: ColorEnum,
-    felc: z.number().min(5).max(50).optional(),
+    felc: FelcSchema(),
     firstHole: HoleZodObject.refine(
       (data) => {
         return termoblockHoleValidation(data);
