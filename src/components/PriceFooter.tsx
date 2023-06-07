@@ -8,13 +8,13 @@ import {
   CreateTermoblockUpItemInput,
 } from "../types";
 import FieldDetail from "./FieldDetail";
-import AddIcon from "./icons/AddIcon";
+import GoDownIcon from "./icons/GoDownIcon";
 
 type PriceFooterProps = {
   termoblock:
-  | CreateTermoblockUpItemInput
-  | CreateTermoblockProItemInput
-  | CreateTermoblockGoItemInput;
+    | CreateTermoblockUpItemInput
+    | CreateTermoblockProItemInput
+    | CreateTermoblockGoItemInput;
   isValid: boolean;
   visible: boolean;
 };
@@ -59,7 +59,7 @@ function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
               />
 
               {termoblock.felc === undefined ||
-                isNaN(termoblock.felc) ? null : (
+              isNaN(termoblock.felc) ? null : (
                 <FieldDetail
                   label="Felc"
                   description={`${termoblock.felc}mm`}
@@ -72,8 +72,9 @@ function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
 
               <FieldDetail
                 label="Kolor"
-                description={`${termoblock.color ? plColors[termoblock.color] : "-"
-                  }`}
+                description={`${
+                  termoblock.color ? plColors[termoblock.color] : "-"
+                }`}
                 line={true}
                 descriptionHoleType={false}
                 descriptionPosition={false}
@@ -81,8 +82,9 @@ function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
               />
               <FieldDetail
                 label="Zawias"
-                description={`${termoblock.hinges ? plHinges[termoblock.hinges] : "-"
-                  }`}
+                description={`${
+                  termoblock.hinges ? plHinges[termoblock.hinges] : "-"
+                }`}
                 line={true}
                 descriptionHoleType={false}
                 descriptionPosition={false}
@@ -128,7 +130,7 @@ function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
                   onClick={() => setClicked(true)}
                   className="animation-bounce"
                 >
-                  <AddIcon></AddIcon>
+                  <GoDownIcon></GoDownIcon>
                 </button>
               </div>
             )}
