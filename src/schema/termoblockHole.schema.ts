@@ -1,11 +1,5 @@
 import z from "zod";
 
-export const holeTypes = [
-  "dla Warmtec Controlbox",
-  "okrągły na rurę bez uchwytu",
-  "własna końcówka wysłana do zmierzenia",
-] as const;
-
 export const stringPositions = [
   "na dole po lewej",
   "na dole na środku",
@@ -20,7 +14,7 @@ export const stringPositions = [
 
 export const HoleZodObject = z.object({
   stringPosition: z.enum(stringPositions),
-  holeType: z.enum(holeTypes),
+  holeType: z.string(),
   diameter: z.number().optional(),
 });
 
