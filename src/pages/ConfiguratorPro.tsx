@@ -3,7 +3,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import PriceFooter from "../components/PriceFooter";
-import Summary from "../components/Summary";
+import SummaryDetails from "../components/SummaryDetails";
 import SummaryPricing from "../components/SummaryPricing";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import useShoppingCart from "../hooks/useShoppingCart";
@@ -61,7 +61,7 @@ const ConfiguratorPro = () => {
 
           <div ref={summaryRef} className="flex ">
             <div className={"basis-3/4"}>
-              <Summary termoblock={termoblock} />
+              <SummaryDetails termoblock={termoblock} />
             </div>
             <div className="basis-1/4 m-4 w-full text-center justify-center flex">
               <SummaryPricing

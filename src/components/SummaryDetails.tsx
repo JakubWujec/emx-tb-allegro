@@ -8,14 +8,14 @@ import {
 } from "../types";
 import FieldDetail from "./FieldDetail";
 
-type SummaryProps = {
+type SummaryDetailsProps = {
   termoblock:
     | CreateTermoblockUpItemInput
     | CreateTermoblockProItemInput
     | CreateTermoblockGoItemInput;
 };
 
-function Summary({ termoblock }: SummaryProps) {
+function SummaryDetails({ termoblock }: SummaryDetailsProps) {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
 
@@ -119,4 +119,4 @@ function Summary({ termoblock }: SummaryProps) {
   );
 }
 
-export default Summary;
+export default SummaryDetails;
