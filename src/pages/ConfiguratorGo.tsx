@@ -1,18 +1,18 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { useRef } from "react";
 import { useForm } from "react-hook-form";
+import PriceFooter from "../components/PriceFooter";
+import Summary from "../components/Summary";
+import SummaryPricing from "../components/SummaryPricing";
+import TermoblockGoForm from "../components/forms/TermoblockGoForm";
+import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import useShoppingCart from "../hooks/useShoppingCart";
 import {
   CreateTermoblockGoItemInput,
   createTermoblockGoItemSchema,
 } from "../schema/termoblockGo.schema";
-import TermoblockGoForm from "../components/forms/TermoblockGoForm";
-import { useEffect, useRef, useState } from "react";
-import PriceFooter from "../components/PriceFooter";
-import Summary from "../components/Summary";
-import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import calculatePrice from "../utils/calculatePrice";
-import AddIcon from "../components/icons/AddIcon";
 
 const ConfiguratorGo = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -55,29 +55,12 @@ const ConfiguratorGo = () => {
         <div className={"basis-3/4"}>
           <Summary termoblock={termoblock} />
         </div>
-
-        <div className="m-4 w-full text-center justify-center flex basis-1/4">
-          {!termoblockIsValid ? (
-            <div className="mt-6">
-              <span className="border border-mainOrange block px-6 py-4">
-                Wpisz w formularzu parametry, po wpisaniu pojawi się cena
-                produktu
-              </span>
-            </div>
-          ) : (
-            <div className="flex items-center justify-center w-full mt-6">
-              <span className="text-4xl font-bold text-mainOrange">
-                {price} ZŁ
-              </span>
-
-              <button
-                type="submit"
-                onClick={formMethods.handleSubmit(onSubmit)}
-              >
-                <AddIcon></AddIcon>
-              </button>
-            </div>
-          )}
+        <div className="basis-1/4 m-4 w-full text-center justify-center flex">
+          <SummaryPricing
+            price={price}
+            termoblockIsValid={termoblockIsValid}
+            onClickHandler={() => formMethods.handleSubmit(onSubmit)}
+          ></SummaryPricing>
         </div>
       </div>
     </div>
