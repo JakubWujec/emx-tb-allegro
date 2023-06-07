@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import PriceFooter from "../components/PriceFooter";
 import SummaryDetails from "../components/SummaryDetails";
-import SummaryPricing from "../components/SummaryPricing";
+import SubmitWithPricing from "../components/SubmitWithPricing";
 import FirstHoleFields from "../components/formFields/FirstHoleFields";
 import SecondHoleFields from "../components/formFields/SecondHoleFields";
 import WidthAndHeightFields from "../components/formFields/WidthAndHeightFields";
@@ -57,10 +57,10 @@ const ConfiguratorUp = () => {
               <SummaryDetails termoblock={termoblock} />
             </div>
             <div className="basis-1/4 m-4 w-full text-center justify-center flex">
-              <SummaryPricing
+              <SubmitWithPricing
                 price={price}
-                termoblockIsValid={termoblockIsValid}
-              ></SummaryPricing>
+                disabled={termoblockIsValid}
+              ></SubmitWithPricing>
             </div>
           </div>
         </form>

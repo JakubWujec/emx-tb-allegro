@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import PriceFooter from "../components/PriceFooter";
 import SummaryDetails from "../components/SummaryDetails";
-import SummaryPricing from "../components/SummaryPricing";
+import SubmitWithPricing from "../components/SubmitWithPricing";
 import ColorFields from "../components/formFields/ColorFields";
 import FirstHoleFields from "../components/formFields/FirstHoleFields";
 import HingeField from "../components/formFields/HingeField";
@@ -62,10 +62,10 @@ const ConfiguratorGo = () => {
               <SummaryDetails termoblock={termoblock} />
             </div>
             <div className="basis-1/4 m-4 w-full text-center justify-center flex">
-              <SummaryPricing
+              <SubmitWithPricing
                 price={price}
-                termoblockIsValid={termoblockIsValid}
-              ></SummaryPricing>
+                disabled={termoblockIsValid}
+              ></SubmitWithPricing>
             </div>
           </div>
         </form>

@@ -1,12 +1,12 @@
 import AddIcon from "./icons/AddIcon";
 
-interface SummaryPricingProps {
-  termoblockIsValid: boolean;
+interface SubmitWithPricingProps {
+  disabled: boolean;
   price: number;
 }
 
-const SummaryPricing = ({ termoblockIsValid, price }: SummaryPricingProps) => {
-  if (!termoblockIsValid) {
+const SubmitWithPricing = ({ disabled, price }: SubmitWithPricingProps) => {
+  if (!disabled) {
     return (
       <div className="mt-6">
         <span className="border border-mainOrange block px-6 py-4">
@@ -28,4 +28,4 @@ const SummaryPricing = ({ termoblockIsValid, price }: SummaryPricingProps) => {
   );
 };
 
-export default SummaryPricing;
+export default SubmitWithPricing;

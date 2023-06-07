@@ -4,7 +4,7 @@ import { useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import PriceFooter from "../components/PriceFooter";
 import SummaryDetails from "../components/SummaryDetails";
-import SummaryPricing from "../components/SummaryPricing";
+import SubmitWithPricing from "../components/SubmitWithPricing";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import useShoppingCart from "../hooks/useShoppingCart";
 import {
@@ -64,10 +64,10 @@ const ConfiguratorPro = () => {
               <SummaryDetails termoblock={termoblock} />
             </div>
             <div className="basis-1/4 m-4 w-full text-center justify-center flex">
-              <SummaryPricing
+              <SubmitWithPricing
                 price={price}
-                termoblockIsValid={termoblockIsValid}
-              ></SummaryPricing>
+                disabled={termoblockIsValid}
+              ></SubmitWithPricing>
             </div>
           </div>
         </form>
