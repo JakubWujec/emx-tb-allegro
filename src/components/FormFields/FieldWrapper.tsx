@@ -18,7 +18,7 @@ export type FieldWrapperPassThroughProps = Omit<
 export const FieldWrapper = (props: FieldWrapperProps) => {
   const { label, className, error, children } = props;
   return (
-    <div>
+    <>
       <label
         className={clsx("block text-sm font-medium text-gray-700", className)}
       >
@@ -34,6 +34,6 @@ export const FieldWrapper = (props: FieldWrapperProps) => {
           {error.message}
         </div>
       )}
-    </div>
+    </>
   );
 };

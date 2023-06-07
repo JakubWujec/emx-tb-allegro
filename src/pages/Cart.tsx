@@ -1,12 +1,26 @@
-import MakeOrderButton from "../components/MakeOrderButton";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
+import sendOrder from "../api/sendOrder";
 import ProductList from "../components/ProductList";
+import { InputField } from "../components/formFields/InputField";
 import useShoppingCart from "../hooks/useShoppingCart";
+import { CartFormInput, CartSchema } from "../schema/cart.schema";
 
 const Cart = () => {
-  //const { cartItems, removeItem, addItem } = useContext(ShoppingCartContext);
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
   const products = getItems();
+  const formMethods = useForm<CartFormInput>({
+    resolver: CartSchema && zodResolver(CartSchema),
+  });
+
+  const onSubmit = async (values: CartFormInput) => {
+    const response = await sendOrder({
+      login: values.login,
+      products: products,
+    });
+    console.log(response);
+  };
 
   if (!products.length) {
     return <EmptyCart></EmptyCart>;
@@ -15,7 +29,23 @@ const Cart = () => {
   return (
     <>
       <ProductList />
-      <MakeOrderButton products={products} />
+      <form onSubmit={formMethods.handleSubmit(onSubmit)}>
+        <div className="flex justify-between w-full md:w-1/2 ml-auto bg-white py-5 px-5 mt-5 rounded-md shadow">
+          <InputField
+            label="Login allegro"
+            type="text"
+            registration={formMethods.register("login")}
+          ></InputField>
+        </div>
+
+        <button
+          type="submit"
+          disabled={!products.length}
+          className="bg-mainOrange px-4 py-4 mt-4 rounded text-white shadow float-right w-full sm:w-1/2 font-bold"
+        >
+          Zamów
+        </button>
+      </form>
     </>
   );
 };
