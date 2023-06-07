@@ -35,7 +35,7 @@ const ConfiguratorGo = () => {
     console.log(values, formMethods.formState.errors);
     addItem({
       id: 1,
-      name: "Termoblock Go",
+      name: values.name,
       price: price,
       quantity: 1,
       details: values,

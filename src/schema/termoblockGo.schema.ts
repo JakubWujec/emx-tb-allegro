@@ -7,29 +7,35 @@ import {
 import { ColorEnum } from "./color.schema";
 import { HingeEnum } from "./hinge.schema";
 
-export const termoblockGoItemZodObject = z.object({
-  width: z.number().min(250).max(1100),
-  height: z.number().min(250).max(1600),
-  color: ColorEnum,
-  hinges: HingeEnum,
-  firstHole: HoleZodObject.refine(
-    (data) => {
-      return termoblockHoleValidation(data);
-    },
-    {
-      message: "Średnica otworu powinna być conajmniej 50 oraz conajwyżej 250",
-      path: ["diameter"],
-    }
-  ),
-  hasSecondHole: z.boolean(),
-  secondHole: HoleZodObject.optional(),
-  hasPowerCordHole: z.boolean(),
-  powerCordHole: z
-    .object({
-      stringPosition: z.enum(stringPositions),
-    })
-    .optional(),
-});
+export const termoblockGoItemZodObject = z
+  .object({
+    width: z.number().min(250).max(1100),
+    height: z.number().min(250).max(1600),
+    color: ColorEnum,
+    hinges: HingeEnum,
+    firstHole: HoleZodObject.refine(
+      (data) => {
+        return termoblockHoleValidation(data);
+      },
+      {
+        message:
+          "Średnica otworu powinna być conajmniej 50 oraz conajwyżej 250",
+        path: ["diameter"],
+      }
+    ),
+    hasSecondHole: z.boolean(),
+    secondHole: HoleZodObject.optional(),
+    hasPowerCordHole: z.boolean(),
+    powerCordHole: z
+      .object({
+        stringPosition: z.enum(stringPositions),
+      })
+      .optional(),
+  })
+  .transform((termoblock) => ({
+    ...termoblock,
+    name: "Termoblock Go",
+  }));
 
 export const createTermoblockGoItemSchema = termoblockGoItemZodObject.refine(
   (data) => {
