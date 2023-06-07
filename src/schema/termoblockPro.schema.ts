@@ -4,11 +4,13 @@ import {
   termoblockHoleValidation,
 } from "./termoblockHole.schema";
 import { ColorEnum } from "./color.schema";
+import HeightSchema from "./height.schema";
+import WidthSchema from "./width.schema";
 
 export const termoblockProItemZodObject = z
   .object({
-    width: z.number().min(250).max(1100),
-    height: z.number().min(250).max(1600),
+    width: WidthSchema(250, 1400),
+    height: HeightSchema(250, 2200),
     color: ColorEnum,
     felc: z.number().min(5).max(50).optional(),
     firstHole: HoleZodObject.refine(

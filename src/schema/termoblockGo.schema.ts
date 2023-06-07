@@ -6,11 +6,13 @@ import {
 } from "./termoblockHole.schema";
 import { ColorEnum } from "./color.schema";
 import { HingeEnum } from "./hinge.schema";
+import WidthSchema from "./width.schema";
+import HeightSchema from "./height.schema";
 
 export const termoblockGoItemZodObject = z
   .object({
-    width: z.number().min(250).max(1100),
-    height: z.number().min(250).max(1600),
+    width: WidthSchema(250, 1200),
+    height: HeightSchema(250, 2500),
     color: ColorEnum,
     hinges: HingeEnum,
     firstHole: HoleZodObject.refine(

@@ -3,11 +3,13 @@ import {
   HoleZodObject,
   termoblockHoleValidation,
 } from "./termoblockHole.schema";
+import WidthSchema from "./width.schema";
+import HeightSchema from "./height.schema";
 
 export const termoblockUpItemZodObject = z
   .object({
-    width: z.number().min(250).max(1100),
-    height: z.number().min(250).max(1600),
+    width: WidthSchema(250, 1100),
+    height: HeightSchema(250, 1600),
     firstHole: HoleZodObject.refine(
       (data) => {
         return termoblockHoleValidation(data);
