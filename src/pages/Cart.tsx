@@ -8,12 +8,20 @@ const Cart = () => {
     useShoppingCart();
   const products = getItems();
 
-  return products.length ? (
+  if (!products.length) {
+    return <EmptyCart></EmptyCart>;
+  }
+
+  return (
     <>
       <ProductList />
       <MakeOrderButton products={products} />
     </>
-  ) : (
+  );
+};
+
+const EmptyCart = () => {
+  return (
     <h1 className="text-center font-semibold text-2xl mt-56">
       Brak towarów w koszyku
     </h1>
