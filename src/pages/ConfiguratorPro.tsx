@@ -1,11 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useRef } from "react";
-import { useForm } from "react-hook-form";
+import { FormProvider, useForm } from "react-hook-form";
 import PriceFooter from "../components/PriceFooter";
 import Summary from "../components/Summary";
 import SummaryPricing from "../components/SummaryPricing";
-import TermoblockProForm from "../components/forms/TermoblockProForm";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import useShoppingCart from "../hooks/useShoppingCart";
 import {
@@ -13,6 +12,12 @@ import {
   createTermoblockProItemSchema,
 } from "../schema/termoblockPro.schema";
 import calculatePrice from "../utils/calculatePrice";
+import ThirdHoleFields from "../components/formFields/ThirdHoleFields";
+import ColorsFields from "../components/formFields/ColorFields";
+import FelcField from "../components/formFields/FelcField";
+import FirstHoleFields from "../components/formFields/FirstHoleFields";
+import SecondHoleFields from "../components/formFields/SecondHoleFields";
+import WidthAndHeightFields from "../components/formFields/WidthAndHeightFields";
 
 const ConfiguratorPro = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -45,25 +50,33 @@ const ConfiguratorPro = () => {
 
   return (
     <div className="relative">
-      <TermoblockProForm formMethods={formMethods} onSubmit={onSubmit} />
+      <FormProvider {...formMethods}>
+        <form onSubmit={formMethods.handleSubmit(onSubmit)}>
+          <ColorsFields></ColorsFields>
+          <WidthAndHeightFields />
+          <FelcField></FelcField>
+          <FirstHoleFields></FirstHoleFields>
+          <SecondHoleFields></SecondHoleFields>
+          <ThirdHoleFields></ThirdHoleFields>
+
+          <div ref={summaryRef} className="flex ">
+            <div className={"basis-3/4"}>
+              <Summary termoblock={termoblock} />
+            </div>
+            <div className="basis-1/4 m-4 w-full text-center justify-center flex">
+              <SummaryPricing
+                price={price}
+                termoblockIsValid={termoblockIsValid}
+              ></SummaryPricing>
+            </div>
+          </div>
+        </form>
+      </FormProvider>
       <PriceFooter
         isValid={termoblockIsValid}
         termoblock={termoblock}
         visible={visible}
       />
-
-      <div ref={summaryRef} className="flex ">
-        <div className={"basis-3/4"}>
-          <Summary termoblock={termoblock} />
-        </div>
-        <div className="basis-1/4 m-4 w-full text-center justify-center flex">
-          <SummaryPricing
-            price={price}
-            termoblockIsValid={termoblockIsValid}
-            onClickHandler={() => formMethods.handleSubmit(onSubmit)}
-          ></SummaryPricing>
-        </div>
-      </div>
     </div>
   );
 };
