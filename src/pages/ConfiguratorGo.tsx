@@ -12,6 +12,7 @@ import PriceFooter from "../components/PriceFooter";
 import Summary from "../components/Summary";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import calculatePrice from "../utils/calculatePrice";
+import AddIcon from "../components/icons/AddIcon";
 
 const ConfiguratorGo = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -32,7 +33,6 @@ const ConfiguratorGo = () => {
   const price = calculatePrice(termoblock);
 
   function onSubmit(values: CreateTermoblockGoItemInput) {
-    console.log(values, formMethods.formState.errors);
     addItem({
       id: 1,
       name: values.name,
@@ -51,8 +51,34 @@ const ConfiguratorGo = () => {
         visible={visible}
       />
 
-      <div ref={summaryRef}>
-        <Summary isValid={termoblockIsValid} termoblock={termoblock} />
+      <div ref={summaryRef} className="flex ">
+        <div className={"basis-3/4"}>
+          <Summary termoblock={termoblock} />
+        </div>
+
+        <div className="m-4 w-full text-center justify-center flex basis-1/4">
+          {!termoblockIsValid ? (
+            <div className="mt-6">
+              <span className="border border-mainOrange block px-6 py-4">
+                Wpisz w formularzu parametry, po wpisaniu pojawi się cena
+                produktu
+              </span>
+            </div>
+          ) : (
+            <div className="flex items-center justify-center w-full mt-6">
+              <span className="text-4xl font-bold text-mainOrange">
+                {price} ZŁ
+              </span>
+
+              <button
+                type="submit"
+                onClick={formMethods.handleSubmit(onSubmit)}
+              >
+                <AddIcon></AddIcon>
+              </button>
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );

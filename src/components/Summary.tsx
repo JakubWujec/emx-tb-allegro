@@ -7,38 +7,23 @@ import {
   CreateTermoblockUpItemInput,
 } from "../types";
 import FieldDetail from "./FieldDetail";
-import calculatePrice from "../utils/calculatePrice";
-import AddIcon from "./icons/AddIcon";
 
 type SummaryProps = {
   termoblock:
     | CreateTermoblockUpItemInput
     | CreateTermoblockProItemInput
     | CreateTermoblockGoItemInput;
-  isValid: boolean;
 };
 
-function Summary({ termoblock, isValid }: SummaryProps) {
+function Summary({ termoblock }: SummaryProps) {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
-
-  const price = calculatePrice(termoblock);
 
   const checkNan = (value: number) => {
     if (isNaN(value)) {
       return 0;
     }
     return value;
-  };
-
-  const onClickHandler = () => {
-    addItem({
-      id: 1,
-      name: "Termoblock",
-      price: price,
-      quantity: 1,
-      details: termoblock,
-    });
   };
 
   return (
@@ -129,28 +114,6 @@ function Summary({ termoblock, isValid }: SummaryProps) {
           ) : null}
         </div>
         <hr className="w-64 h-1 mx-auto my-4 bg-mainOrange border-0 rounded md:my-10 dark:bg-gray-700" />
-        <div className="m-4 w-full text-center justify-center flex">
-          {!isValid ? (
-            <div className="mt-6">
-              <span className="border border-mainOrange block px-6 py-4">
-                Wpisz w formularzu parametry, po wpisaniu pojawi się cena
-                produktu
-              </span>
-            </div>
-          ) : (
-            <div className="flex items-center justify-center w-full mt-6">
-              <p className="text-2xl">
-                <span className="text-4xl font-bold text-mainOrange">
-                  {price}
-                </span>{" "}
-                ZŁ
-              </p>
-              <button onClick={onClickHandler}>
-                <AddIcon></AddIcon>
-              </button>
-            </div>
-          )}
-        </div>
       </div>
     </section>
   );

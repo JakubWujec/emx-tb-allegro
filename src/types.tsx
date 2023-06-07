@@ -19,7 +19,13 @@ type FirstHoleType = Record<"firstHole", TermoblockHole>;
 type SecondHoleType = Record<"secondHole", TermoblockHole>;
 type ThirdHoleType = Record<"thirdHole", TermoblockHole>;
 
+type StringParam = {
+  label: string;
+  value: string;
+};
+
 export type {
+  StringParam,
   TermoblockItem,
   Product,
   TermoblockHole,
