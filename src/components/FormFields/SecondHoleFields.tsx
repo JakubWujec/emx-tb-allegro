@@ -1,8 +1,8 @@
 import { useFormContext } from "react-hook-form";
 import { stringPositions } from "../../schema/termoblockHole.schema";
 import { SecondHoleType } from "../../types";
-import { InputField } from "../InputField";
-import { SelectField } from "../SelectField";
+import { InputField } from "./InputField";
+import { SelectField } from "./SelectField";
 import useFetch from "../../hooks/useFetch";
 import BASE_API_URL from "../../url";
 

@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import { colors, plColors } from "../../schema/color.schema";
-import { SelectField } from "../SelectField";
+import { SelectField } from "./SelectField";
 
 const ColorsFields = () => {
   const {

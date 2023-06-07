@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
 import { hinges, plHinges } from "../../schema/hinge.schema";
-import { SelectField } from "../SelectField";
+import { SelectField } from "./SelectField";
 
 const HingeField = () => {
   const {

@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { InputField } from "../InputField";
+import { InputField } from "./InputField";
 
 const WidthAndHeightFields = () => {
   const {
