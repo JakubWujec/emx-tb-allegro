@@ -5,11 +5,12 @@ const ProductList = () => {
     useShoppingCart();
 
   return (
-    <div className="w-full m-auto">
+    <div className="w-full m-auto mt-20">
+      <h1 className="font-bold text-2xl text-center mb-5">Koszyk</h1>
       <div>
-        <table className="table-fixed w-full  m-auto mt-20 bg-white divide-y divide-gray-200 rounded-lg">
+        <table className="table-fixed w-full bg-white/50  m-auto  divide-y-4 divide-mainOrange max-sm:divide-none rounded-lg">
           <thead>
-            <tr className="bg-mainOrange text-neutral-100 max-sm:hidden">
+            <tr className="text-gray-900 max-sm:hidden">
               <HeaderCell className="rounded-tl-lg w-20">Produkt</HeaderCell>
               <HeaderCell className="w-20">Nazwa</HeaderCell>
               <HeaderCell className="w-20 md:w-32">Cena jednostkowa</HeaderCell>
@@ -18,7 +19,7 @@ const ProductList = () => {
               <HeaderCell className="px-5 w-2 rounded-tr-lg"></HeaderCell>
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-200">
+          <tbody className="divide-y-2 divide-mainOrange">
             {getItems().map((cartItem, index) => {
               return (
                 <tr
@@ -34,7 +35,7 @@ const ProductList = () => {
                   <Cell className="max-sm:hidden">{cartItem.price} zł</Cell>
                   <Cell className="max-sm:col-start-5 max-sm:col-end-9">
                     <button
-                      className="bg-gray-100 text-gray-700 font-bold py-1 px-2 rounded-l"
+                      className="bg-white text-gray-700 font-bold py-1 px-2 rounded-l"
                       onClick={() => changeQuantity(cartItem, 1, "subtract")}
                     >
                       -
@@ -51,7 +52,7 @@ const ProductList = () => {
                       }
                     />
                     <button
-                      className="bg-gray-100 text-gray-700 font-bold py-1 px-2 rounded-r"
+                      className="bg-white text-gray-700 font-bold py-1 px-2 rounded-r"
                       onClick={() => changeQuantity(cartItem, 1, "add")}
                     >
                       +
