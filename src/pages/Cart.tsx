@@ -5,6 +5,7 @@ import ProductList from "../components/ProductList";
 import { InputField } from "../components/formFields/InputField";
 import useShoppingCart from "../hooks/useShoppingCart";
 import { CartFormInput, CartSchema } from "../schema/cart.schema";
+import { redirect, useNavigate } from "react-router-dom";
 
 const Cart = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -13,13 +14,14 @@ const Cart = () => {
   const formMethods = useForm<CartFormInput>({
     resolver: CartSchema && zodResolver(CartSchema),
   });
+  const navigate = useNavigate();
 
   const onSubmit = async (values: CartFormInput) => {
     const response = await sendOrder({
       login: values.login,
       products: products,
     });
-    console.log(response);
+    return navigate(`/summary/${response.order.id}`);
   };
 
   if (!products.length) {

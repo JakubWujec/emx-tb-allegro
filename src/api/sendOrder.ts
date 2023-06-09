@@ -9,9 +9,9 @@ async function sendOrder(data: { products: Product[]; login: string }) {
     },
     body: JSON.stringify(data),
   });
+  const responseJson = await response.json();
 
-  console.log(response);
-  return response;
+  return responseJson;
 }
 
 export default sendOrder;
