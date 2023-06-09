@@ -38,7 +38,8 @@ const ConfiguratorUp = () => {
   function onSubmit(values: CreateTermoblockUpItemInput) {
     addItem({
       id: 3,
-      name: values.name,
+      name: values.name ?? "Termoblock UP",
+      productTypeId: 2,
       price: price,
       quantity: 1,
       details: values,

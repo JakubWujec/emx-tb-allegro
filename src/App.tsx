@@ -23,7 +23,7 @@ function App() {
               <Route path="/up" element={<ConfiguratorUp />} />
               <Route path="/go" element={<ConfiguratorGo />} />
               <Route path="/pro" element={<ConfiguratorPro />} />
-              <Route path="/summary" element={<OrderSummary />} />
+              <Route path="/summary/:orderId" element={<OrderSummary />} />
               <Route path="/*" element={<NotFound />} />
             </Routes>
           </main>

@@ -4,10 +4,11 @@ import { CreateTermoblockProItemInput } from "./schema/termoblockPro.schema";
 import { CreateTermoblockGoItemInput } from "./schema/termoblockGo.schema";
 interface Product {
   id: number;
-  name: string;
   price: number;
   quantity: number;
   details: TermoblockItem;
+  name?: string;
+  productTypeId: number;
 }
 
 type TermoblockItem =

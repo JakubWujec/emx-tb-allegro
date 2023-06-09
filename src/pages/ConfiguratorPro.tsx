@@ -41,7 +41,8 @@ const ConfiguratorPro = () => {
   function onSubmit(values: CreateTermoblockProItemInput) {
     addItem({
       id: 2,
-      name: values.name,
+      name: values.name ?? "Termoblock PRO",
+      productTypeId: 1,
       price: price,
       quantity: 1,
       details: values,
