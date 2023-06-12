@@ -1,5 +1,5 @@
 import { useFormContext } from "react-hook-form";
-import { colors, plColors } from "../../schema/color.schema";
+import { colors } from "../../schema/color.schema";
 import { SelectField } from "./SelectField";
 
 const ColorsFields = () => {
@@ -15,7 +15,7 @@ const ColorsFields = () => {
         options={colors.map((color) => {
           return {
             value: color,
-            label: plColors[color],
+            label: color,
           };
         })}
         label="Kolor"

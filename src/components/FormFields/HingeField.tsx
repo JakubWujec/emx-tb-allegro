@@ -1,6 +1,6 @@
 import { useFormContext } from "react-hook-form";
-import { hinges, plHinges } from "../../schema/hinge.schema";
 import { SelectField } from "./SelectField";
+import { hinges } from "../../schema/hinge.schema";
 
 const HingeField = () => {
   const {
@@ -15,7 +15,7 @@ const HingeField = () => {
         options={hinges.map((hinge) => {
           return {
             value: hinge,
-            label: plHinges[hinge],
+            label: hinge,
           };
         })}
         label="Zawiasy"

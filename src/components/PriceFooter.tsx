@@ -1,7 +1,5 @@
 import { useEffect, useState } from "react";
 import useShoppingCart from "../hooks/useShoppingCart";
-import { plColors } from "../schema/color.schema";
-import { plHinges } from "../schema/hinge.schema";
 import {
   CreateTermoblockGoItemInput,
   CreateTermoblockProItemInput,
@@ -72,9 +70,7 @@ function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
 
               <FieldDetail
                 label="Kolor"
-                description={`${
-                  termoblock.color ? plColors[termoblock.color] : "-"
-                }`}
+                description={`${termoblock.color ? termoblock.color : "-"}`}
                 line={true}
                 descriptionHoleType={false}
                 descriptionPosition={false}
@@ -82,9 +78,7 @@ function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
               />
               <FieldDetail
                 label="Zawias"
-                description={`${
-                  termoblock.hinges ? plHinges[termoblock.hinges] : "-"
-                }`}
+                description={`${termoblock.hinges ? termoblock.hinges : "-"}`}
                 line={true}
                 descriptionHoleType={false}
                 descriptionPosition={false}
