@@ -7,7 +7,6 @@ interface Product {
   price: number;
   quantity: number;
   details: TermoblockItem;
-  name?: string;
   productTypeId: number;
 }
 

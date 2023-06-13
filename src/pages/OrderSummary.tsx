@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import BASE_API_URL from "../url";
 import useFetch from "../hooks/useFetch";
 import { Product } from "../types";
@@ -12,7 +12,7 @@ export default function OrderSummary() {
     updatedAt: Date;
     idAllegro: number;
     loginAllegro: string;
-    products: Product[];
+    products: (Product & { name: string; url: string; allegroUnits: number })[];
     fullPrice: number;
   }>(`${BASE_API_URL}/tbAllegro/orders/${orderId}`);
 
@@ -31,9 +31,14 @@ export default function OrderSummary() {
                 {product.price} zł ({product.quantity} szt.)
               </p>
               <p>
-                W aukcji -{" "}
+                <Link
+                  className="text-black-500 underline"
+                  to={`${product.url}`}
+                >
+                  W aukcji kup{" "}
+                </Link>
                 <span className="font-bold text-mainOrange">
-                  {product.quantity}. produktu
+                  {product.allegroUnits} szt. produktu
                 </span>
               </p>
             </div>
