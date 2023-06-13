@@ -29,12 +29,15 @@ const ConfiguratorGo = () => {
   const formMethods = useForm<CreateTermoblockGoItemInput>({
     resolver:
       createTermoblockGoItemSchema && zodResolver(createTermoblockGoItemSchema),
+    mode: "onBlur",
   });
 
   const termoblock = formMethods.watch();
   const termoblockIsValid =
     formMethods.formState.isDirty &&
-    Object.keys(formMethods.formState.errors).length === 0;
+    Object.keys(formMethods.formState.errors).length === 0 &&
+    createTermoblockGoItemSchema.safeParse(termoblock).success;
+
   const price = calculatePrice(termoblock);
 
   function onSubmit(values: CreateTermoblockGoItemInput) {

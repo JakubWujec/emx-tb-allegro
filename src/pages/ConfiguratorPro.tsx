@@ -30,12 +30,14 @@ const ConfiguratorPro = () => {
     resolver:
       createTermoblockProItemSchema &&
       zodResolver(createTermoblockProItemSchema),
+    mode: "onBlur",
   });
 
   const termoblock = formMethods.watch();
   const termoblockIsValid =
     formMethods.formState.isDirty &&
-    Object.keys(formMethods.formState.errors).length === 0;
+    Object.keys(formMethods.formState.errors).length === 0 &&
+    createTermoblockProItemSchema.safeParse(termoblock).success;
   const price = calculatePrice(termoblock);
 
   function onSubmit(values: CreateTermoblockProItemInput) {
