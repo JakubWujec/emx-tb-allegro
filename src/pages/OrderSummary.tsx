@@ -26,14 +26,17 @@ export default function OrderSummary() {
       <div className="mt-4 mb-4 px-2 py-2 divide-y-4 divide-mainOrange">
         {data.products.map((product) => {
           return (
-            <div className="grid grid-cols-3 max-sm:grid-cols-1 justify-center py-4 px-3">
+            <div
+              className="grid grid-cols-3 max-sm:grid-cols-1 justify-center py-4 px-3"
+              key={product.id}
+            >
               <div>
                 <p className="font-bold">{product.name}</p>
                 <div className="text-sm">
                   {termoblockToStringParams(product.details).map(
                     (stringParam) => {
                       return (
-                        <div>
+                        <div key={stringParam.label}>
                           <span className="font-bold">{`${stringParam.label}: `}</span>
                           {`${stringParam.value}`}
                         </div>
