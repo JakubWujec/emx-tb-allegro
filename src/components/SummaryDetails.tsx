@@ -40,7 +40,7 @@ function SummaryDetails({ termoblock }: SummaryDetailsProps) {
         <div className="flex justify-around flex-wrap w-full">
           {stringParams.map((stringParam) => {
             return (
-              <div>
+              <div key={stringParam.label}>
                 <div className="justify-between m-4 text-center flex-col">
                   <p>{stringParam.label}</p>
                   <p className="text-mainOrange text-lg font-bold">
