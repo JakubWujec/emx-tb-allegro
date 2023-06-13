@@ -41,11 +41,7 @@ const termoblockToStringParams = (
     value: holeStringParamValue(termoblock.firstHole),
   });
 
-  if (
-    "secondHole" in termoblock &&
-    termoblock.secondHole &&
-    termoblock.hasSecondHole
-  ) {
+  if ("secondHole" in termoblock && termoblock.hasSecondHole) {
     result.push({
       label: "Drugi otwór",
       value: holeStringParamValue(termoblock.secondHole),
@@ -64,10 +60,10 @@ const termoblockToStringParams = (
     });
   }
 
-  if ("powerCordHole" in termoblock) {
+  if ("powerCordHole" in termoblock && termoblock.hasPowerCordHole) {
     result.push({
       label: "Otwór na przewód zasilający",
-      value: `termoblock.powerCordHole?.stringPosition`,
+      value: `${termoblock.powerCordHole?.stringPosition}`,
     });
   }
 
