@@ -25,7 +25,7 @@ const termoblockToStringParams = (
   if ("felc" in termoblock) {
     result.push({
       label: "Felc",
-      value: `${isNaN(termoblock.felc) ? "" : termoblock.felc} mm`,
+      value: `${isNaN(termoblock.felc) ? "" : termoblock.felc} (mm)`,
     });
   }
 
@@ -78,7 +78,7 @@ function holeStringParamValue(hole: TermoblockHole) {
   if (!hole) return "";
   let result = `${hole.holeType}, ${hole.stringPosition}`;
   if (hole.diameter) {
-    result = result.concat(`, ${hole.diameter}`);
+    result = result.concat(`, ${hole.diameter} (mm)`);
   }
   return result;
 }
