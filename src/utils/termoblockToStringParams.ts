@@ -7,12 +7,12 @@ const termoblockToStringParams = (
 
   result.push({
     label: "Szerokość",
-    value: `${termoblock.width} (mm)`,
+    value: `${isNaN(termoblock.width) ? "" : termoblock.width} (mm)`,
   });
 
   result.push({
     label: "Wysokość",
-    value: `${termoblock.height} (mm)`,
+    value: `${isNaN(termoblock.height) ? "" : termoblock.height} (mm)`,
   });
 
   if ("color" in termoblock) {
@@ -25,7 +25,7 @@ const termoblockToStringParams = (
   if ("felc" in termoblock) {
     result.push({
       label: "Felc",
-      value: termoblock.felc.toString(),
+      value: `${isNaN(termoblock.felc) ? "" : termoblock.felc} mm`,
     });
   }
 
@@ -43,9 +43,8 @@ const termoblockToStringParams = (
 
   if (
     "secondHole" in termoblock &&
-    "hasSecondhole" in termoblock &&
-    termoblock.hasSecondHole &&
-    termoblock.secondHole
+    termoblock.secondHole &&
+    termoblock.hasSecondHole
   ) {
     result.push({
       label: "Drugi otwór",

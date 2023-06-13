@@ -1,12 +1,11 @@
-import { string } from "zod";
 import useShoppingCart from "../hooks/useShoppingCart";
 import {
   CreateTermoblockGoItemInput,
   CreateTermoblockProItemInput,
   CreateTermoblockUpItemInput,
+  StringParam,
 } from "../types";
 import termoblockToStringParams from "../utils/termoblockToStringParams";
-import FieldDetail from "./FieldDetail";
 
 type SummaryDetailsProps = {
   termoblock:
@@ -19,7 +18,7 @@ function SummaryDetails({ termoblock }: SummaryDetailsProps) {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
     useShoppingCart();
 
-  let stringParams = [];
+  let stringParams: StringParam[] = [];
   if (termoblock) {
     stringParams = termoblockToStringParams(termoblock);
   }
