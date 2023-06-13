@@ -11,7 +11,6 @@ export default function OrderSummary() {
     id: string;
     createdAt: Date;
     updatedAt: Date;
-    idAllegro: number;
     loginAllegro: string;
     products: (Product & { name: string; url: string; allegroUnits: number })[];
     fullPrice: number;
@@ -69,7 +68,7 @@ export default function OrderSummary() {
         <p className="leading-8">
           Wróć na Allegro i dokonaj zakupu w wiadomości dla sprzedającego podaj
           numer zamówienia:{" "}
-          <span className="font-bold text-mainOrange">{`${data.idAllegro}`}</span>
+          <span className="font-bold text-mainOrange">{`${data.id}`}</span>
         </p>
         <p className="leading-7">
           Łączna kwota zamówienia:{" "}
