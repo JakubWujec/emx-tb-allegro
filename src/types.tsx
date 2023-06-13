@@ -3,6 +3,7 @@ import { CreateTermoblockUpItemInput } from "./schema/termoblockUp.schema";
 import { CreateTermoblockProItemInput } from "./schema/termoblockPro.schema";
 import { CreateTermoblockGoItemInput } from "./schema/termoblockGo.schema";
 interface Product {
+  name?: string;
   id: number;
   price: number;
   quantity: number;

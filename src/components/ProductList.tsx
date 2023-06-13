@@ -1,4 +1,5 @@
 import useShoppingCart from "../hooks/useShoppingCart";
+import termoblockToStringParams from "../utils/termoblockToStringParams";
 import TrashIcon from "./icons/TrashIcon";
 
 const ProductList = () => {
@@ -12,9 +13,9 @@ const ProductList = () => {
         <table className="table-fixed w-full bg-white/50  m-auto  divide-y-4 divide-mainOrange max-sm:divide-none rounded-lg">
           <thead>
             <tr className="text-gray-900 max-sm:hidden">
-              <HeaderCell className="rounded-tl-lg w-20">Produkt</HeaderCell>
-              <HeaderCell className="w-20">Nazwa</HeaderCell>
-              <HeaderCell className="w-20 md:w-32">Cena jednostkowa</HeaderCell>
+              <HeaderCell className="rounded-tl-lg w-14">Produkt</HeaderCell>
+              <HeaderCell className="w-20 md:w-32">Szczegóły</HeaderCell>
+              <HeaderCell className="w-20">Cena jednostkowa</HeaderCell>
               <HeaderCell className="w-20">Ilość</HeaderCell>
               <HeaderCell className="w-14">Cena</HeaderCell>
               <HeaderCell className="px-5 w-2 rounded-tr-lg"></HeaderCell>
@@ -31,7 +32,18 @@ const ProductList = () => {
                     <span>{cartItem.name}</span>
                   </Cell>
                   <Cell className="max-sm:hidden">
-                    <span>{cartItem.name}</span>
+                    <div className="pl-4 text-sm">
+                      {termoblockToStringParams(cartItem.details).map(
+                        (stringParam) => {
+                          return (
+                            <div>
+                              <span className="font-bold">{`${stringParam.label}: `}</span>
+                              {`${stringParam.value}`}
+                            </div>
+                          );
+                        }
+                      )}
+                    </div>
                   </Cell>
                   <Cell className="max-sm:hidden">{cartItem.price} zł</Cell>
                   <Cell className="max-sm:col-start-5 max-sm:col-end-9">
@@ -99,6 +111,5 @@ const HeaderCell: React.FC<{
 }> = ({ children, className }) => (
   <th className={" py-5 " + (className || "")}>{children}</th>
 );
-
 
 export default ProductList;
