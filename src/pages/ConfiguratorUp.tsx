@@ -34,7 +34,7 @@ const ConfiguratorUp = () => {
   const termoblockIsValid =
     formMethods.formState.isDirty &&
     Object.keys(formMethods.formState.errors).length === 0 &&
-    createTermoblockGoItemSchema.safeParse(termoblock).success;
+    createTermoblockUpItemSchema.safeParse(termoblock).success;
   const price = calculatePrice(termoblock);
 
   function onSubmit(values: CreateTermoblockUpItemInput) {
