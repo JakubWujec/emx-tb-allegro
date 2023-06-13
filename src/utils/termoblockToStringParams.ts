@@ -6,11 +6,6 @@ const termoblockToStringParams = (
   const result: StringParam[] = [];
 
   result.push({
-    label: "Nazwa",
-    value: `${termoblock.name}`,
-  });
-
-  result.push({
     label: "Szerokość",
     value: `${termoblock.width} (mm)`,
   });
@@ -46,17 +41,34 @@ const termoblockToStringParams = (
     value: holeStringParamValue(termoblock.firstHole),
   });
 
-  if ("secondHole" in termoblock) {
+  if (
+    "secondHole" in termoblock &&
+    "hasSecondhole" in termoblock &&
+    termoblock.hasSecondHole &&
+    termoblock.secondHole
+  ) {
     result.push({
       label: "Drugi otwór",
       value: holeStringParamValue(termoblock.secondHole),
     });
   }
 
-  if ("thirdHole" in termoblock) {
+  if (
+    "thirdHole" in termoblock &&
+    "hasThirdHole" in termoblock &&
+    termoblock.hasThirdHole &&
+    termoblock.thirdHole
+  ) {
     result.push({
       label: "Trzeci otwór",
       value: holeStringParamValue(termoblock.thirdHole),
+    });
+  }
+
+  if ("powerCordHole" in termoblock) {
+    result.push({
+      label: "Otwór na przewód zasilający",
+      value: `termoblock.powerCordHole?.stringPosition`,
     });
   }
 
@@ -64,6 +76,7 @@ const termoblockToStringParams = (
 };
 
 function holeStringParamValue(hole: TermoblockHole) {
+  if (!hole) return "";
   let result = `${hole.holeType}, ${hole.stringPosition}`;
   if (hole.diameter) {
     result = result.concat(`, ${hole.diameter}`);
