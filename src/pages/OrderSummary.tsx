@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import BASE_API_URL from "../url";
 import useFetch from "../hooks/useFetch";
 import { Product } from "../types";
+import termoblockToStringParams from "../utils/termoblockToStringParams";
 
 export default function OrderSummary() {
   const { orderId } = useParams();
@@ -26,7 +27,22 @@ export default function OrderSummary() {
         {data.products.map((product) => {
           return (
             <div className="grid grid-cols-3 max-sm:grid-cols-1 justify-center py-4 px-3">
-              <p className="font-bold">{product.name}</p>
+              <div>
+                <p className="font-bold">{product.name}</p>
+                <div className="text-sm">
+                  {termoblockToStringParams(product.details).map(
+                    (stringParam) => {
+                      return (
+                        <div>
+                          <span className="font-bold">{`${stringParam.label}: `}</span>
+                          {`${stringParam.value}`}
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+              </div>
+
               <p className="font-bold text-mainOrange">
                 {product.price} zł ({product.quantity} szt.)
               </p>
