@@ -41,7 +41,11 @@ const termoblockToStringParams = (
     value: holeStringParamValue(termoblock.firstHole),
   });
 
-  if ("secondHole" in termoblock && termoblock.hasSecondHole) {
+  if (
+    "secondHole" in termoblock &&
+    termoblock.hasSecondHole &&
+    termoblock.secondHole
+  ) {
     result.push({
       label: "Drugi otwór",
       value: holeStringParamValue(termoblock.secondHole),
@@ -72,7 +76,10 @@ const termoblockToStringParams = (
 
 function holeStringParamValue(hole: TermoblockHole) {
   if (!hole) return "";
-  let result = `${hole.holeType}, ${hole.stringPosition}`;
+  let result = `${hole.holeType}`;
+  if (hole.stringPosition) {
+    result = result.concat(`, ${hole.diameter} (mm)`);
+  }
   if (hole.diameter) {
     result = result.concat(`, ${hole.diameter} (mm)`);
   }
