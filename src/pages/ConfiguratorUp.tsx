@@ -49,11 +49,6 @@ const ConfiguratorUp = () => {
     });
   }
 
-  console.log(
-    formMethods.formState.isValid,
-    createTermoblockUpItemSchema.safeParse(termoblock)
-  );
-
   return (
     <div className="relative">
       <FormProvider {...formMethods}>

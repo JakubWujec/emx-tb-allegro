@@ -4,7 +4,7 @@ const ErrorFallback = ({ error, resetErrorBoundary }: FallbackProps) => {
   const handleClick = () => {
     window.location.href = "/";
   };
-  console.log(error, Object.keys(error));
+
   return (
     <div>
       <header className="bg-white shadow">

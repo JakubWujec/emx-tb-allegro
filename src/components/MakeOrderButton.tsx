@@ -8,7 +8,6 @@ type MakeOrderbuttonProps = {
 const MakeOrderButton = (props: MakeOrderbuttonProps) => {
   const handleButtonClick = async () => {
     const response = await sendOrder(props.products);
-    console.log(response);
   };
 
   return (
