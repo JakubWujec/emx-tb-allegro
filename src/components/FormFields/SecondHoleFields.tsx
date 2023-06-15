@@ -31,12 +31,16 @@ const SecondHoleFields = () => {
   return (
     <div className="mb-4">
       <SelectField
-        options={["Nie", "Tak"].map((val) => {
-          return {
-            value: val,
-            label: val,
-          };
-        })}
+        options={[
+          {
+            value: "Nie",
+            label: "Nie",
+          },
+          {
+            value: "Tak",
+            label: "Tak (+50zł)",
+          },
+        ]}
         label="Drugi otwór?"
         error={errors.hasSecondHole}
         registration={register("hasSecondHole", {
