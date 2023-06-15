@@ -30,6 +30,7 @@ const ConfiguratorGo = () => {
     resolver:
       createTermoblockGoItemSchema && zodResolver(createTermoblockGoItemSchema),
     mode: "onBlur",
+    shouldUnregister: true,
   });
 
   const termoblock = formMethods.watch();

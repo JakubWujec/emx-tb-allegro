@@ -31,6 +31,7 @@ const ConfiguratorPro = () => {
       createTermoblockProItemSchema &&
       zodResolver(createTermoblockProItemSchema),
     mode: "onBlur",
+    shouldUnregister: true,
   });
 
   const termoblock = formMethods.watch();

@@ -28,6 +28,7 @@ const ConfiguratorUp = () => {
     resolver:
       createTermoblockUpItemSchema && zodResolver(createTermoblockUpItemSchema),
     mode: "onBlur",
+    shouldUnregister: true,
   });
 
   const termoblock = formMethods.watch();
@@ -47,6 +48,11 @@ const ConfiguratorUp = () => {
       details: values,
     });
   }
+
+  console.log(
+    formMethods.formState.isValid,
+    createTermoblockUpItemSchema.safeParse(termoblock)
+  );
 
   return (
     <div className="relative">
