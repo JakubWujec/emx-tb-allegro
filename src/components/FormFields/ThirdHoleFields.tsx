@@ -6,12 +6,12 @@ import { SelectField } from "./SelectField";
 import useFetch from "../../hooks/useFetch";
 import BASE_API_URL from "../../url";
 
-const ThirdHoleFields = () => {
+const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
   const {
     register,
     formState: { errors },
     watch,
-  } = useFormContext<Required<ThirdHoleType & { hasThirdHole: boolean }>>();
+  } = useFormContext<ThirdHoleType & Required<{ hasThirdHole: boolean }>>();
   const thirdHoleType = watch("thirdHole.holeType");
   const hasThirdHole = watch("hasThirdHole");
 
@@ -61,17 +61,19 @@ const ThirdHoleFields = () => {
             error={errors.thirdHole?.holeType}
             registration={register("thirdHole.holeType")}
           ></SelectField>
-          <SelectField
-            options={stringPositions.map((stringPosition) => {
-              return {
-                value: stringPosition,
-                label: stringPosition,
-              };
-            })}
-            label="Położenie trzeciego otworu (patrząc z zewnątrz)"
-            error={errors.thirdHole?.stringPosition}
-            registration={register("thirdHole.stringPosition")}
-          ></SelectField>
+          {needsPositionStringSelect && (
+            <SelectField
+              options={stringPositions.map((stringPosition) => {
+                return {
+                  value: stringPosition,
+                  label: stringPosition,
+                };
+              })}
+              label="Położenie trzeciego otworu (patrząc z zewnątrz)"
+              error={errors.thirdHole?.stringPosition}
+              registration={register("thirdHole.stringPosition")}
+            ></SelectField>
+          )}
 
           {thirdHoleType === "okrągły na rurę bez uchwytu" && (
             <InputField

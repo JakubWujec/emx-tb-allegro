@@ -13,7 +13,7 @@ export const stringPositions = [
 ] as const;
 
 export const HoleZodObject = z.object({
-  stringPosition: z.enum(stringPositions),
+  stringPosition: z.enum(stringPositions).optional(),
   holeType: z.string(),
   diameter: z.number().optional(),
 });

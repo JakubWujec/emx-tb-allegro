@@ -6,12 +6,12 @@ import { SelectField } from "./SelectField";
 import useFetch from "../../hooks/useFetch";
 import BASE_API_URL from "../../url";
 
-const SecondHoleFields = () => {
+const SecondHoleFields = ({ needsPositionStringSelect = true }) => {
   const {
     register,
     formState: { errors },
     watch,
-  } = useFormContext<Required<SecondHoleType & { hasSecondHole: boolean }>>();
+  } = useFormContext<SecondHoleType & Required<{ hasSecondHole: boolean }>>();
 
   const { data: holeTypes, error } = useFetch<
     {
@@ -62,17 +62,19 @@ const SecondHoleFields = () => {
             error={errors.secondHole?.holeType}
             registration={register("secondHole.holeType")}
           ></SelectField>
-          <SelectField
-            options={stringPositions.map((stringPosition) => {
-              return {
-                value: stringPosition,
-                label: stringPosition,
-              };
-            })}
-            label="Położenie drugiego otworu (patrząc z zewnątrz)"
-            error={errors.secondHole?.stringPosition}
-            registration={register("secondHole.stringPosition")}
-          ></SelectField>
+          {needsPositionStringSelect && (
+            <SelectField
+              options={stringPositions.map((stringPosition) => {
+                return {
+                  value: stringPosition,
+                  label: stringPosition,
+                };
+              })}
+              label="Położenie drugiego otworu (patrząc z zewnątrz)"
+              error={errors.secondHole?.stringPosition}
+              registration={register("secondHole.stringPosition")}
+            ></SelectField>
+          )}
 
           {secondHoleType === "okrągły na rurę bez uchwytu" && (
             <InputField

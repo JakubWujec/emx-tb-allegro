@@ -6,12 +6,12 @@ import { SelectField } from "./SelectField";
 import useFetch from "../../hooks/useFetch";
 import BASE_API_URL from "../../url";
 
-const FirstHoleFields = () => {
+const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
   const {
     register,
     formState: { errors },
     watch,
-  } = useFormContext<Required<FirstHoleType>>();
+  } = useFormContext<FirstHoleType>();
   const { data: holeTypes, error } = useFetch<
     {
       id: number;
@@ -39,26 +39,27 @@ const FirstHoleFields = () => {
         error={errors.firstHole?.holeType}
         registration={register("firstHole.holeType")}
       ></SelectField>
-      <SelectField
-        options={stringPositions.map((stringPosition) => {
-          return {
-            value: stringPosition,
-            label: stringPosition,
-          };
-        })}
-        label="Położenie pierwszego otworu (patrząc z zewnątrz)"
-        error={errors.firstHole?.stringPosition}
-        registration={register("firstHole.stringPosition")}
-      ></SelectField>
+
+      {needsPositionStringSelect && (
+        <SelectField
+          options={stringPositions.map((stringPosition) => {
+            return {
+              value: stringPosition,
+              label: stringPosition,
+            };
+          })}
+          label="Położenie pierwszego otworu (patrząc z zewnątrz)"
+          error={errors.firstHole?.stringPosition}
+          registration={register("firstHole.stringPosition")}
+        ></SelectField>
+      )}
 
       {firstHoleType === "okrągły na rurę bez uchwytu" && (
         <InputField
           label="Średnica (zewnętrzna) pierwszego otworu (mm)"
           error={errors.firstHole?.diameter}
           type="number"
-          registration={register("firstHole.diameter", {
-            valueAsNumber: true,
-          })}
+          registration={register("firstHole.diameter")}
         ></InputField>
       )}
     </div>

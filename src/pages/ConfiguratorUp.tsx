@@ -53,8 +53,10 @@ const ConfiguratorUp = () => {
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
           <WidthAndHeightFields></WidthAndHeightFields>
-          <FirstHoleFields></FirstHoleFields>
-          <SecondHoleFields></SecondHoleFields>
+          <FirstHoleFields needsPositionStringSelect={false}></FirstHoleFields>
+          <SecondHoleFields
+            needsPositionStringSelect={false}
+          ></SecondHoleFields>
           <div ref={summaryRef} className="flex ">
             <div className={"basis-3/4"}>
               <SummaryDetails termoblock={termoblock} />
