@@ -3,7 +3,6 @@
 import { TermoblockItem } from "../types";
 
 export default function calculatePrice(termoblockItem: TermoblockItem) {
-  console.log(termoblockItem);
   let result = priceBase(termoblockItem);
 
   result += priceForExtraHoles(termoblockItem);

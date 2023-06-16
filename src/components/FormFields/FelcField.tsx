@@ -11,7 +11,7 @@ const FelcField = () => {
   return (
     <div className="mb-4">
       <InputField
-        label="Felc"
+        label="Grubość ramy okiennej / Felc (mm)"
         error={errors.felc}
         type="number"
         registration={register("felc", { valueAsNumber: true })}

@@ -10,14 +10,14 @@ const WidthAndHeightFields = () => {
   return (
     <>
       <InputField
-        label="Szerokość"
+        label="Szerokość (mm)"
         error={errors.width}
         type="number"
         registration={register("width", { valueAsNumber: true })}
       ></InputField>
 
       <InputField
-        label="Wysokość"
+        label="Wysokość (mm)"
         error={errors.height}
         type="number"
         registration={register("height", { valueAsNumber: true })}
