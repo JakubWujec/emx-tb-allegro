@@ -3,11 +3,9 @@
 import { TermoblockItem } from "../types";
 
 export default function calculatePrice(termoblockItem: TermoblockItem) {
+  console.log(termoblockItem);
   let result = priceBase(termoblockItem);
-  const areaInSquareMillimeters = termoblockItem.width * termoblockItem.height;
-  const areaInSquareMeters = areaInSquareMillimeters / 1_000_000;
 
-  result += priceForArea(areaInSquareMeters);
   result += priceForExtraHoles(termoblockItem);
   result += priceForUnfamiliarHoles(termoblockItem);
 
@@ -15,9 +13,14 @@ export default function calculatePrice(termoblockItem: TermoblockItem) {
 }
 
 function priceBase(termoblockItem: TermoblockItem) {
-  if (termoblockItem.name === "Termoblock Pro") return 399;
   if (termoblockItem.name === "Termoblock Up") return 599;
   if (termoblockItem.name === "Termoblock Go") return 899;
+  if (termoblockItem.name === "Termoblock Pro") {
+    const areaInSquareMillimeters =
+      termoblockItem.width * termoblockItem.height;
+    const areaInSquareMeters = areaInSquareMillimeters / 1_000_000;
+    return priceForArea(areaInSquareMeters);
+  }
   return 0;
 }
 
@@ -58,6 +61,7 @@ function priceForExtraHoles(termoblockItem: TermoblockItem) {
   return result;
 }
 
+// tylko dla pro
 function priceForArea(areaInSquareMeters: number) {
   let price = 0;
   if (areaInSquareMeters > 0.5 && areaInSquareMeters <= 0.75) {

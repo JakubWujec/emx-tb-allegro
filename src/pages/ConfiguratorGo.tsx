@@ -39,12 +39,12 @@ const ConfiguratorGo = () => {
     Object.keys(formMethods.formState.errors).length === 0 &&
     createTermoblockGoItemSchema.safeParse(termoblock).success;
 
-  const price = calculatePrice(termoblock);
+  const price = calculatePrice({ ...termoblock, name: "Termoblock Go" });
 
   function onSubmit(values: CreateTermoblockGoItemInput) {
     addItem({
       id: 1,
-      name: values.name ?? "Termoblock GO",
+      name: values.name ?? "Termoblock Go",
       productTypeId: 3,
       price: price,
       quantity: 1,

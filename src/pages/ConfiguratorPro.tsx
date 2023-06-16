@@ -39,12 +39,12 @@ const ConfiguratorPro = () => {
     formMethods.formState.isDirty &&
     Object.keys(formMethods.formState.errors).length === 0 &&
     createTermoblockProItemSchema.safeParse(termoblock).success;
-  const price = calculatePrice(termoblock);
+  const price = calculatePrice({ ...termoblock, name: "Termoblock Pro" });
 
   function onSubmit(values: CreateTermoblockProItemInput) {
     addItem({
       id: 2,
-      name: values.name ?? "Termoblock PRO",
+      name: values.name ?? "Termoblock Pro",
       productTypeId: 1,
       price: price,
       quantity: 1,
