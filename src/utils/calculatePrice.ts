@@ -3,8 +3,7 @@
 import { TermoblockItem } from "../types";
 
 export default function calculatePrice(termoblockItem: TermoblockItem) {
-  let result = 0;
-
+  let result = priceBase(termoblockItem);
   const areaInSquareMillimeters = termoblockItem.width * termoblockItem.height;
   const areaInSquareMeters = areaInSquareMillimeters / 1_000_000;
 
@@ -13,6 +12,13 @@ export default function calculatePrice(termoblockItem: TermoblockItem) {
   result += priceForUnfamiliarHoles(termoblockItem);
 
   return result;
+}
+
+function priceBase(termoblockItem: TermoblockItem) {
+  if (termoblockItem.name === "Termoblock Pro") return 399;
+  if (termoblockItem.name === "Termoblock Up") return 599;
+  if (termoblockItem.name === "Termoblock Go") return 899;
+  return 0;
 }
 
 function priceForUnfamiliarHoles(termoblockItem: TermoblockItem) {
@@ -31,6 +37,14 @@ function priceForUnfamiliarHoles(termoblockItem: TermoblockItem) {
   )
     result += unfamiliarHolePrice;
 
+  if (
+    "thirdHole" in termoblockItem &&
+    termoblockItem.thirdHole &&
+    termoblockItem.thirdHole.holeType ===
+      "własna końcówka wysłana do zmierzenia"
+  )
+    result += unfamiliarHolePrice;
+
   return result;
 }
 
@@ -38,6 +52,7 @@ function priceForExtraHoles(termoblockItem: TermoblockItem) {
   let result = 0;
 
   if (termoblockItem.hasSecondHole) result += 50;
+  if (termoblockItem.hasThirdHole) result += 50;
   if (termoblockItem.hasPowerCordHole) result += 20;
 
   return result;
