@@ -20,12 +20,16 @@ const PowerCordHoleFields = () => {
   return (
     <>
       <SelectField
-        options={["Nie", "Tak"].map((val) => {
-          return {
-            value: val,
-            label: val,
-          };
-        })}
+        options={[
+          {
+            value: "Nie",
+            label: "Nie",
+          },
+          {
+            value: "Tak",
+            label: "Tak (+20zł)",
+          },
+        ]}
         error={errors.hasPowerCordHole}
         label="Otwór na przewód zasilający?"
         registration={register("hasPowerCordHole", {
