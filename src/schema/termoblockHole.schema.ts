@@ -15,7 +15,11 @@ export const stringPositions = [
 export const HoleZodObject = z.object({
   stringPosition: z.enum(stringPositions).optional(),
   holeType: z.string(),
-  diameter: z.number().optional(),
+  diameter: z
+    .number({
+      invalid_type_error: "Średnica musi być liczbą",
+    })
+    .optional(),
 });
 
 const diameterValidation = (diameter: number | undefined) =>
@@ -25,7 +29,6 @@ export const termoblockHoleValidation = (termoblockHole: TermoblockHole) => {
   if (termoblockHole.holeType === "okrągły na rurę bez uchwytu") {
     return diameterValidation(termoblockHole.diameter);
   }
-
   return true;
 };
 

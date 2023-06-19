@@ -59,7 +59,7 @@ const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
           label="Średnica (zewnętrzna) pierwszego otworu (mm)"
           error={errors.firstHole?.diameter}
           type="number"
-          registration={register("firstHole.diameter")}
+          registration={register("firstHole.diameter", { valueAsNumber: true })}
         ></InputField>
       )}
     </div>

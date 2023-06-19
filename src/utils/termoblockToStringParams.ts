@@ -78,7 +78,7 @@ function holeStringParamValue(hole: TermoblockHole) {
   if (!hole) return "";
   let result = `${hole.holeType}`;
   if (hole.stringPosition) {
-    result = result.concat(`, ${hole.diameter} (mm)`);
+    result = result.concat(`, ${hole.stringPosition}`);
   }
   if (hole.diameter) {
     result = result.concat(`, ${hole.diameter} (mm)`);
