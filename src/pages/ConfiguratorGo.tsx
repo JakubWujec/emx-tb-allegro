@@ -68,8 +68,8 @@ const ConfiguratorGo = () => {
             </div>
             <div className="basis-1/4 m-4 w-full text-center justify-center flex">
               <SubmitWithPricing
-                price={price}
-                disabled={termoblockIsValid}
+                price={termoblockIsValid ? price : 0}
+                disabled={!termoblockIsValid}
               ></SubmitWithPricing>
             </div>
           </div>

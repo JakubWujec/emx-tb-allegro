@@ -6,7 +6,7 @@ interface SubmitWithPricingProps {
 }
 
 const SubmitWithPricing = ({ disabled, price }: SubmitWithPricingProps) => {
-  if (!disabled) {
+  if (disabled) {
     return (
       <div className="mt-6">
         <span className="border border-mainOrange block px-6 py-4">

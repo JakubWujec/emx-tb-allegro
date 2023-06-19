@@ -65,7 +65,7 @@ const ConfiguratorUp = () => {
             <div className="basis-1/4 m-4 w-full text-center justify-center flex">
               <SubmitWithPricing
                 price={price}
-                disabled={termoblockIsValid}
+                disabled={!termoblockIsValid}
               ></SubmitWithPricing>
             </div>
           </div>
