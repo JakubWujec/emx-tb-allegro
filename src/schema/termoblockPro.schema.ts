@@ -1,6 +1,7 @@
 import z from "zod";
 import {
   HoleZodObject,
+  stringPositions,
   termoblockHoleValidation,
 } from "./termoblockHole.schema";
 import { ColorEnum } from "./color.schema";
@@ -28,6 +29,12 @@ export const termoblockProItemZodObject = z
     secondHole: HoleZodObject.optional(),
     hasThirdHole: z.boolean(),
     thirdHole: HoleZodObject.optional(),
+    hasPowerCordHole: z.boolean(),
+    powerCordHole: z
+      .object({
+        stringPosition: z.enum(stringPositions),
+      })
+      .optional(),
   })
   .transform((termoblock) => ({
     ...termoblock,

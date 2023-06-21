@@ -18,6 +18,7 @@ import FelcField from "../components/formFields/FelcField";
 import FirstHoleFields from "../components/formFields/FirstHoleFields";
 import SecondHoleFields from "../components/formFields/SecondHoleFields";
 import WidthAndHeightFields from "../components/formFields/WidthAndHeightFields";
+import PowerCordHoleFields from "../components/formFields/PowerCordHoleFields";
 
 const ConfiguratorPro = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -62,7 +63,7 @@ const ConfiguratorPro = () => {
           <FirstHoleFields></FirstHoleFields>
           <SecondHoleFields></SecondHoleFields>
           <ThirdHoleFields></ThirdHoleFields>
-
+          <PowerCordHoleFields />
           <div ref={summaryRef} className="flex ">
             <div className={"basis-3/4"}>
               <SummaryDetails termoblock={termoblock} />
