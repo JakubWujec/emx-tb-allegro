@@ -9,25 +9,30 @@ import NotFound from "./components/NotFound";
 import ConfiguratorUp from "./pages/ConfiguratorUp";
 import ConfiguratorGo from "./pages/ConfiguratorGo";
 import ConfiguratorPro from "./pages/ConfiguratorPro";
+import { NotificationProvider } from "./hooks/useNotificationsProvider";
+import { Notifications } from "./components/notifications/Notifications";
 
 function App() {
   return (
     <div className="bg-gray-100 min-h-screen">
       <BrowserRouter>
-        <ShoppingCartProvider>
-          <Header />
-          <main className="container mx-auto pt-20 pd-8 px-8">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/cart" element={<Cart />} />
-              <Route path="/up" element={<ConfiguratorUp />} />
-              <Route path="/go" element={<ConfiguratorGo />} />
-              <Route path="/pro" element={<ConfiguratorPro />} />
-              <Route path="/summary/:orderId" element={<OrderSummary />} />
-              <Route path="/*" element={<NotFound />} />
-            </Routes>
-          </main>
-        </ShoppingCartProvider>
+        <NotificationProvider>
+          <ShoppingCartProvider>
+            <Header />
+            <main className="container mx-auto pt-20 pd-8 px-8">
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/cart" element={<Cart />} />
+                <Route path="/up" element={<ConfiguratorUp />} />
+                <Route path="/go" element={<ConfiguratorGo />} />
+                <Route path="/pro" element={<ConfiguratorPro />} />
+                <Route path="/summary/:orderId" element={<OrderSummary />} />
+                <Route path="/*" element={<NotFound />} />
+              </Routes>
+              <Notifications></Notifications>
+            </main>
+          </ShoppingCartProvider>
+        </NotificationProvider>
       </BrowserRouter>
     </div>
   );

@@ -6,6 +6,8 @@ import { InputField } from "../components/formFields/InputField";
 import useShoppingCart from "../hooks/useShoppingCart";
 import { CartFormInput, CartSchema } from "../schema/cart.schema";
 import { redirect, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { NotificationContext } from "../hooks/useNotificationsProvider";
 
 const Cart = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =
@@ -15,13 +17,22 @@ const Cart = () => {
     resolver: CartSchema && zodResolver(CartSchema),
   });
   const navigate = useNavigate();
+  const { addNotification } = useContext(NotificationContext);
 
   const onSubmit = async (values: CartFormInput) => {
     const response = await sendOrder({
       login: values.login,
       products: products,
     });
-    return navigate(`/summary/${response.order.id}`);
+    if (response.status === 400) {
+      addNotification({
+        title: "Error",
+        message: response.message,
+        type: "error",
+      });
+    } else {
+      return navigate(`/summary/${response.order.id}`);
+    }
   };
 
   if (!products.length) {
