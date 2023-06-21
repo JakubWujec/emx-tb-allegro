@@ -1,5 +1,3 @@
-//TODO obsługa trzeciego otworu
-
 import { TermoblockItem } from "../types";
 
 export default function calculatePrice(termoblockItem: TermoblockItem) {
