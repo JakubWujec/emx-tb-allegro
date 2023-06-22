@@ -46,7 +46,8 @@ export default function OrderSummary() {
               </div>
 
               <p className="font-bold text-mainOrange">
-                {product.price} zł ({product.quantity} szt.)
+                {product.price * product.quantity} zł ({product.quantity} szt.
+                po {product.price} zł)
               </p>
               <p>
                 <Link
