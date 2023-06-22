@@ -53,21 +53,24 @@ function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
                 descriptionDiameter={false}
               />
 
-              {termoblock.felc === undefined ||
-              isNaN(termoblock.felc) ? null : (
-                <FieldDetail
-                  label="Felc"
-                  description={`${termoblock.felc}mm`}
-                  line={true}
-                  descriptionHoleType={false}
-                  descriptionPosition={false}
-                  descriptionDiameter={false}
-                />
-              )}
+              {"felc" in termoblock &&
+                termoblock.felc != undefined &&
+                !isNaN(termoblock.felc) && (
+                  <FieldDetail
+                    label="Felc"
+                    description={`${termoblock.felc}mm`}
+                    line={true}
+                    descriptionHoleType={false}
+                    descriptionPosition={false}
+                    descriptionDiameter={false}
+                  />
+                )}
 
               <FieldDetail
                 label="Kolor"
-                description={`${termoblock.color ? termoblock.color : "-"}`}
+                description={`${
+                  "color" in termoblock ? termoblock.color : "-"
+                }`}
                 line={true}
                 descriptionHoleType={false}
                 descriptionPosition={false}
@@ -75,7 +78,9 @@ function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
               />
               <FieldDetail
                 label="Zawias"
-                description={`${termoblock.hinges ? termoblock.hinges : "-"}`}
+                description={`${
+                  "hinges" in termoblock ? termoblock.hinges : "-"
+                }`}
                 line={true}
                 descriptionHoleType={false}
                 descriptionPosition={false}
@@ -103,16 +108,19 @@ function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
                 />
               ) : null}
 
-              {termoblock.hasPowerCordHole && termoblock.powerCordHole ? (
-                <FieldDetail
-                  label="Otwór na przewód zasilający"
-                  description={termoblock.powerCordHole.stringPosition}
-                  descriptionHoleType={false}
-                  descriptionPosition={false}
-                  descriptionDiameter={false}
-                  line={true}
-                />
-              ) : null}
+              {"hasPowerCordHole" in termoblock &&
+                "powerCordHole" in termoblock &&
+                termoblock.hasPowerCordHole &&
+                termoblock.powerCordHole && (
+                  <FieldDetail
+                    label="Otwór na przewód zasilający"
+                    description={termoblock.powerCordHole.stringPosition}
+                    descriptionHoleType={false}
+                    descriptionPosition={false}
+                    descriptionDiameter={false}
+                    line={true}
+                  />
+                )}
             </div>
 
             {isValid && (
