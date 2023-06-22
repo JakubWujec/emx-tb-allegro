@@ -1,5 +1,3 @@
-import React from "react";
-
 type FieldDetailProps = {
   label: string;
   description: string | boolean;

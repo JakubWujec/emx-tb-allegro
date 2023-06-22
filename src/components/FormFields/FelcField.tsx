@@ -5,7 +5,6 @@ const FelcField = () => {
   const {
     register,
     formState: { errors },
-    watch,
   } = useFormContext<Required<{ felc: number }>>();
 
   return (

@@ -13,7 +13,7 @@ const SecondHoleFields = ({ needsPositionStringSelect = true }) => {
     watch,
   } = useFormContext<SecondHoleType & Required<{ hasSecondHole: boolean }>>();
 
-  const { data: holeTypes, error } = useFetch<
+  const { data: holeTypes } = useFetch<
     {
       id: number;
       name: string;

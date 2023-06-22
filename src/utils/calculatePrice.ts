@@ -52,8 +52,10 @@ function priceForExtraHoles(termoblockItem: TermoblockItem) {
   let result = 0;
 
   if (termoblockItem.hasSecondHole) result += 50;
-  if (termoblockItem.hasThirdHole) result += 50;
-  if (termoblockItem.hasPowerCordHole) result += 20;
+  if ("hasThirdHole" in termoblockItem && termoblockItem.hasThirdHole)
+    result += 50;
+  if ("hasPowerCordHole" in termoblockItem && termoblockItem.hasPowerCordHole)
+    result += 20;
 
   return result;
 }

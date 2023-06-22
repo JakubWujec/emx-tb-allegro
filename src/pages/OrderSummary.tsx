@@ -7,7 +7,7 @@ import termoblockToStringParams from "../utils/termoblockToStringParams";
 export default function OrderSummary() {
   const { orderId } = useParams();
 
-  const { data, error } = useFetch<{
+  const { data } = useFetch<{
     id: string;
     createdAt: Date;
     updatedAt: Date;

@@ -6,7 +6,6 @@ const ColorsFields = () => {
   const {
     register,
     formState: { errors },
-    watch,
   } = useFormContext<Required<{ color: string }>>();
 
   return (

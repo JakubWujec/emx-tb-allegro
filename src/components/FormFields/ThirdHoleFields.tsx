@@ -15,7 +15,7 @@ const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
   const thirdHoleType = watch("thirdHole.holeType");
   const hasThirdHole = watch("hasThirdHole");
 
-  const { data: holeTypes, error } = useFetch<
+  const { data: holeTypes } = useFetch<
     {
       id: number;
       name: string;
