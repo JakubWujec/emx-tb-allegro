@@ -6,7 +6,6 @@ const HingeField = () => {
   const {
     register,
     formState: { errors },
-    watch,
   } = useFormContext<Required<{ hinges: string }>>();
 
   return (

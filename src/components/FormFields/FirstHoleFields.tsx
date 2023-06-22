@@ -12,7 +12,7 @@ const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
     formState: { errors },
     watch,
   } = useFormContext<FirstHoleType>();
-  const { data: holeTypes, error } = useFetch<
+  const { data: holeTypes } = useFetch<
     {
       id: number;
       name: string;

@@ -1,13 +1,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useContext } from "react";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router-dom";
 import sendOrder from "../api/sendOrder";
 import ProductList from "../components/ProductList";
 import { InputField } from "../components/formFields/InputField";
+import { NotificationContext } from "../hooks/useNotificationsProvider";
 import useShoppingCart from "../hooks/useShoppingCart";
 import { CartFormInput, CartSchema } from "../schema/cart.schema";
-import { redirect, useNavigate } from "react-router-dom";
-import { useContext } from "react";
-import { NotificationContext } from "../hooks/useNotificationsProvider";
 
 const Cart = () => {
   const [getItems, addItem, removeItem, getSum, changeQuantity] =

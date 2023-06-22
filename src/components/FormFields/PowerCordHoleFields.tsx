@@ -5,7 +5,7 @@ import { SelectField } from "./SelectField";
 const PowerCordHoleFields = () => {
   const {
     register,
-    handleSubmit,
+
     watch,
     formState: { errors },
   } = useFormContext<

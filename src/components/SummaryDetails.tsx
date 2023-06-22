@@ -23,13 +23,6 @@ function SummaryDetails({ termoblock }: SummaryDetailsProps) {
     stringParams = termoblockToStringParams(termoblock);
   }
 
-  const checkNan = (value: number) => {
-    if (isNaN(value)) {
-      return 0;
-    }
-    return value;
-  };
-
   return (
     <section className="container mx-auto min-h-[40vh] mt-12">
       <hr className="w-64 h-1 mx-auto my-4 bg-mainOrange border-0 rounded md:my-10 dark:bg-gray-700" />
