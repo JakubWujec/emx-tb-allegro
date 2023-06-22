@@ -6,12 +6,11 @@ import sendOrder from "../api/sendOrder";
 import ProductList from "../components/ProductList";
 import { InputField } from "../components/formFields/InputField";
 import { NotificationContext } from "../hooks/useNotificationsProvider";
-import useShoppingCart from "../hooks/useShoppingCart";
 import { CartFormInput, CartSchema } from "../schema/cart.schema";
+import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 
 const Cart = () => {
-  const [getItems, addItem, removeItem, getSum, changeQuantity] =
-    useShoppingCart();
+  const { getItems } = useContext(ShoppingCartContext);
   const products = getItems();
   const formMethods = useForm<CartFormInput>({
     resolver: CartSchema && zodResolver(CartSchema),

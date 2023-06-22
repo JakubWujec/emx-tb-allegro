@@ -1,4 +1,3 @@
-import useShoppingCart from "../hooks/useShoppingCart";
 import {
   CreateTermoblockGoItemInput,
   CreateTermoblockProItemInput,
@@ -6,7 +5,6 @@ import {
   StringParam,
 } from "../types";
 import termoblockToStringParams from "../utils/termoblockToStringParams";
-
 type SummaryDetailsProps = {
   termoblock:
     | CreateTermoblockUpItemInput
@@ -15,9 +13,6 @@ type SummaryDetailsProps = {
 };
 
 function SummaryDetails({ termoblock }: SummaryDetailsProps) {
-  const [getItems, addItem, removeItem, getSum, changeQuantity] =
-    useShoppingCart();
-
   let stringParams: StringParam[] = [];
   if (termoblock) {
     stringParams = termoblockToStringParams(termoblock);

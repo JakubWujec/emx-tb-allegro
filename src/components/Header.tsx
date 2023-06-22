@@ -1,11 +1,13 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
-import useShoppingCart from "../hooks/useShoppingCart";
+import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 import countAllItems from "../utils/countAllItems";
-import HomeIcon from "./icons/HomeIcon";
 import CartButton from "./CartButton";
+import HomeIcon from "./icons/HomeIcon";
 
 const Header = () => {
-  const [getItems] = useShoppingCart();
+  const { getItems } = useContext(ShoppingCartContext);
+
   const itemsInCart = getItems();
   const quantity = countAllItems(itemsInCart);
 

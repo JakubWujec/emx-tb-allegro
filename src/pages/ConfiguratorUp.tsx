@@ -1,24 +1,23 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import PriceFooter from "../components/PriceFooter";
-import SummaryDetails from "../components/SummaryDetails";
 import SubmitWithPricing from "../components/SubmitWithPricing";
+import SummaryDetails from "../components/SummaryDetails";
 import FirstHoleFields from "../components/formFields/FirstHoleFields";
 import SecondHoleFields from "../components/formFields/SecondHoleFields";
 import WidthAndHeightFields from "../components/formFields/WidthAndHeightFields";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
-import useShoppingCart from "../hooks/useShoppingCart";
 import {
   CreateTermoblockUpItemInput,
   createTermoblockUpItemSchema,
 } from "../schema/termoblockUp.schema";
 import calculatePrice from "../utils/calculatePrice";
+import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 
 const ConfiguratorUp = () => {
-  const [getItems, addItem, removeItem, getSum, changeQuantity] =
-    useShoppingCart();
+  const { addItem } = useContext(ShoppingCartContext);
 
   const summaryRef = useRef<HTMLDivElement>(null);
   const entry = useIntersectionObserver(summaryRef, {});

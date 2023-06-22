@@ -4,7 +4,7 @@ import Home from "./pages/Home";
 import Header from "./components/Header";
 import OrderSummary from "./pages/OrderSummary";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import { ShoppingCartProvider } from "./context/ShoppingCartContext";
+import { ShoppingCartProvider } from "./hooks/useShoppingCartProvider";
 import NotFound from "./components/NotFound";
 import ConfiguratorUp from "./pages/ConfiguratorUp";
 import ConfiguratorGo from "./pages/ConfiguratorGo";

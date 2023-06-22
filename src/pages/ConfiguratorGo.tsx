@@ -1,10 +1,10 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import PriceFooter from "../components/PriceFooter";
-import SummaryDetails from "../components/SummaryDetails";
 import SubmitWithPricing from "../components/SubmitWithPricing";
+import SummaryDetails from "../components/SummaryDetails";
 import ColorFields from "../components/formFields/ColorFields";
 import FirstHoleFields from "../components/formFields/FirstHoleFields";
 import HingeField from "../components/formFields/HingeField";
@@ -12,7 +12,7 @@ import PowerCordHoleFields from "../components/formFields/PowerCordHoleFields";
 import SecondHoleFields from "../components/formFields/SecondHoleFields";
 import WidthAndHeightFields from "../components/formFields/WidthAndHeightFields";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
-import useShoppingCart from "../hooks/useShoppingCart";
+import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 import {
   CreateTermoblockGoItemInput,
   createTermoblockGoItemSchema,
@@ -20,8 +20,8 @@ import {
 import calculatePrice from "../utils/calculatePrice";
 
 const ConfiguratorGo = () => {
-  const [getItems, addItem, removeItem, getSum, changeQuantity] =
-    useShoppingCart();
+  const { addItem } = useContext(ShoppingCartContext);
+
   const summaryRef = useRef<HTMLDivElement>(null);
   const entry = useIntersectionObserver(summaryRef, {});
   const visible = !entry?.isIntersecting;

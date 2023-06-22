@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import useShoppingCart from "../hooks/useShoppingCart";
 import {
   CreateTermoblockGoItemInput,
   CreateTermoblockProItemInput,
@@ -18,8 +17,6 @@ type PriceFooterProps = {
 };
 
 function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
-  const [getItems, addItem, removeItem, getSum, changeQuantity] =
-    useShoppingCart();
   const [clicked, setClicked] = useState<boolean>(false);
 
   const checkNan = (value: number) => {

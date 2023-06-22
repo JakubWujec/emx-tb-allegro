@@ -1,10 +1,11 @@
-import useShoppingCart from "../hooks/useShoppingCart";
+import { useContext } from "react";
+import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 import termoblockToStringParams from "../utils/termoblockToStringParams";
 import TrashIcon from "./icons/TrashIcon";
 
 const ProductList = () => {
-  const [getItems, addItem, removeItem, getSum, changeQuantity] =
-    useShoppingCart();
+  const { getItems, removeItem, getSum, changeQuantity } =
+    useContext(ShoppingCartContext);
 
   return (
     <div className="w-full m-auto mt-20">

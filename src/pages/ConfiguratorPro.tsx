@@ -1,28 +1,28 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useRef } from "react";
+import { useContext, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import PriceFooter from "../components/PriceFooter";
-import SummaryDetails from "../components/SummaryDetails";
 import SubmitWithPricing from "../components/SubmitWithPricing";
+import SummaryDetails from "../components/SummaryDetails";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
-import useShoppingCart from "../hooks/useShoppingCart";
+
+import ColorsFields from "../components/formFields/ColorFields";
+import FelcField from "../components/formFields/FelcField";
+import FirstHoleFields from "../components/formFields/FirstHoleFields";
+import PowerCordHoleFields from "../components/formFields/PowerCordHoleFields";
+import SecondHoleFields from "../components/formFields/SecondHoleFields";
+import ThirdHoleFields from "../components/formFields/ThirdHoleFields";
+import WidthAndHeightFields from "../components/formFields/WidthAndHeightFields";
+import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 import {
   CreateTermoblockProItemInput,
   createTermoblockProItemSchema,
 } from "../schema/termoblockPro.schema";
 import calculatePrice from "../utils/calculatePrice";
-import ThirdHoleFields from "../components/formFields/ThirdHoleFields";
-import ColorsFields from "../components/formFields/ColorFields";
-import FelcField from "../components/formFields/FelcField";
-import FirstHoleFields from "../components/formFields/FirstHoleFields";
-import SecondHoleFields from "../components/formFields/SecondHoleFields";
-import WidthAndHeightFields from "../components/formFields/WidthAndHeightFields";
-import PowerCordHoleFields from "../components/formFields/PowerCordHoleFields";
 
 const ConfiguratorPro = () => {
-  const [getItems, addItem, removeItem, getSum, changeQuantity] =
-    useShoppingCart();
+  const { addItem } = useContext(ShoppingCartContext);
   const summaryRef = useRef<HTMLDivElement>(null);
   const entry = useIntersectionObserver(summaryRef, {});
   const visible = !entry?.isIntersecting;
