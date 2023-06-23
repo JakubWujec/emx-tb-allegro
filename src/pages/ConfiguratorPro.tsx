@@ -20,6 +20,7 @@ import {
   createTermoblockProItemSchema,
 } from "../schema/termoblockPro.schema";
 import calculatePrice from "../utils/calculatePrice";
+import { TitleHeader } from "../components/TitleHeader";
 
 const ConfiguratorPro = () => {
   const { addItem } = useContext(ShoppingCartContext);
@@ -55,6 +56,7 @@ const ConfiguratorPro = () => {
 
   return (
     <div className="relative">
+      <TitleHeader title="Termoblock Pro"></TitleHeader>
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
           <ColorsFields></ColorsFields>

@@ -15,6 +15,7 @@ import {
 } from "../schema/termoblockUp.schema";
 import calculatePrice from "../utils/calculatePrice";
 import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
+import { TitleHeader } from "../components/TitleHeader";
 
 const ConfiguratorUp = () => {
   const { addItem } = useContext(ShoppingCartContext);
@@ -50,6 +51,7 @@ const ConfiguratorUp = () => {
 
   return (
     <div className="relative">
+      <TitleHeader title="Termoblock Up"></TitleHeader>
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
           <WidthAndHeightFields></WidthAndHeightFields>

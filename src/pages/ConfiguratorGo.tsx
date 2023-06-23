@@ -18,6 +18,7 @@ import {
   createTermoblockGoItemSchema,
 } from "../schema/termoblockGo.schema";
 import calculatePrice from "../utils/calculatePrice";
+import { TitleHeader } from "../components/TitleHeader";
 
 const ConfiguratorGo = () => {
   const { addItem } = useContext(ShoppingCartContext);
@@ -54,6 +55,7 @@ const ConfiguratorGo = () => {
 
   return (
     <div className="relative">
+      <TitleHeader title="Termoblock Go"></TitleHeader>
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
           <WidthAndHeightFields></WidthAndHeightFields>
