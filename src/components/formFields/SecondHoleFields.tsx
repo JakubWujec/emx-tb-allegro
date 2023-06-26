@@ -5,6 +5,7 @@ import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
 import useFetch from "../../hooks/useFetch";
 import BASE_API_URL from "../../url";
+import { MinMaxDescription } from "../MinMaxDescription";
 
 const SecondHoleFields = ({ needsPositionStringSelect = true }) => {
   const {
@@ -77,14 +78,20 @@ const SecondHoleFields = ({ needsPositionStringSelect = true }) => {
           )}
 
           {secondHoleType === "okrągły na rurę bez uchwytu" && (
-            <InputField
-              label="Średnica (zewnętrzna) drugiego otworu (mm)"
-              error={errors.secondHole?.diameter}
-              type="number"
-              registration={register("secondHole.diameter", {
-                valueAsNumber: true,
-              })}
-            ></InputField>
+            <>
+              <InputField
+                label="Średnica (zewnętrzna) drugiego otworu (mm)"
+                error={errors.secondHole?.diameter}
+                type="number"
+                registration={register("secondHole.diameter", {
+                  valueAsNumber: true,
+                })}
+              ></InputField>
+              <MinMaxDescription
+                minValue={80}
+                maxValue={250}
+              ></MinMaxDescription>
+            </>
           )}
         </>
       )}

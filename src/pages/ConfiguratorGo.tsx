@@ -2,23 +2,29 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useContext, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { MinMaxDescription } from "../components/MinMaxDescription";
 import PriceFooter from "../components/PriceFooter";
 import SubmitWithPricing from "../components/SubmitWithPricing";
 import SummaryDetails from "../components/SummaryDetails";
+import { TitleHeader } from "../components/TitleHeader";
 import ColorFields from "../components/formFields/ColorFields";
 import FirstHoleFields from "../components/formFields/FirstHoleFields";
+import HeightField from "../components/formFields/HeightField";
 import HingeField from "../components/formFields/HingeField";
 import PowerCordHoleFields from "../components/formFields/PowerCordHoleFields";
 import SecondHoleFields from "../components/formFields/SecondHoleFields";
-import WidthAndHeightFields from "../components/formFields/WidthAndHeightFields";
+import WidthField from "../components/formFields/WidthField";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 import {
   CreateTermoblockGoItemInput,
+  TB_GO_MAX_HEIGHT,
+  TB_GO_MAX_WIDTH,
+  TB_GO_MIN_HEIGHT,
+  TB_GO_MIN_WIDTH,
   createTermoblockGoItemSchema,
 } from "../schema/termoblockGo.schema";
 import calculatePrice from "../utils/calculatePrice";
-import { TitleHeader } from "../components/TitleHeader";
 
 const ConfiguratorGo = () => {
   const { addItem } = useContext(ShoppingCartContext);
@@ -58,7 +64,16 @@ const ConfiguratorGo = () => {
       <TitleHeader title="Termoblock Go"></TitleHeader>
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
-          <WidthAndHeightFields></WidthAndHeightFields>
+          <WidthField></WidthField>
+          <MinMaxDescription
+            minValue={TB_GO_MIN_WIDTH}
+            maxValue={TB_GO_MAX_WIDTH}
+          ></MinMaxDescription>
+          <HeightField></HeightField>
+          <MinMaxDescription
+            minValue={TB_GO_MIN_HEIGHT}
+            maxValue={TB_GO_MAX_HEIGHT}
+          ></MinMaxDescription>
           <ColorFields></ColorFields>
           <HingeField></HingeField>
           <FirstHoleFields />

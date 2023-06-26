@@ -9,10 +9,15 @@ import HeightSchema from "./height.schema";
 import WidthSchema from "./width.schema";
 import FelcSchema from "./felc.schema";
 
+export const TB_PRO_MIN_WIDTH = 250;
+export const TB_PRO_MAX_WIDTH = 1400;
+export const TB_PRO_MIN_HEIGHT = 250;
+export const TB_PRO_MAX_HEIGHT = 2200;
+
 export const termoblockProItemZodObject = z
   .object({
-    width: WidthSchema(250, 1400),
-    height: HeightSchema(250, 2200),
+    width: WidthSchema(TB_PRO_MIN_WIDTH, TB_PRO_MAX_WIDTH),
+    height: HeightSchema(TB_PRO_MIN_HEIGHT, TB_PRO_MAX_HEIGHT),
     color: ColorEnum,
     felc: FelcSchema(),
     firstHole: HoleZodObject.refine(

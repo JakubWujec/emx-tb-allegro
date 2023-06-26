@@ -9,10 +9,15 @@ import { HingeEnum } from "./hinge.schema";
 import WidthSchema from "./width.schema";
 import HeightSchema from "./height.schema";
 
+export const TB_GO_MIN_WIDTH = 250;
+export const TB_GO_MAX_WIDTH = 1200;
+export const TB_GO_MIN_HEIGHT = 250;
+export const TB_GO_MAX_HEIGHT = 2500;
+
 export const termoblockGoItemZodObject = z
   .object({
-    width: WidthSchema(250, 1200),
-    height: HeightSchema(250, 2500),
+    width: WidthSchema(TB_GO_MIN_WIDTH, TB_GO_MAX_WIDTH),
+    height: HeightSchema(TB_GO_MIN_HEIGHT, TB_GO_MAX_HEIGHT),
     color: ColorEnum,
     hinges: HingeEnum,
     firstHole: HoleZodObject.refine(

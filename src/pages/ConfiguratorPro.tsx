@@ -17,10 +17,17 @@ import WidthAndHeightFields from "../components/formFields/WidthAndHeightFields"
 import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 import {
   CreateTermoblockProItemInput,
+  TB_PRO_MAX_HEIGHT,
+  TB_PRO_MAX_WIDTH,
+  TB_PRO_MIN_HEIGHT,
+  TB_PRO_MIN_WIDTH,
   createTermoblockProItemSchema,
 } from "../schema/termoblockPro.schema";
 import calculatePrice from "../utils/calculatePrice";
 import { TitleHeader } from "../components/TitleHeader";
+import { MinMaxDescription } from "../components/MinMaxDescription";
+import WidthField from "../components/formFields/WidthField";
+import HeightField from "../components/formFields/HeightField";
 
 const ConfiguratorPro = () => {
   const { addItem } = useContext(ShoppingCartContext);
@@ -59,9 +66,19 @@ const ConfiguratorPro = () => {
       <TitleHeader title="Termoblock Pro"></TitleHeader>
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
+          <WidthField></WidthField>
+          <MinMaxDescription
+            minValue={TB_PRO_MIN_WIDTH}
+            maxValue={TB_PRO_MAX_WIDTH}
+          ></MinMaxDescription>
+          <HeightField></HeightField>
+          <MinMaxDescription
+            minValue={TB_PRO_MIN_HEIGHT}
+            maxValue={TB_PRO_MAX_HEIGHT}
+          ></MinMaxDescription>
           <ColorsFields></ColorsFields>
-          <WidthAndHeightFields />
           <FelcField></FelcField>
+          <MinMaxDescription minValue={5} maxValue={50}></MinMaxDescription>
           <FirstHoleFields></FirstHoleFields>
           <SecondHoleFields></SecondHoleFields>
           <ThirdHoleFields></ThirdHoleFields>

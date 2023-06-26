@@ -5,6 +5,7 @@ import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
 import useFetch from "../../hooks/useFetch";
 import BASE_API_URL from "../../url";
+import { MinMaxDescription } from "../MinMaxDescription";
 
 const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
   const {
@@ -55,12 +56,17 @@ const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
       )}
 
       {firstHoleType === "okrągły na rurę bez uchwytu" && (
-        <InputField
-          label="Średnica (zewnętrzna) pierwszego otworu (mm)"
-          error={errors.firstHole?.diameter}
-          type="number"
-          registration={register("firstHole.diameter", { valueAsNumber: true })}
-        ></InputField>
+        <>
+          <InputField
+            label="Średnica (zewnętrzna) pierwszego otworu (mm)"
+            error={errors.firstHole?.diameter}
+            type="number"
+            registration={register("firstHole.diameter", {
+              valueAsNumber: true,
+            })}
+          ></InputField>
+          <MinMaxDescription minValue={80} maxValue={250}></MinMaxDescription>
+        </>
       )}
     </div>
   );

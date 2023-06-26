@@ -8,7 +8,7 @@ const FelcField = () => {
   } = useFormContext<Required<{ felc: number }>>();
 
   return (
-    <div className="mb-4">
+    <div>
       <InputField
         label="Grubość ramy okiennej / Felc (mm)"
         error={errors.felc}

@@ -2,20 +2,26 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { useContext, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
+import { MinMaxDescription } from "../components/MinMaxDescription";
 import PriceFooter from "../components/PriceFooter";
 import SubmitWithPricing from "../components/SubmitWithPricing";
 import SummaryDetails from "../components/SummaryDetails";
+import { TitleHeader } from "../components/TitleHeader";
 import FirstHoleFields from "../components/formFields/FirstHoleFields";
+import HeightField from "../components/formFields/HeightField";
 import SecondHoleFields from "../components/formFields/SecondHoleFields";
-import WidthAndHeightFields from "../components/formFields/WidthAndHeightFields";
+import WidthField from "../components/formFields/WidthField";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
+import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 import {
   CreateTermoblockUpItemInput,
+  TB_UP_MAX_HEIGHT,
+  TB_UP_MAX_WIDTH,
+  TB_UP_MIN_HEIGHT,
+  TB_UP_MIN_WIDTH,
   createTermoblockUpItemSchema,
 } from "../schema/termoblockUp.schema";
 import calculatePrice from "../utils/calculatePrice";
-import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
-import { TitleHeader } from "../components/TitleHeader";
 
 const ConfiguratorUp = () => {
   const { addItem } = useContext(ShoppingCartContext);
@@ -54,7 +60,16 @@ const ConfiguratorUp = () => {
       <TitleHeader title="Termoblock Up"></TitleHeader>
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
-          <WidthAndHeightFields></WidthAndHeightFields>
+          <WidthField></WidthField>
+          <MinMaxDescription
+            minValue={TB_UP_MIN_WIDTH}
+            maxValue={TB_UP_MAX_WIDTH}
+          ></MinMaxDescription>
+          <HeightField></HeightField>
+          <MinMaxDescription
+            minValue={TB_UP_MIN_HEIGHT}
+            maxValue={TB_UP_MAX_HEIGHT}
+          ></MinMaxDescription>
           <FirstHoleFields needsPositionStringSelect={false}></FirstHoleFields>
           <SecondHoleFields
             needsPositionStringSelect={false}

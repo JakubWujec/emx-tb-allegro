@@ -5,6 +5,7 @@ import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
 import useFetch from "../../hooks/useFetch";
 import BASE_API_URL from "../../url";
+import { MinMaxDescription } from "../MinMaxDescription";
 
 const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
   const {
@@ -76,14 +77,20 @@ const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
           )}
 
           {thirdHoleType === "okrągły na rurę bez uchwytu" && (
-            <InputField
-              label="Średnica (zewnętrzna) trzeciego otworu (mm)"
-              error={errors.thirdHole?.diameter}
-              type="number"
-              registration={register("thirdHole.diameter", {
-                valueAsNumber: true,
-              })}
-            ></InputField>
+            <>
+              <InputField
+                label="Średnica (zewnętrzna) trzeciego otworu (mm)"
+                error={errors.thirdHole?.diameter}
+                type="number"
+                registration={register("thirdHole.diameter", {
+                  valueAsNumber: true,
+                })}
+              ></InputField>
+              <MinMaxDescription
+                minValue={80}
+                maxValue={250}
+              ></MinMaxDescription>
+            </>
           )}
         </>
       )}
