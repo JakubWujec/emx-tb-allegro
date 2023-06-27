@@ -4,6 +4,8 @@ export default {
   theme: {
     extend: {
       colors: {
+        navy: "#102335",
+        primary: "#102335",
         mainOrange: "#ec6839",
         mainOrangeDarker: "#E64C14",
         white: "#fff",

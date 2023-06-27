@@ -4,17 +4,17 @@ const Home = () => {
   return (
     <div className="relative">
       <div>
-        <Link className="text-black-500" to={`/up`}>
+        <Link className="text-primary" to={`/up`}>
           UP
         </Link>
       </div>
       <div>
-        <Link className="text-black-500" to={`/go`}>
+        <Link className="text-primary" to={`/go`}>
           GO
         </Link>
       </div>
       <div>
-        <Link className="text-black-500" to={`/pro`}>
+        <Link className="text-primary" to={`/pro`}>
           PRO
         </Link>
       </div>

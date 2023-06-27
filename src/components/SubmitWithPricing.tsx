@@ -9,7 +9,7 @@ const SubmitWithPricing = ({ disabled, price }: SubmitWithPricingProps) => {
   if (disabled) {
     return (
       <div className="mt-6">
-        <span className="border border-mainOrange block px-6 py-4">
+        <span className="border border-mainOrange block px-6 py-4 text-primary">
           Wpisz w formularzu parametry, po wpisaniu pojawi się cena produktu
         </span>
       </div>
