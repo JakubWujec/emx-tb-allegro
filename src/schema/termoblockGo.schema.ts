@@ -44,30 +44,18 @@ export const termoblockGoItemZodObject = z
     name: "Termoblock Go",
   }));
 
-export const createTermoblockGoItemSchema = termoblockGoItemZodObject
-  .refine(
-    (data) => {
-      if (data.hasSecondHole && data.secondHole) {
-        return termoblockHoleValidation(data.secondHole);
-      }
-      return true;
-    },
-    {
-      message: "Średnica otworu powinna być conajmniej 50 oraz conajwyżej 250",
-      path: ["secondHole", "diameter"],
+export const createTermoblockGoItemSchema = termoblockGoItemZodObject.refine(
+  (data) => {
+    if (data.hasSecondHole && data.secondHole) {
+      return termoblockHoleValidation(data.secondHole);
     }
-  )
-  .superRefine(({ firstHole, secondHole }, ctx) => {
-    if (secondHole) {
-      if (firstHole.stringPosition === secondHole.stringPosition) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: `Otwory muszą mieć różne położenia.`,
-          path: ["secondHole", "stringPosition"],
-        });
-      }
-    }
-  });
+    return true;
+  },
+  {
+    message: "Średnica otworu powinna być conajmniej 50 oraz conajwyżej 250",
+    path: ["secondHole", "diameter"],
+  }
+);
 
 export type CreateTermoblockGoItemInput = z.TypeOf<
   typeof createTermoblockGoItemSchema

@@ -46,43 +46,18 @@ export const termoblockProItemZodObject = z
     name: "Termoblock Pro",
   }));
 
-export const createTermoblockProItemSchema = termoblockProItemZodObject
-  .refine(
-    (data) => {
-      if (data.hasSecondHole && data.secondHole) {
-        return termoblockHoleValidation(data.secondHole);
-      }
-      return true;
-    },
-    {
-      message: "Średnica otworu powinna być conajmniej 50 oraz conajwyżej 250",
-      path: ["secondHole", "diameter"],
+export const createTermoblockProItemSchema = termoblockProItemZodObject.refine(
+  (data) => {
+    if (data.hasSecondHole && data.secondHole) {
+      return termoblockHoleValidation(data.secondHole);
     }
-  )
-  .superRefine(({ firstHole, secondHole, thirdHole }, ctx) => {
-    if (secondHole) {
-      console.log("XX", ctx.path);
-      if (firstHole.stringPosition === secondHole.stringPosition) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: `Otwory muszą mieć różne położenia.`,
-          path: ["secondHole", "stringPosition"],
-        });
-      }
-    }
-    if (thirdHole) {
-      if (
-        firstHole.stringPosition === thirdHole.stringPosition ||
-        (secondHole && secondHole?.stringPosition === thirdHole.stringPosition)
-      ) {
-        ctx.addIssue({
-          code: z.ZodIssueCode.custom,
-          message: `Otwory muszą mieć różne położenia.`,
-          path: ["thirdHole", "stringPosition"],
-        });
-      }
-    }
-  });
+    return true;
+  },
+  {
+    message: "Średnica otworu powinna być conajmniej 50 oraz conajwyżej 250",
+    path: ["secondHole", "diameter"],
+  }
+);
 
 export type CreateTermoblockProItemInput = z.TypeOf<
   typeof createTermoblockProItemSchema
