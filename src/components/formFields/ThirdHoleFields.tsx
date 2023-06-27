@@ -60,6 +60,7 @@ const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
             })}
             label="Rodzaj trzeciego otworu"
             error={errors.thirdHole?.holeType}
+            defaultValue={holeTypes[0].name}
             registration={register("thirdHole.holeType")}
           ></SelectField>
           {needsPositionStringSelect && (

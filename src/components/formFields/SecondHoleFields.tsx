@@ -60,6 +60,7 @@ const SecondHoleFields = ({ needsPositionStringSelect = true }) => {
               };
             })}
             label="Rodzaj drugiego otworu"
+            defaultValue={holeTypes[0].name}
             error={errors.secondHole?.holeType}
             registration={register("secondHole.holeType")}
           ></SelectField>

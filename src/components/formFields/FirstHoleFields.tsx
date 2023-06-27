@@ -36,6 +36,7 @@ const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
             label: holeType.name,
           };
         })}
+        defaultValue={holeTypes[0].name}
         label="Rodzaj pierwszego otworu"
         error={errors.firstHole?.holeType}
         registration={register("firstHole.holeType")}
