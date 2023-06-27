@@ -7,13 +7,16 @@ import SubmitWithPricing from "../components/SubmitWithPricing";
 import SummaryDetails from "../components/SummaryDetails";
 import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
+import { MinMaxDescription } from "../components/MinMaxDescription";
+import { TitleHeader } from "../components/TitleHeader";
 import ColorsFields from "../components/formFields/ColorFields";
 import FelcField from "../components/formFields/FelcField";
 import FirstHoleFields from "../components/formFields/FirstHoleFields";
+import HeightField from "../components/formFields/HeightField";
 import PowerCordHoleFields from "../components/formFields/PowerCordHoleFields";
 import SecondHoleFields from "../components/formFields/SecondHoleFields";
 import ThirdHoleFields from "../components/formFields/ThirdHoleFields";
-import WidthAndHeightFields from "../components/formFields/WidthAndHeightFields";
+import WidthField from "../components/formFields/WidthField";
 import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 import {
   CreateTermoblockProItemInput,
@@ -24,10 +27,6 @@ import {
   createTermoblockProItemSchema,
 } from "../schema/termoblockPro.schema";
 import calculatePrice from "../utils/calculatePrice";
-import { TitleHeader } from "../components/TitleHeader";
-import { MinMaxDescription } from "../components/MinMaxDescription";
-import WidthField from "../components/formFields/WidthField";
-import HeightField from "../components/formFields/HeightField";
 import termoblockToStringParams from "../utils/termoblockToStringParams";
 
 const ConfiguratorPro = () => {

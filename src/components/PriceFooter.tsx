@@ -7,7 +7,7 @@ type PriceFooterProps = {
   visible: boolean;
 };
 
-function PriceFooter({ stringParams, isValid, visible }: PriceFooterProps) {
+function PriceFooter({ stringParams, visible }: PriceFooterProps) {
   const handleClick = () => {
     window.scrollTo({
       top: document.documentElement.scrollHeight,
@@ -43,9 +43,4 @@ function PriceFooter({ stringParams, isValid, visible }: PriceFooterProps) {
   );
 }
 
-const BreakLine = () => {
-  return (
-    <hr className="w-24 h-0.5 mx-auto my-2 bg-mainOrange border-0 rounded dark:bg-gray-700" />
-  );
-};
 export default PriceFooter;
