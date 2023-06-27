@@ -28,6 +28,7 @@ import { TitleHeader } from "../components/TitleHeader";
 import { MinMaxDescription } from "../components/MinMaxDescription";
 import WidthField from "../components/formFields/WidthField";
 import HeightField from "../components/formFields/HeightField";
+import termoblockToStringParams from "../utils/termoblockToStringParams";
 
 const ConfiguratorPro = () => {
   const { addItem } = useContext(ShoppingCartContext);
@@ -48,7 +49,9 @@ const ConfiguratorPro = () => {
     formMethods.formState.isDirty &&
     Object.keys(formMethods.formState.errors).length === 0 &&
     createTermoblockProItemSchema.safeParse(termoblock).success;
+
   const price = calculatePrice({ ...termoblock, name: "Termoblock Pro" });
+  const stringParams = termoblockToStringParams(termoblock);
 
   function onSubmit(values: CreateTermoblockProItemInput) {
     addItem({
@@ -85,7 +88,7 @@ const ConfiguratorPro = () => {
           <PowerCordHoleFields />
           <div ref={summaryRef} className="flex ">
             <div className={"basis-3/4"}>
-              <SummaryDetails termoblock={termoblock} />
+              <SummaryDetails stringParams={stringParams} />
             </div>
             <div className="basis-1/4 m-4 w-full text-center justify-center flex">
               <SubmitWithPricing
@@ -98,7 +101,7 @@ const ConfiguratorPro = () => {
       </FormProvider>
       <PriceFooter
         isValid={termoblockIsValid}
-        termoblock={termoblock}
+        stringParams={stringParams}
         visible={visible}
       />
     </div>

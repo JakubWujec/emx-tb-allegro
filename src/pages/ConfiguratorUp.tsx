@@ -22,6 +22,7 @@ import {
   createTermoblockUpItemSchema,
 } from "../schema/termoblockUp.schema";
 import calculatePrice from "../utils/calculatePrice";
+import termoblockToStringParams from "../utils/termoblockToStringParams";
 
 const ConfiguratorUp = () => {
   const { addItem } = useContext(ShoppingCartContext);
@@ -42,7 +43,9 @@ const ConfiguratorUp = () => {
     formMethods.formState.isDirty &&
     Object.keys(formMethods.formState.errors).length === 0 &&
     createTermoblockUpItemSchema.safeParse(termoblock).success;
+
   const price = calculatePrice({ ...termoblock, name: "Termoblock Up" });
+  const stringParams = termoblockToStringParams(termoblock);
 
   function onSubmit(values: CreateTermoblockUpItemInput) {
     addItem({
@@ -76,7 +79,7 @@ const ConfiguratorUp = () => {
           ></SecondHoleFields>
           <div ref={summaryRef} className="flex ">
             <div className={"basis-3/4"}>
-              <SummaryDetails termoblock={termoblock} />
+              <SummaryDetails stringParams={stringParams} />
             </div>
             <div className="basis-1/4 m-4 w-full text-center justify-center flex">
               <SubmitWithPricing
@@ -89,7 +92,7 @@ const ConfiguratorUp = () => {
       </FormProvider>
       <PriceFooter
         isValid={termoblockIsValid}
-        termoblock={termoblock}
+        stringParams={stringParams}
         visible={visible}
       />
     </div>

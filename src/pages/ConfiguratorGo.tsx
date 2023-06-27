@@ -25,6 +25,7 @@ import {
   createTermoblockGoItemSchema,
 } from "../schema/termoblockGo.schema";
 import calculatePrice from "../utils/calculatePrice";
+import termoblockToStringParams from "../utils/termoblockToStringParams";
 
 const ConfiguratorGo = () => {
   const { addItem } = useContext(ShoppingCartContext);
@@ -47,6 +48,7 @@ const ConfiguratorGo = () => {
     createTermoblockGoItemSchema.safeParse(termoblock).success;
 
   const price = calculatePrice({ ...termoblock, name: "Termoblock Go" });
+  const stringParams = termoblockToStringParams(termoblock);
 
   function onSubmit(values: CreateTermoblockGoItemInput) {
     addItem({
@@ -81,7 +83,7 @@ const ConfiguratorGo = () => {
           <PowerCordHoleFields />
           <div ref={summaryRef} className="flex ">
             <div className={"basis-3/4"}>
-              <SummaryDetails termoblock={termoblock} />
+              <SummaryDetails stringParams={stringParams} />
             </div>
             <div className="basis-1/4 m-4 w-full text-center justify-center flex">
               <SubmitWithPricing
@@ -94,7 +96,7 @@ const ConfiguratorGo = () => {
       </FormProvider>
       <PriceFooter
         isValid={termoblockIsValid}
-        termoblock={termoblock}
+        stringParams={stringParams}
         visible={visible}
       />
     </div>

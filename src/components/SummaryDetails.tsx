@@ -1,23 +1,10 @@
-import {
-  CreateTermoblockGoItemInput,
-  CreateTermoblockProItemInput,
-  CreateTermoblockUpItemInput,
-  StringParam,
-} from "../types";
-import termoblockToStringParams from "../utils/termoblockToStringParams";
+import { StringParam } from "../types";
+
 type SummaryDetailsProps = {
-  termoblock:
-    | CreateTermoblockUpItemInput
-    | CreateTermoblockProItemInput
-    | CreateTermoblockGoItemInput;
+  stringParams: StringParam[];
 };
 
-function SummaryDetails({ termoblock }: SummaryDetailsProps) {
-  let stringParams: StringParam[] = [];
-  if (termoblock) {
-    stringParams = termoblockToStringParams(termoblock);
-  }
-
+function SummaryDetails({ stringParams }: SummaryDetailsProps) {
   return (
     <section className="container mx-auto min-h-[40vh] mt-12">
       <hr className="w-64 h-1 mx-auto my-4 bg-mainOrange border-0 rounded md:my-10 dark:bg-gray-700" />
