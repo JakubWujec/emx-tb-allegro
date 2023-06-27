@@ -3,9 +3,9 @@ import { stringPositions } from "../../schema/termoblockHole.schema";
 import { FirstHoleType } from "../../types";
 import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
-import useFetch from "../../hooks/useFetch";
-import BASE_API_URL from "../../url";
 import { MinMaxDescription } from "../MinMaxDescription";
+import { useContext } from "react";
+import { TermoblockHolesContext } from "../../hooks/useTermoblockHoles";
 
 const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
   const {
@@ -13,17 +13,10 @@ const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
     formState: { errors },
     watch,
   } = useFormContext<FirstHoleType>();
-  const { data: holeTypes } = useFetch<
-    {
-      id: number;
-      name: string;
-      termoblockHoleTypeId: number;
-    }[]
-  >(`${BASE_API_URL}/tbAllegro/termoblockHoleProducts`);
-
+  const { termoblockHoles: holeTypes } = useContext(TermoblockHolesContext);
   const firstHoleType = watch("firstHole.holeType");
 
-  if (!holeTypes) {
+  if (holeTypes.length === 0) {
     return null;
   }
 
@@ -36,7 +29,7 @@ const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
             label: holeType.name,
           };
         })}
-        defaultValue={holeTypes[0].name}
+        defaultValue={holeTypes[0] ? holeTypes[0].name : undefined}
         label="Rodzaj pierwszego otworu"
         error={errors.firstHole?.holeType}
         registration={register("firstHole.holeType")}

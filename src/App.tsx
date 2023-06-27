@@ -11,6 +11,7 @@ import ConfiguratorGo from "./pages/ConfiguratorGo";
 import ConfiguratorPro from "./pages/ConfiguratorPro";
 import { NotificationProvider } from "./hooks/useNotificationsProvider";
 import { Notifications } from "./components/notifications/Notifications";
+import { TermoblockHolesProvider } from "./hooks/useTermoblockHoles";
 
 function App() {
   return (
@@ -18,19 +19,23 @@ function App() {
       <BrowserRouter>
         <NotificationProvider>
           <ShoppingCartProvider>
-            <Header />
-            <main className="container mx-auto pt-20 pd-8 px-8">
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/cart" element={<Cart />} />
-                <Route path="/up" element={<ConfiguratorUp />} />
-                <Route path="/go" element={<ConfiguratorGo />} />
-                <Route path="/pro" element={<ConfiguratorPro />} />
-                <Route path="/summary/:orderId" element={<OrderSummary />} />
-                <Route path="/*" element={<NotFound />} />
-              </Routes>
-              <Notifications></Notifications>
-            </main>
+            <TermoblockHolesProvider>
+              <Header />
+              <main className="container mx-auto pt-20 pd-8 px-8">
+                <Routes>
+                  <Route path="/" element={<Home />} />
+                  <Route path="/cart" element={<Cart />} />
+
+                  <Route path="/up" element={<ConfiguratorUp />} />
+                  <Route path="/go" element={<ConfiguratorGo />} />
+                  <Route path="/pro" element={<ConfiguratorPro />} />
+
+                  <Route path="/summary/:orderId" element={<OrderSummary />} />
+                  <Route path="/*" element={<NotFound />} />
+                </Routes>
+                <Notifications></Notifications>
+              </main>
+            </TermoblockHolesProvider>
           </ShoppingCartProvider>
         </NotificationProvider>
       </BrowserRouter>

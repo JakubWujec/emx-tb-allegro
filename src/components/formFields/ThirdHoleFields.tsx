@@ -1,11 +1,11 @@
+import { useContext } from "react";
 import { useFormContext } from "react-hook-form";
+import { TermoblockHolesContext } from "../../hooks/useTermoblockHoles";
 import { stringPositions } from "../../schema/termoblockHole.schema";
 import { ThirdHoleType } from "../../types";
+import { MinMaxDescription } from "../MinMaxDescription";
 import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
-import useFetch from "../../hooks/useFetch";
-import BASE_API_URL from "../../url";
-import { MinMaxDescription } from "../MinMaxDescription";
 
 const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
   const {
@@ -16,17 +16,7 @@ const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
   const thirdHoleType = watch("thirdHole.holeType");
   const hasThirdHole = watch("hasThirdHole");
 
-  const { data: holeTypes } = useFetch<
-    {
-      id: number;
-      name: string;
-      termoblockHoleTypeId: number;
-    }[]
-  >(`${BASE_API_URL}/tbAllegro/termoblockHoleProducts`);
-
-  if (!holeTypes) {
-    return null;
-  }
+  const { termoblockHoles: holeTypes } = useContext(TermoblockHolesContext);
 
   return (
     <div className="mb-4">
@@ -60,7 +50,7 @@ const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
             })}
             label="Rodzaj trzeciego otworu"
             error={errors.thirdHole?.holeType}
-            defaultValue={holeTypes[0].name}
+            defaultValue={holeTypes[0]?.name}
             registration={register("thirdHole.holeType")}
           ></SelectField>
           {needsPositionStringSelect && (

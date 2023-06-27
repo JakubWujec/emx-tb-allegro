@@ -1,11 +1,11 @@
+import { useContext } from "react";
 import { useFormContext } from "react-hook-form";
+import { TermoblockHolesContext } from "../../hooks/useTermoblockHoles";
 import { stringPositions } from "../../schema/termoblockHole.schema";
 import { SecondHoleType } from "../../types";
+import { MinMaxDescription } from "../MinMaxDescription";
 import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
-import useFetch from "../../hooks/useFetch";
-import BASE_API_URL from "../../url";
-import { MinMaxDescription } from "../MinMaxDescription";
 
 const SecondHoleFields = ({ needsPositionStringSelect = true }) => {
   const {
@@ -13,21 +13,10 @@ const SecondHoleFields = ({ needsPositionStringSelect = true }) => {
     formState: { errors },
     watch,
   } = useFormContext<SecondHoleType & Required<{ hasSecondHole: boolean }>>();
-
-  const { data: holeTypes } = useFetch<
-    {
-      id: number;
-      name: string;
-      termoblockHoleTypeId: number;
-    }[]
-  >(`${BASE_API_URL}/tbAllegro/termoblockHoleProducts`);
+  const { termoblockHoles: holeTypes } = useContext(TermoblockHolesContext);
 
   const secondHoleType = watch("secondHole.holeType");
   const hasSecondHole = watch("hasSecondHole");
-
-  if (!holeTypes) {
-    return null;
-  }
 
   return (
     <div className="mb-4">
@@ -60,7 +49,7 @@ const SecondHoleFields = ({ needsPositionStringSelect = true }) => {
               };
             })}
             label="Rodzaj drugiego otworu"
-            defaultValue={holeTypes[0].name}
+            defaultValue={holeTypes[0]?.name}
             error={errors.secondHole?.holeType}
             registration={register("secondHole.holeType")}
           ></SelectField>
