@@ -26,7 +26,7 @@ export const termoblockProItemZodObject = z
       },
       {
         message:
-          "Średnica otworu powinna być conajmniej 50 oraz conajwyżej 250",
+          "Średnica otworu powinna być conajmniej 80 oraz conajwyżej 250",
         path: ["diameter"],
       }
     ),
@@ -54,7 +54,7 @@ export const createTermoblockProItemSchema = termoblockProItemZodObject.refine(
     return true;
   },
   {
-    message: "Średnica otworu powinna być conajmniej 50 oraz conajwyżej 250",
+    message: "Średnica otworu powinna być conajmniej 80 oraz conajwyżej 250",
     path: ["secondHole", "diameter"],
   }
 );

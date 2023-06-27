@@ -23,7 +23,7 @@ export const HoleZodObject = z.object({
 });
 
 const diameterValidation = (diameter: number | undefined) =>
-  diameter && diameter >= 50 && diameter <= 250;
+  diameter && diameter >= 80 && diameter <= 250;
 
 export const termoblockHoleValidation = (termoblockHole: TermoblockHole) => {
   if (termoblockHole.holeType === "okrągły na rurę bez uchwytu") {
