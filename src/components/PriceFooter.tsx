@@ -17,8 +17,6 @@ type PriceFooterProps = {
 };
 
 function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
-  const [clicked, setClicked] = useState<boolean>(false);
-
   const checkNan = (value: number) => {
     if (isNaN(value)) {
       return 0;
@@ -26,15 +24,12 @@ function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
     return value;
   };
 
-  useEffect(() => {
-    if (clicked) {
-      window.scrollTo({
-        top: document.documentElement.scrollHeight,
-        behavior: "smooth",
-      });
-      setClicked(false);
-    }
-  }, [clicked]);
+  const handleClick = () => {
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
+  };
 
   return (
     <>
@@ -125,10 +120,7 @@ function PriceFooter({ termoblock, isValid, visible }: PriceFooterProps) {
 
             {isValid && (
               <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2  bg-mainOrange text-white rounded-t-lg">
-                <button
-                  onClick={() => setClicked(true)}
-                  className="animation-bounce"
-                >
+                <button onClick={handleClick} className="animation-bounce">
                   <GoDownIcon></GoDownIcon>
                 </button>
               </div>
