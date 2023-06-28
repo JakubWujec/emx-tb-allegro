@@ -56,7 +56,7 @@ const ConfiguratorGo = () => {
 
   return (
     <div className="relative">
-      <TitleHeader title="Termoblock Go"></TitleHeader>
+      <TitleHeader title="Rama okienna Warmtec Termoblock Go"></TitleHeader>
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
           <WidthField></WidthField>

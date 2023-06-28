@@ -53,7 +53,7 @@ const ConfiguratorUp = () => {
 
   return (
     <div className="relative">
-      <TitleHeader title="Termoblock Up"></TitleHeader>
+      <TitleHeader title="Rama okienna Warmtec Termoblock Up"></TitleHeader>
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
           <WidthField></WidthField>
