@@ -22,7 +22,10 @@ function PriceFooter({ stringParams, visible }: PriceFooterProps) {
           <div className="container mx-auto flex ">
             <div className="m-4 flex w-full flex-wrap justify-around">
               {stringParams.map((stringParam) => (
-                <div className="justify-between m-4 text-center flex-col">
+                <div
+                  key={stringParam.label}
+                  className="justify-between m-4 text-center flex-col"
+                >
                   <p>{stringParam.label}</p>
                   <p className="text-mainOrange text-lg font-bold">
                     {stringParam.value}
