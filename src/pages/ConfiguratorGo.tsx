@@ -45,7 +45,6 @@ const ConfiguratorGo = () => {
 
   function onSubmit(values: CreateTermoblockGoItemInput) {
     addItem({
-      id: 1,
       name: values.name ?? "Termoblock Go",
       productTypeId: 3,
       price: price,

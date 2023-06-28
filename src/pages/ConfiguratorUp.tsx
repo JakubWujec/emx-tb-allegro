@@ -42,7 +42,6 @@ const ConfiguratorUp = () => {
 
   function onSubmit(values: CreateTermoblockUpItemInput) {
     addItem({
-      id: 3,
       name: values.name ?? "Termoblock Up",
       productTypeId: 2,
       price: price,
@@ -53,7 +52,7 @@ const ConfiguratorUp = () => {
 
   return (
     <div className="relative">
-      <TitleHeader title="Rama okienna Warmtec Termoblock Up"></TitleHeader>
+      <TitleHeader title="Termoblock Up"></TitleHeader>
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
           <WidthField></WidthField>

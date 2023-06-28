@@ -3,7 +3,7 @@ import type { Product } from "../types";
 
 type ShoppingCartContext = {
   getItems: () => Product[];
-  addItem: (item: Product) => void;
+  addItem: (item: Omit<Product, "id">) => void;
   removeItem: (item: Product) => void;
   getSum: (item?: Product) => number;
   changeQuantity: (
@@ -49,8 +49,12 @@ export const ShoppingCartProvider = ({
     return cartItems.reduce((sum, item) => sum + item.price * item.quantity, 0);
   };
 
-  const addItem = (item: Product) => {
-    setCartItems([...cartItems, item]);
+  const addItem = (item: Omit<Product, "id">) => {
+    const newItem = {
+      id: Math.floor(Math.random() * Number.MAX_SAFE_INTEGER),
+      ...item,
+    };
+    setCartItems([...cartItems, newItem]);
   };
 
   const changeQuantity = (
