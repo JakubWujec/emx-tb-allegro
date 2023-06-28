@@ -4,7 +4,7 @@ import { FirstHoleType } from "../../types";
 import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
 import { MinMaxDescription } from "../MinMaxDescription";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { TermoblockHolesContext } from "../../hooks/useTermoblockHoles";
 
 const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
@@ -12,9 +12,29 @@ const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
     register,
     formState: { errors },
     watch,
+    resetField,
   } = useFormContext<FirstHoleType>();
   const { termoblockHoles: holeTypes } = useContext(TermoblockHolesContext);
   const firstHoleType = watch("firstHole.holeType");
+
+  useEffect(() => {
+    if (holeTypes && holeTypes.length) {
+      if (needsPositionStringSelect) {
+        resetField("firstHole", {
+          defaultValue: {
+            stringPosition: stringPositions[0],
+            holeType: holeTypes[0].name,
+          },
+        });
+      } else {
+        resetField("firstHole", {
+          defaultValue: {
+            holeType: holeTypes[0].name,
+          },
+        });
+      }
+    }
+  }, [holeTypes, needsPositionStringSelect, resetField]);
 
   if (!holeTypes.length) return null;
 
@@ -29,8 +49,6 @@ const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
         })}
         label="Rodzaj pierwszego otworu"
         error={errors.firstHole?.holeType}
-        placeholder="Wybierz rodzaj otworu"
-        defaultValue="Wybierz rodzaj otworu"
         registration={register("firstHole.holeType")}
       ></SelectField>
 

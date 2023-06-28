@@ -22,14 +22,22 @@ const SecondHoleFields = ({ needsPositionStringSelect = true }) => {
   // gdy hasSecondHole zmieni się na true, ustaw domyślne wartości
   useEffect(() => {
     if (hasSecondHole) {
-      resetField("secondHole", {
-        defaultValue: {
-          stringPosition: stringPositions[0],
-          holeType: holeTypes[0].name,
-        },
-      });
+      if (needsPositionStringSelect) {
+        resetField("secondHole", {
+          defaultValue: {
+            stringPosition: stringPositions[0],
+            holeType: holeTypes[0].name,
+          },
+        });
+      } else {
+        resetField("secondHole", {
+          defaultValue: {
+            holeType: holeTypes[0].name,
+          },
+        });
+      }
     }
-  }, [hasSecondHole, holeTypes, resetField]);
+  }, [hasSecondHole, holeTypes, needsPositionStringSelect, resetField]);
 
   if (holeTypes.length === 0) {
     return null;

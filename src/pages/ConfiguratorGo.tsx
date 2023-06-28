@@ -40,7 +40,7 @@ const ConfiguratorGo = () => {
     mode: "onBlur",
   });
 
-  const termoblock = formMethods.getValues();
+  const termoblock = formMethods.watch();
   const termoblockIsValid =
     formMethods.formState.isDirty &&
     Object.keys(formMethods.formState.errors).length === 0 &&
