@@ -1,9 +1,8 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { MinMaxDescription } from "../components/MinMaxDescription";
-import PriceFooter from "../components/PriceFooter";
 import SubmitWithPricing from "../components/SubmitWithPricing";
 import SummaryDetails from "../components/SummaryDetails";
 import { TitleHeader } from "../components/TitleHeader";
@@ -11,7 +10,6 @@ import FirstHoleFields from "../components/formFields/FirstHoleFields";
 import HeightField from "../components/formFields/HeightField";
 import SecondHoleFields from "../components/formFields/SecondHoleFields";
 import WidthField from "../components/formFields/WidthField";
-import useIntersectionObserver from "../hooks/useIntersectionObserver";
 import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 import {
   CreateTermoblockUpItemInput,
@@ -26,10 +24,6 @@ import termoblockToStringParams from "../utils/termoblockToStringParams";
 
 const ConfiguratorUp = () => {
   const { addItem } = useContext(ShoppingCartContext);
-
-  const summaryRef = useRef<HTMLDivElement>(null);
-  const entry = useIntersectionObserver(summaryRef, {});
-  const visible = !entry?.isIntersecting;
 
   const formMethods = useForm<CreateTermoblockUpItemInput>({
     resolver:
@@ -76,7 +70,7 @@ const ConfiguratorUp = () => {
           <SecondHoleFields
             needsPositionStringSelect={false}
           ></SecondHoleFields>
-          <div ref={summaryRef} className="flex ">
+          <div className="flex ">
             <div className={"basis-3/4"}>
               <SummaryDetails stringParams={stringParams} />
             </div>
@@ -89,11 +83,6 @@ const ConfiguratorUp = () => {
           </div>
         </form>
       </FormProvider>
-      <PriceFooter
-        isValid={termoblockIsValid}
-        stringParams={stringParams}
-        visible={visible}
-      />
     </div>
   );
 };

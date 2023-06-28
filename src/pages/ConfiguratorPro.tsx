@@ -1,11 +1,9 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useContext, useEffect, useRef } from "react";
+import { useContext, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
-import PriceFooter from "../components/PriceFooter";
 import SubmitWithPricing from "../components/SubmitWithPricing";
 import SummaryDetails from "../components/SummaryDetails";
-import useIntersectionObserver from "../hooks/useIntersectionObserver";
 
 import { MinMaxDescription } from "../components/MinMaxDescription";
 import { TitleHeader } from "../components/TitleHeader";
@@ -31,7 +29,6 @@ import termoblockToStringParams from "../utils/termoblockToStringParams";
 
 const ConfiguratorPro = () => {
   const { addItem } = useContext(ShoppingCartContext);
-  const summaryRef = useRef<HTMLDivElement>(null);
 
   const formMethods = useForm<CreateTermoblockProItemInput>({
     resolver:
@@ -84,7 +81,7 @@ const ConfiguratorPro = () => {
           <ThirdHoleFields></ThirdHoleFields>
           <PowerCordHoleFields />
 
-          <div ref={summaryRef} className="flex ">
+          <div className="flex">
             <div className={"basis-3/4"}>
               <SummaryDetails stringParams={stringParams} />
             </div>
@@ -97,11 +94,6 @@ const ConfiguratorPro = () => {
           </div>
         </form>
       </FormProvider>
-      {/* <PriceFooter
-        isValid={termoblockIsValid}
-        stringParams={stringParams}
-        visible={visible}
-      /> */}
     </div>
   );
 };
