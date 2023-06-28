@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { TermoblockHolesContext } from "../../hooks/useTermoblockHoles";
 import { stringPositions } from "../../schema/termoblockHole.schema";
@@ -12,11 +12,28 @@ const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
     register,
     formState: { errors },
     watch,
+    resetField,
   } = useFormContext<ThirdHoleType & Required<{ hasThirdHole: boolean }>>();
   const thirdHoleType = watch("thirdHole.holeType");
   const hasThirdHole = watch("hasThirdHole");
 
   const { termoblockHoles: holeTypes } = useContext(TermoblockHolesContext);
+
+  // gdy hasThirdHole zmieni się na true, ustaw domyślne wartości
+  useEffect(() => {
+    if (hasThirdHole) {
+      resetField("thirdHole", {
+        defaultValue: {
+          stringPosition: stringPositions[0],
+          holeType: holeTypes[0].name,
+        },
+      });
+    }
+  }, [hasThirdHole, holeTypes, resetField]);
+
+  if (holeTypes.length === 0) {
+    return null;
+  }
 
   return (
     <div className="mb-4">
@@ -53,6 +70,25 @@ const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
             defaultValue={holeTypes[0]?.name}
             registration={register("thirdHole.holeType")}
           ></SelectField>
+
+          {thirdHoleType === "okrągły na rurę bez uchwytu" && (
+            <>
+              <InputField
+                label="Średnica (zewnętrzna) trzeciego otworu (mm)"
+                error={errors.thirdHole?.diameter}
+                type="number"
+                registration={register("thirdHole.diameter", {
+                  valueAsNumber: true,
+                  shouldUnregister: true,
+                })}
+              ></InputField>
+              <MinMaxDescription
+                minValue={80}
+                maxValue={250}
+              ></MinMaxDescription>
+            </>
+          )}
+
           {needsPositionStringSelect && (
             <SelectField
               options={stringPositions.map((stringPosition) => {
@@ -65,23 +101,6 @@ const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
               error={errors.thirdHole?.stringPosition}
               registration={register("thirdHole.stringPosition")}
             ></SelectField>
-          )}
-
-          {thirdHoleType === "okrągły na rurę bez uchwytu" && (
-            <>
-              <InputField
-                label="Średnica (zewnętrzna) trzeciego otworu (mm)"
-                error={errors.thirdHole?.diameter}
-                type="number"
-                registration={register("thirdHole.diameter", {
-                  valueAsNumber: true,
-                })}
-              ></InputField>
-              <MinMaxDescription
-                minValue={80}
-                maxValue={250}
-              ></MinMaxDescription>
-            </>
           )}
         </>
       )}

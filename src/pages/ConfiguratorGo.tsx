@@ -37,8 +37,7 @@ const ConfiguratorGo = () => {
   const formMethods = useForm<CreateTermoblockGoItemInput>({
     resolver:
       createTermoblockGoItemSchema && zodResolver(createTermoblockGoItemSchema),
-    mode: "all",
-    shouldUnregister: true,
+    mode: "onBlur",
   });
 
   const termoblock = formMethods.getValues();

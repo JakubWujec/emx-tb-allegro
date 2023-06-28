@@ -37,10 +37,11 @@ const ConfiguratorPro = () => {
     resolver:
       createTermoblockProItemSchema &&
       zodResolver(createTermoblockProItemSchema),
-    mode: "all",
+    mode: "onBlur",
   });
 
-  const termoblock = formMethods.getValues();
+  const termoblock = formMethods.watch();
+
   const termoblockIsValid =
     formMethods.formState.isDirty &&
     Object.keys(formMethods.formState.errors).length === 0 &&
@@ -82,19 +83,18 @@ const ConfiguratorPro = () => {
           <SecondHoleFields></SecondHoleFields>
           <ThirdHoleFields></ThirdHoleFields>
           <PowerCordHoleFields />
-          {formMethods.formState.isDirty && (
-            <div ref={summaryRef} className="flex ">
-              <div className={"basis-3/4"}>
-                <SummaryDetails stringParams={stringParams} />
-              </div>
-              <div className="basis-1/4 m-4 w-full text-center justify-center flex">
-                <SubmitWithPricing
-                  price={price}
-                  disabled={!termoblockIsValid}
-                ></SubmitWithPricing>
-              </div>
+
+          <div ref={summaryRef} className="flex ">
+            <div className={"basis-3/4"}>
+              <SummaryDetails stringParams={stringParams} />
             </div>
-          )}
+            <div className="basis-1/4 m-4 w-full text-center justify-center flex">
+              <SubmitWithPricing
+                price={price}
+                disabled={!termoblockIsValid}
+              ></SubmitWithPricing>
+            </div>
+          </div>
         </form>
       </FormProvider>
       {/* <PriceFooter

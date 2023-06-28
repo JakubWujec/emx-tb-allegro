@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { useFormContext } from "react-hook-form";
 import { TermoblockHolesContext } from "../../hooks/useTermoblockHoles";
 import { stringPositions } from "../../schema/termoblockHole.schema";
@@ -12,11 +12,28 @@ const SecondHoleFields = ({ needsPositionStringSelect = true }) => {
     register,
     formState: { errors },
     watch,
+    resetField,
   } = useFormContext<SecondHoleType & Required<{ hasSecondHole: boolean }>>();
   const { termoblockHoles: holeTypes } = useContext(TermoblockHolesContext);
 
   const secondHoleType = watch("secondHole.holeType");
   const hasSecondHole = watch("hasSecondHole");
+
+  // gdy hasSecondHole zmieni się na true, ustaw domyślne wartości
+  useEffect(() => {
+    if (hasSecondHole) {
+      resetField("secondHole", {
+        defaultValue: {
+          stringPosition: stringPositions[0],
+          holeType: holeTypes[0].name,
+        },
+      });
+    }
+  }, [hasSecondHole, holeTypes, resetField]);
+
+  if (holeTypes.length === 0) {
+    return null;
+  }
 
   return (
     <div className="mb-4">
@@ -53,6 +70,24 @@ const SecondHoleFields = ({ needsPositionStringSelect = true }) => {
             error={errors.secondHole?.holeType}
             registration={register("secondHole.holeType")}
           ></SelectField>
+          {secondHoleType === "okrągły na rurę bez uchwytu" && (
+            <>
+              <InputField
+                label="Średnica (zewnętrzna) drugiego otworu (mm)"
+                error={errors.secondHole?.diameter}
+                type="number"
+                registration={register("secondHole.diameter", {
+                  valueAsNumber: true,
+                  shouldUnregister: true,
+                })}
+              ></InputField>
+              <MinMaxDescription
+                minValue={80}
+                maxValue={250}
+              ></MinMaxDescription>
+            </>
+          )}
+
           {needsPositionStringSelect && (
             <SelectField
               options={stringPositions.map((stringPosition) => {
@@ -65,23 +100,6 @@ const SecondHoleFields = ({ needsPositionStringSelect = true }) => {
               error={errors.secondHole?.stringPosition}
               registration={register("secondHole.stringPosition")}
             ></SelectField>
-          )}
-
-          {secondHoleType === "okrągły na rurę bez uchwytu" && (
-            <>
-              <InputField
-                label="Średnica (zewnętrzna) drugiego otworu (mm)"
-                error={errors.secondHole?.diameter}
-                type="number"
-                registration={register("secondHole.diameter", {
-                  valueAsNumber: true,
-                })}
-              ></InputField>
-              <MinMaxDescription
-                minValue={80}
-                maxValue={250}
-              ></MinMaxDescription>
-            </>
           )}
         </>
       )}

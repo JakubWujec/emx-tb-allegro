@@ -16,9 +16,7 @@ const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
   const { termoblockHoles: holeTypes } = useContext(TermoblockHolesContext);
   const firstHoleType = watch("firstHole.holeType");
 
-  if (holeTypes.length === 0) {
-    return null;
-  }
+  if (!holeTypes.length) return null;
 
   return (
     <div className="mb-4">
@@ -29,9 +27,10 @@ const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
             label: holeType.name,
           };
         })}
-        defaultValue={holeTypes[0] ? holeTypes[0].name : undefined}
         label="Rodzaj pierwszego otworu"
         error={errors.firstHole?.holeType}
+        placeholder="Wybierz rodzaj otworu"
+        defaultValue="Wybierz rodzaj otworu"
         registration={register("firstHole.holeType")}
       ></SelectField>
 
