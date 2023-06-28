@@ -37,11 +37,11 @@ const ConfiguratorGo = () => {
   const formMethods = useForm<CreateTermoblockGoItemInput>({
     resolver:
       createTermoblockGoItemSchema && zodResolver(createTermoblockGoItemSchema),
-    mode: "onBlur",
+    mode: "all",
     shouldUnregister: true,
   });
 
-  const termoblock = formMethods.watch();
+  const termoblock = formMethods.getValues();
   const termoblockIsValid =
     formMethods.formState.isDirty &&
     Object.keys(formMethods.formState.errors).length === 0 &&

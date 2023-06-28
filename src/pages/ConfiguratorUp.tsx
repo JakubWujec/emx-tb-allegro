@@ -34,11 +34,11 @@ const ConfiguratorUp = () => {
   const formMethods = useForm<CreateTermoblockUpItemInput>({
     resolver:
       createTermoblockUpItemSchema && zodResolver(createTermoblockUpItemSchema),
-    mode: "onBlur",
+    mode: "all",
     shouldUnregister: true,
   });
 
-  const termoblock = formMethods.watch();
+  const termoblock = formMethods.getValues();
   const termoblockIsValid =
     formMethods.formState.isDirty &&
     Object.keys(formMethods.formState.errors).length === 0 &&

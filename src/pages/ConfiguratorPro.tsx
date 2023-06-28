@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useContext, useRef } from "react";
+import { useContext, useEffect, useRef } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import PriceFooter from "../components/PriceFooter";
 import SubmitWithPricing from "../components/SubmitWithPricing";
@@ -32,18 +32,15 @@ import termoblockToStringParams from "../utils/termoblockToStringParams";
 const ConfiguratorPro = () => {
   const { addItem } = useContext(ShoppingCartContext);
   const summaryRef = useRef<HTMLDivElement>(null);
-  const entry = useIntersectionObserver(summaryRef, {});
-  const visible = !entry?.isIntersecting;
 
   const formMethods = useForm<CreateTermoblockProItemInput>({
     resolver:
       createTermoblockProItemSchema &&
       zodResolver(createTermoblockProItemSchema),
-    mode: "onBlur",
-    shouldUnregister: true,
+    mode: "all",
   });
 
-  const termoblock = formMethods.watch();
+  const termoblock = formMethods.getValues();
   const termoblockIsValid =
     formMethods.formState.isDirty &&
     Object.keys(formMethods.formState.errors).length === 0 &&
@@ -65,7 +62,7 @@ const ConfiguratorPro = () => {
 
   return (
     <div className="relative">
-      <TitleHeader title="Termoblock Pro"></TitleHeader>
+      <TitleHeader title="Rama okienna Warmtec TermoBlock PRO"></TitleHeader>
       <FormProvider {...formMethods}>
         <form onSubmit={formMethods.handleSubmit(onSubmit)}>
           <WidthField></WidthField>
@@ -85,24 +82,26 @@ const ConfiguratorPro = () => {
           <SecondHoleFields></SecondHoleFields>
           <ThirdHoleFields></ThirdHoleFields>
           <PowerCordHoleFields />
-          <div ref={summaryRef} className="flex ">
-            <div className={"basis-3/4"}>
-              <SummaryDetails stringParams={stringParams} />
+          {formMethods.formState.isDirty && (
+            <div ref={summaryRef} className="flex ">
+              <div className={"basis-3/4"}>
+                <SummaryDetails stringParams={stringParams} />
+              </div>
+              <div className="basis-1/4 m-4 w-full text-center justify-center flex">
+                <SubmitWithPricing
+                  price={price}
+                  disabled={!termoblockIsValid}
+                ></SubmitWithPricing>
+              </div>
             </div>
-            <div className="basis-1/4 m-4 w-full text-center justify-center flex">
-              <SubmitWithPricing
-                price={price}
-                disabled={!termoblockIsValid}
-              ></SubmitWithPricing>
-            </div>
-          </div>
+          )}
         </form>
       </FormProvider>
-      <PriceFooter
+      {/* <PriceFooter
         isValid={termoblockIsValid}
         stringParams={stringParams}
         visible={visible}
-      />
+      /> */}
     </div>
   );
 };
