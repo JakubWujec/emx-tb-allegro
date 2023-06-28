@@ -1,6 +1,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { useContext, useRef } from "react";
+import { useContext } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import SubmitWithPricing from "../components/SubmitWithPricing";
 import SummaryDetails from "../components/SummaryDetails";
