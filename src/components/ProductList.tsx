@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 import termoblockToStringParams from "../utils/termoblockToStringParams";
 import TrashIcon from "./icons/TrashIcon";
@@ -8,7 +9,7 @@ const ProductList = () => {
     useContext(ShoppingCartContext);
 
   return (
-    <div className="w-full m-auto mt-20">
+    <div className="w-full m-auto mt-20 flex flex-col">
       <h1 className="font-bold text-2xl text-center mb-5">Koszyk</h1>
       <div>
         <table className="table-fixed w-full bg-white/50  m-auto  divide-y-4 divide-mainOrange max-sm:divide-none rounded-lg">
@@ -88,6 +89,14 @@ const ProductList = () => {
             })}
           </tbody>
         </table>
+      </div>
+      <div>
+        <Link
+          to="/"
+          className="bg-mainOrange px-4 py-4 mt-4 rounded text-white shadow float-right font-bold flex flex-row"
+        >
+          Dodaj produkt
+        </Link>
       </div>
       <div className="flex justify-between w-full md:w-1/2 ml-auto bg-white py-5 px-5 mt-5 rounded-md shadow">
         <span>Do zapłaty:</span>
