@@ -1,9 +1,9 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Home = () => {
   return (
     <div className="relative">
-      <div className="flex flex-wrap flex-row gap-2">
+      <div className="flex flex-wrap flex-row gap-2 mt-2 justify-center">
         <ProductWrapper
           imgSrc="../../public/pol_pm_Rama-okienna-Warmtec-TermoBlock-UP-2109_4.webp"
           name="Rama okienna Warmtec Termoblock Up"
@@ -15,7 +15,7 @@ const Home = () => {
           link="/go"
         ></ProductWrapper>
         <ProductWrapper
-          imgSrc="./../public/pol_pm_Rama-okienna-Warmtec-TermoBlock-PRO-2122_1.webp"
+          imgSrc="../../public/pol_pm_Rama-okienna-Warmtec-TermoBlock-PRO-2122_1.webp"
           name="Rama okienna Warmtec Termoblock Pro"
           link="/pro"
         ></ProductWrapper>
@@ -33,12 +33,18 @@ const ProductWrapper = ({
   imgSrc: string;
   link: string;
 }) => {
+  const navigate = useNavigate();
   return (
     <div className="rounded-md shadow-lg">
-      <picture>
+      <picture
+        className="hover:cursor-pointer"
+        onClick={() => {
+          navigate(link);
+        }}
+      >
         <img alt={name} src={imgSrc}></img>
       </picture>
-      <p>
+      <p className="text-center">
         <Link
           className="text-primary hover:text-mainOrange min-h-[24px]"
           to={link}
