@@ -23,7 +23,7 @@ function priceBase(termoblockItem: TermoblockItem) {
 
 function priceForUnfamiliarHoles(termoblockItem: TermoblockItem) {
   let result = 0;
-  let unfamiliarHolePrice = 50;
+  const unfamiliarHolePrice = 50;
   if (
     termoblockItem.firstHole &&
     termoblockItem?.firstHole?.holeType ===
