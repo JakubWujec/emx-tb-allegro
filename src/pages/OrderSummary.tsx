@@ -53,6 +53,8 @@ export default function OrderSummary() {
                 <Link
                   className="text-black-500 underline"
                   to={`${product.url}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   W aukcji kup{" "}
                 </Link>
