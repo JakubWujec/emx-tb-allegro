@@ -13,10 +13,7 @@ function priceBase(termoblockItem: TermoblockItem) {
   if (termoblockItem.name === "Termoblock Up") return 600;
   if (termoblockItem.name === "Termoblock Go") return 900;
   if (termoblockItem.name === "Termoblock Pro") {
-    const areaInSquareMillimeters =
-      termoblockItem.width * termoblockItem.height;
-    const areaInSquareMeters = areaInSquareMillimeters / 1_000_000;
-    return priceForArea(areaInSquareMeters);
+    return priceForArea(termoblockItem.width, termoblockItem.height);
   }
   return 0;
 }
@@ -61,11 +58,12 @@ function priceForExtraHoles(termoblockItem: TermoblockItem) {
 }
 
 // tylko dla pro
-function priceForArea(areaInSquareMeters: number) {
+function priceForArea(widthInMillimeters: number, heightInMillimeters: number) {
   let price = 400;
-  if (areaInSquareMeters < 0.5) {
-    return price;
-  }
+
+  const areaInSquareMillimeters = widthInMillimeters * heightInMillimeters;
+  const areaInSquareMeters = areaInSquareMillimeters / 1_000_000;
+
   if (areaInSquareMeters > 0.5 && areaInSquareMeters <= 0.75) {
     price += 50.0;
   } else if (areaInSquareMeters <= 1) {
@@ -86,8 +84,13 @@ function priceForArea(areaInSquareMeters: number) {
     price += 450.0;
   } else if (areaInSquareMeters <= 3) {
     price += 500.0;
-  } else {
+  } else if (areaInSquareMeters > 3) {
     price += 600.0;
   }
+
+  if (widthInMillimeters > 1800 || heightInMillimeters > 1800) {
+    price += 100;
+  }
+
   return price;
 }
