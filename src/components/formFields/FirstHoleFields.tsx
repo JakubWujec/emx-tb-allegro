@@ -7,7 +7,10 @@ import { MinMaxDescription } from "../MinMaxDescription";
 import { useContext, useEffect } from "react";
 import { TermoblockHolesContext } from "../../hooks/useTermoblockHoles";
 
-const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
+const FirstHoleFields = ({
+  needsPositionStringSelect = true,
+  positionStringSide = "od wewnątrz",
+}) => {
   const {
     register,
     formState: { errors },
@@ -60,7 +63,7 @@ const FirstHoleFields = ({ needsPositionStringSelect = true }) => {
               label: stringPosition,
             };
           })}
-          label="Położenie pierwszego otworu (patrząc z zewnątrz)"
+          label={`Położenie pierwszego otworu (patrząc ${positionStringSide})`}
           error={errors.firstHole?.stringPosition}
           registration={register("firstHole.stringPosition")}
         ></SelectField>

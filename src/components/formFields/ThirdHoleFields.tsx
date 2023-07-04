@@ -7,7 +7,10 @@ import { MinMaxDescription } from "../MinMaxDescription";
 import { InputField } from "./InputField";
 import { SelectField } from "./SelectField";
 
-const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
+const ThirdHoleFields = ({
+  needsPositionStringSelect = true,
+  positionStringSide = "od wewnątrz",
+}) => {
   const {
     register,
     formState: { errors },
@@ -97,7 +100,7 @@ const ThirdHoleFields = ({ needsPositionStringSelect = true }) => {
                   label: stringPosition,
                 };
               })}
-              label="Położenie trzeciego otworu (patrząc z zewnątrz)"
+              label={`Położenie trzeciego otworu (patrząc ${positionStringSide})`}
               error={errors.thirdHole?.stringPosition}
               registration={register("thirdHole.stringPosition")}
             ></SelectField>
