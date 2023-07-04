@@ -61,7 +61,7 @@ const PowerCordHoleFields = () => {
             })}
             error={errors.hasPowerCordHole}
             defaultValue={stringPositions[0]}
-            label="Pozycja otworu na przewód zasilający (patrząc z zewnątrz)"
+            label="Pozycja otworu na przewód zasilający"
             registration={register("powerCordHole.stringPosition")}
           ></SelectField>
         </div>

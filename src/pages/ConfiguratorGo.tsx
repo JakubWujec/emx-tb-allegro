@@ -70,8 +70,8 @@ const ConfiguratorGo = () => {
           ></MinMaxDescription>
           <ColorFields></ColorFields>
           <HingeField></HingeField>
-          <FirstHoleFields />
-          <SecondHoleFields></SecondHoleFields>
+          <FirstHoleFields positionStringSide="od zewnątrz" />
+          <SecondHoleFields positionStringSide="od zewnątrz"></SecondHoleFields>
           <PowerCordHoleFields />
           <div className="flex ">
             <div className={"basis-3/4"}>
