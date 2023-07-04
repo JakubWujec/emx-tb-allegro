@@ -5,17 +5,17 @@ const Home = () => {
     <div className="relative">
       <div className="flex flex-wrap flex-row gap-2 mt-2 justify-center">
         <ProductWrapper
-          imgSrc="../../public/pol_pm_Rama-okienna-Warmtec-TermoBlock-UP-2109_4.webp"
+          imgSrc="/images/pol_pm_Rama-okienna-Warmtec-TermoBlock-UP-2109_4.webp"
           name="Rama okienna Warmtec Termoblock Up"
           link="/up"
         ></ProductWrapper>
         <ProductWrapper
-          imgSrc="../../public/pol_pm_Rama-okienna-Warmtec-TermoBlock-GO-2110_1.webp"
+          imgSrc="/images/pol_pm_Rama-okienna-Warmtec-TermoBlock-GO-2110_1.webp"
           name="Rama okienna Warmtec Termoblock Go"
           link="/go"
         ></ProductWrapper>
         <ProductWrapper
-          imgSrc="../../public/pol_pm_Rama-okienna-Warmtec-TermoBlock-PRO-2122_1.webp"
+          imgSrc="/images/pol_pm_Rama-okienna-Warmtec-TermoBlock-PRO-2122_1.webp"
           name="Rama okienna Warmtec Termoblock Pro"
           link="/pro"
         ></ProductWrapper>
