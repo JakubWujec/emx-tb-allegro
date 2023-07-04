@@ -10,7 +10,7 @@ import { CartFormInput, CartSchema } from "../schema/cart.schema";
 import { ShoppingCartContext } from "../hooks/useShoppingCartProvider";
 
 const Cart = () => {
-  const { getItems } = useContext(ShoppingCartContext);
+  const { getItems, clearCart } = useContext(ShoppingCartContext);
   const products = getItems();
   const formMethods = useForm<CartFormInput>({
     resolver: CartSchema && zodResolver(CartSchema),
@@ -30,6 +30,7 @@ const Cart = () => {
         type: "error",
       });
     } else {
+      clearCart();
       return navigate(`/summary/${response.order.id}`);
     }
   };
