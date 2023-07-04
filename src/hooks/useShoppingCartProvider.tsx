@@ -11,7 +11,7 @@ type ShoppingCartContext = {
     quantity: number,
     mode: "add" | "subtract" | "change"
   ) => void;
-  clear: () => void;
+  clearCart: () => void;
 };
 
 function getInitialState() {
@@ -58,7 +58,7 @@ export const ShoppingCartProvider = ({
     setCartItems([...cartItems, newItem]);
   };
 
-  const clear = () => {
+  const clearCart = () => {
     setCartItems([]);
   };
 
@@ -96,7 +96,7 @@ export const ShoppingCartProvider = ({
     addItem,
     changeQuantity,
     removeItem,
-    clear,
+    clearCart,
   };
 
   return (
