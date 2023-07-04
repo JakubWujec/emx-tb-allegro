@@ -64,28 +64,30 @@ function priceForArea(widthInMillimeters: number, heightInMillimeters: number) {
   const areaInSquareMillimeters = widthInMillimeters * heightInMillimeters;
   const areaInSquareMeters = areaInSquareMillimeters / 1_000_000;
 
-  if (areaInSquareMeters > 0.5 && areaInSquareMeters <= 0.75) {
-    price += 50.0;
-  } else if (areaInSquareMeters <= 1) {
-    price += 100.0;
-  } else if (areaInSquareMeters <= 1.25) {
-    price += 150.0;
-  } else if (areaInSquareMeters <= 1.5) {
-    price += 200.0;
-  } else if (areaInSquareMeters <= 1.75) {
-    price += 250.0;
-  } else if (areaInSquareMeters <= 2) {
-    price += 300.0;
-  } else if (areaInSquareMeters <= 2.25) {
-    price += 350.0;
-  } else if (areaInSquareMeters <= 2.5) {
-    price += 400.0;
-  } else if (areaInSquareMeters <= 2.75) {
-    price += 450.0;
-  } else if (areaInSquareMeters <= 3) {
-    price += 500.0;
-  } else if (areaInSquareMeters > 3) {
-    price += 600.0;
+  if (areaInSquareMeters > 0.5) {
+    if (areaInSquareMeters <= 0.75) {
+      price += 50.0;
+    } else if (areaInSquareMeters <= 1) {
+      price += 100.0;
+    } else if (areaInSquareMeters <= 1.25) {
+      price += 150.0;
+    } else if (areaInSquareMeters <= 1.5) {
+      price += 200.0;
+    } else if (areaInSquareMeters <= 1.75) {
+      price += 250.0;
+    } else if (areaInSquareMeters <= 2) {
+      price += 300.0;
+    } else if (areaInSquareMeters <= 2.25) {
+      price += 350.0;
+    } else if (areaInSquareMeters <= 2.5) {
+      price += 400.0;
+    } else if (areaInSquareMeters <= 2.75) {
+      price += 450.0;
+    } else if (areaInSquareMeters <= 3) {
+      price += 500.0;
+    } else if (areaInSquareMeters > 3) {
+      price += 600.0;
+    }
   }
 
   if (widthInMillimeters > 1800 || heightInMillimeters > 1800) {
