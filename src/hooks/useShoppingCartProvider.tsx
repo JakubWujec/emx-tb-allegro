@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
 import type { Product } from "../types";
 
+const LOCAL_STORAGE_CART_KEY = "EMULTIMAX_KONFIGURATOR_CART";
+
 type ShoppingCartContext = {
   getItems: () => Product[];
   addItem: (item: Omit<Product, "id">) => void;
@@ -15,7 +17,7 @@ type ShoppingCartContext = {
 };
 
 function getInitialState() {
-  const cartFromLocalStorage = localStorage.getItem("shoppingCart");
+  const cartFromLocalStorage = localStorage.getItem(LOCAL_STORAGE_CART_KEY);
   return cartFromLocalStorage ? JSON.parse(cartFromLocalStorage) : [];
 }
 
@@ -33,12 +35,12 @@ export const ShoppingCartProvider = ({
   const [cartItems, setCartItems] = useState<Product[]>(getInitialState());
 
   useEffect(() => {
-    const cartFromLocalStorage = localStorage.getItem("shoppingCart");
+    const cartFromLocalStorage = localStorage.getItem(LOCAL_STORAGE_CART_KEY);
     if (cartFromLocalStorage) setCartItems(JSON.parse(cartFromLocalStorage));
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("shoppingCart", JSON.stringify(cartItems));
+    localStorage.setItem(LOCAL_STORAGE_CART_KEY, JSON.stringify(cartItems));
   }, [cartItems]);
 
   const getItems = () => {
