@@ -1,7 +1,9 @@
 import { useFormContext } from "react-hook-form";
-import { stringPositions } from "../../schema/termoblockHole.schema";
+
 import { SelectField } from "./SelectField";
 import { useEffect } from "react";
+
+const powerCordHoleStringPositions = ["na dole po lewej", "na dole po prawej"];
 
 const PowerCordHoleFields = () => {
   const {
@@ -23,7 +25,7 @@ const PowerCordHoleFields = () => {
     if (hasPowerCordHole) {
       resetField("powerCordHole", {
         defaultValue: {
-          stringPosition: stringPositions[0],
+          stringPosition: powerCordHoleStringPositions[0],
         },
       });
     }
@@ -53,14 +55,14 @@ const PowerCordHoleFields = () => {
       {hasPowerCordHole && (
         <div className="mb-4">
           <SelectField
-            options={stringPositions.map((stringPosition) => {
+            options={powerCordHoleStringPositions.map((stringPosition) => {
               return {
                 value: stringPosition,
                 label: stringPosition,
               };
             })}
             error={errors.hasPowerCordHole}
-            defaultValue={stringPositions[0]}
+            defaultValue={powerCordHoleStringPositions[0]}
             label="Pozycja otworu na przewód zasilający"
             registration={register("powerCordHole.stringPosition")}
           ></SelectField>
