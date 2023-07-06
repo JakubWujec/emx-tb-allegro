@@ -20,25 +20,24 @@ function priceBase(termoblockItem: TermoblockItem) {
 
 function priceForUnfamiliarHoles(termoblockItem: TermoblockItem) {
   let result = 0;
+  // własna końcówka wysłana do zmierzenia
+  const namePart = "do zmierzenia";
   const unfamiliarHolePrice = 50;
   if (
     termoblockItem.firstHole &&
-    termoblockItem?.firstHole?.holeType ===
-      "własna końcówka wysłana do zmierzenia"
+    termoblockItem?.firstHole?.holeType.includes(namePart)
   )
     result += unfamiliarHolePrice;
   if (
     termoblockItem.secondHole &&
-    termoblockItem.secondHole.holeType ===
-      "własna końcówka wysłana do zmierzenia"
+    termoblockItem.secondHole.holeType.includes(namePart)
   )
     result += unfamiliarHolePrice;
 
   if (
     "thirdHole" in termoblockItem &&
     termoblockItem.thirdHole &&
-    termoblockItem.thirdHole.holeType ===
-      "własna końcówka wysłana do zmierzenia"
+    termoblockItem.thirdHole.holeType.includes(namePart)
   )
     result += unfamiliarHolePrice;
 
