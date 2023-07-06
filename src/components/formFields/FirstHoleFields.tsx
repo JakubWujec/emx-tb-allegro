@@ -55,20 +55,6 @@ const FirstHoleFields = ({
         registration={register("firstHole.holeType")}
       ></SelectField>
 
-      {needsPositionStringSelect && (
-        <SelectField
-          options={stringPositions.map((stringPosition) => {
-            return {
-              value: stringPosition,
-              label: stringPosition,
-            };
-          })}
-          label={`Położenie pierwszego otworu (patrząc ${positionStringSide})`}
-          error={errors.firstHole?.stringPosition}
-          registration={register("firstHole.stringPosition")}
-        ></SelectField>
-      )}
-
       {firstHoleType === "okrągły na rurę bez uchwytu" && (
         <>
           <InputField
@@ -82,6 +68,20 @@ const FirstHoleFields = ({
           ></InputField>
           <MinMaxDescription minValue={80} maxValue={250}></MinMaxDescription>
         </>
+      )}
+
+      {needsPositionStringSelect && (
+        <SelectField
+          options={stringPositions.map((stringPosition) => {
+            return {
+              value: stringPosition,
+              label: stringPosition,
+            };
+          })}
+          label={`Położenie pierwszego otworu (patrząc ${positionStringSide})`}
+          error={errors.firstHole?.stringPosition}
+          registration={register("firstHole.stringPosition")}
+        ></SelectField>
       )}
     </div>
   );
