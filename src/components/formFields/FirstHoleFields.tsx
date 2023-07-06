@@ -20,7 +20,9 @@ const FirstHoleFields = ({
   const { termoblockHoles: holeTypes } = useContext(TermoblockHolesContext);
   const firstHoleType = watch("firstHole.holeType");
 
+  console.log(watch("firstHole"));
   useEffect(() => {
+    console.log("XXXX");
     if (holeTypes && holeTypes.length) {
       if (needsPositionStringSelect) {
         resetField("firstHole", {
@@ -77,6 +79,7 @@ const FirstHoleFields = ({
             type="number"
             registration={register("firstHole.diameter", {
               valueAsNumber: true,
+              shouldUnregister: true,
             })}
           ></InputField>
           <MinMaxDescription minValue={80} maxValue={250}></MinMaxDescription>
