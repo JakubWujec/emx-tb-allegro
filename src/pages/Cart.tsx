@@ -56,7 +56,7 @@ const Cart = () => {
           disabled={!products.length}
           className="bg-mainOrange px-4 py-4 mt-4 rounded text-white shadow float-right w-full sm:w-1/2 font-bold"
         >
-          Zamów
+          Zapisz
         </button>
       </form>
     </>
