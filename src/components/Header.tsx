@@ -20,10 +20,14 @@ const Header = () => {
               <HomeIcon />
             </Link>
           </div>
-          <div>
-            <Link to={"/"} className="h-6 max-h-6">
-              <img src={"./emultimax-logo.png"} alt="Emultimax LOGO" />
-            </Link>
+          <div className="flex flex-column items-center text-primary font-bold text-2xl gap-1">
+            <p>Konfigurator emultimax</p>
+
+            <img
+              src={"./favicon.ico"}
+              className="h-6 w-6"
+              alt="Emultimax LOGO"
+            />
           </div>
 
           <div>
