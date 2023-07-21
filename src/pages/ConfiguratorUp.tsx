@@ -21,9 +21,11 @@ import {
 } from "../schema/termoblockUp.schema";
 import calculatePrice from "../utils/calculatePrice";
 import termoblockToStringParams from "../utils/termoblockToStringParams";
+import { NotificationContext } from "../hooks/useNotificationsProvider";
 
 const ConfiguratorUp = () => {
   const { addItem } = useContext(ShoppingCartContext);
+  const { addNotification } = useContext(NotificationContext);
 
   const formMethods = useForm<CreateTermoblockUpItemInput>({
     resolver:
@@ -47,6 +49,11 @@ const ConfiguratorUp = () => {
       price: price,
       quantity: 1,
       details: values,
+    });
+    addNotification({
+      type: "info",
+      title: "Dodano do koszyka",
+      message: "Dodano do koszyka",
     });
   }
 

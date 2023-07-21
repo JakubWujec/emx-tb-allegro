@@ -1,5 +1,5 @@
 import { XMarkIcon } from "@heroicons/react/20/solid";
-import { Fragment } from "react";
+import { Fragment, useEffect } from "react";
 import { Transition } from "@headlessui/react";
 import {
   CheckCircleIcon,
@@ -40,6 +40,17 @@ export const NotificationItem = ({
   notification: { id, type, title, message },
   onDismiss,
 }: NotificationItemProps) => {
+  // usuwanie okienka po 3 sekundach
+  useEffect(() => {
+    const timeId = setTimeout(() => {
+      onDismiss(id);
+    }, 3000);
+
+    return () => {
+      clearTimeout(timeId);
+    };
+  }, [id]);
+
   return (
     <div className="w-full flex flex-col items-center space-y-4 sm:items-end">
       <Transition
