@@ -1,5 +1,3 @@
-import AddIcon from "./icons/AddIcon";
-
 interface SubmitWithPricingProps {
   disabled: boolean;
   price: number;
