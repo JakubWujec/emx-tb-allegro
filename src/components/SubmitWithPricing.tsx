@@ -18,10 +18,13 @@ const SubmitWithPricing = ({ disabled, price }: SubmitWithPricingProps) => {
 
   return (
     <div className="m-4 w-full text-center justify-center flex basis-1/4">
-      <div className="flex items-center justify-center w-full mt-6">
+      <div className="flex items-center justify-center w-full mt-6 gap-2">
         <span className="text-4xl font-bold text-mainOrange">{price} ZŁ</span>
-        <button type="submit">
-          <AddIcon></AddIcon>
+        <button
+          type="submit"
+          className="bg-mainOrange hover:bg-mainOrangeDarker text-white p-4 rounded-md"
+        >
+          Dodaj
         </button>
       </div>
     </div>
