@@ -21,6 +21,12 @@ const Header = () => {
             </Link>
           </div>
           <div>
+            <Link to={"/"} className="h-6 max-h-6">
+              <img src={"./emultimax-logo.png"} alt="Emultimax LOGO" />
+            </Link>
+          </div>
+
+          <div>
             <ul className="flex space-x-4">
               <li>
                 <Link className="text-black-500" to={`/cart`}>
